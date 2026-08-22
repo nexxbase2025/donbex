@@ -356,3 +356,228 @@ footer{padding:38px 0 22px;border-top:1px solid var(--line);color:#8492a4;font-s
   background:#36cfff !important;
   box-shadow:0 0 18px rgba(54,207,255,.9) !important;
 }
+
+
+/* ===== DONBEX V12 PRO STABILITY & POLISH ===== */
+
+a,button,.chat-peek,.menu-btn{
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+
+body.menu-open{overflow:hidden}
+
+/* Chat icon: visible rotating halo around X */
+.chat-peek{
+  overflow:visible !important;
+  isolation:isolate;
+}
+.chat-peek::before,
+.chat-peek::after{
+  content:"";
+  position:absolute;
+  pointer-events:none;
+  border-radius:22px 0 0 22px;
+}
+.chat-peek::before{
+  inset:-4px -1px -4px -4px;
+  z-index:-2;
+  background:conic-gradient(from 0deg,
+    transparent 0deg,
+    rgba(65,225,255,.20) 60deg,
+    rgba(65,225,255,.95) 105deg,
+    rgba(42,104,255,.22) 150deg,
+    transparent 220deg);
+  animation:chatOrbit 2.4s linear infinite;
+  filter:drop-shadow(0 0 8px rgba(54,210,255,.35));
+}
+.chat-peek::after{
+  inset:1px 0 1px 1px;
+  z-index:-1;
+  background:linear-gradient(145deg,#17283b,#0d1723);
+}
+@keyframes chatOrbit{to{transform:rotate(360deg)}}
+.chat-peek.active::before{
+  animation-duration:1.6s;
+  filter:drop-shadow(0 0 12px rgba(54,210,255,.55));
+}
+
+/* Stronger, clearer chat */
+.chat-panel{
+  background:linear-gradient(180deg,#eef9ff 0%,#d9efff 100%) !important;
+}
+.msg{
+  font-weight:700 !important;
+  letter-spacing:.002em;
+}
+.msg.bot{
+  color:#102234 !important;
+}
+
+/* Form submit: force readable label */
+.form button.btn,
+.form .btn{
+  color:#fff !important;
+  background:linear-gradient(135deg,#0b68ff,#00a7ff) !important;
+  min-width:190px !important;
+  min-height:50px !important;
+  padding:0 22px !important;
+  font-weight:900 !important;
+  opacity:1 !important;
+  -webkit-text-fill-color:#fff !important;
+  border:1px solid rgba(255,255,255,.18) !important;
+  box-shadow:0 12px 30px rgba(11,104,255,.24) !important;
+}
+
+/* Footer slogan + minimalist social icons */
+.footer-row{
+  align-items:center;
+}
+.footer-socials{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+  margin-top:16px;
+}
+.footer-socials a{
+  width:36px;height:36px;
+  display:grid;place-items:center;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.025);
+  color:#aebac8;
+  transition:.18s ease;
+}
+.footer-socials a:hover{
+  color:#fff;
+  border-color:rgba(77,220,255,.30);
+  box-shadow:0 0 18px rgba(55,202,255,.08);
+}
+.footer-socials svg{width:17px;height:17px}
+
+/* Product visuals brighter and more intentional */
+.product-bg{
+  opacity:1 !important;
+  filter:saturate(1.35) brightness(1.22) !important;
+}
+.product:after{
+  background:linear-gradient(90deg,
+    rgba(13,20,28,.96) 0%,
+    rgba(13,20,28,.86) 45%,
+    rgba(13,20,28,.16) 100%) !important;
+}
+.product small{
+  font-weight:900 !important;
+}
+
+/* PWA Radio Player: phone with player inside */
+.radio-phone{
+  position:absolute;
+  right:10%;
+  top:50%;
+  transform:translateY(-50%);
+  width:138px;height:244px;
+  border-radius:26px;
+  border:2px solid rgba(137,232,255,.85);
+  background:linear-gradient(180deg,rgba(26,39,55,.96),rgba(11,18,27,.96));
+  box-shadow:0 0 28px rgba(72,214,255,.28),inset 0 0 22px rgba(72,214,255,.06);
+}
+.radio-phone::before{
+  content:"";
+  position:absolute;
+  top:9px;left:38%;right:38%;height:5px;
+  border-radius:4px;background:rgba(156,238,255,.7)
+}
+.radio-screen{
+  position:absolute;
+  left:14px;right:14px;top:38px;bottom:18px;
+  border-radius:18px;
+  background:
+    radial-gradient(circle at 50% 32%,rgba(126,86,255,.26),transparent 25%),
+    linear-gradient(180deg,#171827,#10151e);
+  border:1px solid rgba(255,255,255,.06);
+}
+.radio-disc{
+  position:absolute;
+  width:72px;height:72px;border-radius:50%;
+  left:50%;top:26%;transform:translate(-50%,-50%);
+  border:1px solid rgba(173,146,255,.55);
+  background:radial-gradient(circle,#171622 0 18%,#493f69 19% 21%,#211b31 22% 100%);
+  animation:spin 9s linear infinite;
+}
+.radio-play{
+  position:absolute;
+  left:50%;top:54%;transform:translate(-50%,-50%);
+  width:42px;height:42px;border-radius:50%;
+  display:grid;place-items:center;
+  color:#b8f4ff;
+  border:1px solid rgba(120,229,255,.45);
+  box-shadow:0 0 18px rgba(88,217,255,.15);
+}
+.radio-bars{
+  position:absolute;left:18px;right:18px;bottom:22px;height:28px;
+  display:flex;align-items:end;justify-content:center;gap:4px
+}
+.radio-bars i{
+  width:5px;border-radius:5px 5px 0 0;
+  background:linear-gradient(#5ce8ff,#5a68ff);
+  animation:eqPro 1s ease-in-out infinite alternate
+}
+.radio-bars i:nth-child(1){height:13px}.radio-bars i:nth-child(2){height:24px;animation-delay:.12s}.radio-bars i:nth-child(3){height:18px;animation-delay:.24s}.radio-bars i:nth-child(4){height:27px;animation-delay:.36s}.radio-bars i:nth-child(5){height:15px;animation-delay:.48s}
+@keyframes eqPro{to{height:8px;opacity:.65}}
+
+/* Modern taxi silhouette */
+.taxi-modern{
+  position:absolute;
+  right:8%;
+  bottom:25%;
+  width:190px;height:50px;
+  border:2px solid #73eaff;
+  border-radius:28px 38px 15px 15px;
+  background:linear-gradient(180deg,rgba(27,142,242,.22),rgba(15,73,134,.08));
+  box-shadow:0 0 26px rgba(76,215,255,.28);
+  animation:taxiModernMove 5.4s ease-in-out infinite;
+}
+.taxi-modern::before{
+  content:"";
+  position:absolute;left:35px;top:-37px;width:103px;height:40px;
+  border:2px solid #73eaff;border-bottom:0;
+  border-radius:31px 45px 0 0;
+  transform:skewX(-12deg);
+  background:rgba(29,124,205,.10);
+}
+.taxi-modern::after{
+  content:"";
+  position:absolute;left:26px;right:26px;bottom:-14px;height:25px;
+  background:
+    radial-gradient(circle at 0 50%,#0e141b 0 10px,#73eaff 11px 12px,transparent 13px),
+    radial-gradient(circle at 100% 50%,#0e141b 0 10px,#73eaff 11px 12px,transparent 13px)
+}
+@keyframes taxiModernMove{
+  0%,100%{transform:translateX(18px)}
+  50%{transform:translateX(-58px) translateY(-3px)}
+}
+
+/* Privacy: intentionally static and reading-first */
+body.privacy-page .inner-hero,
+body.privacy-page .privacy,
+body.privacy-page .privacy section{
+  animation:none !important;
+}
+body.privacy-page .privacy section::before,
+body.privacy-page .privacy section::after{
+  content:none !important;
+}
+
+/* Mobile */
+@media(max-width:680px){
+  .form button.btn,
+  .form .btn{
+    width:100% !important;
+    min-width:0 !important;
+  }
+  .radio-phone{right:2%;scale:.82}
+  .taxi-modern{right:-2%;scale:.78}
+}

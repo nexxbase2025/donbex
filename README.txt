@@ -1,13 +1,17 @@
-DONBEX STATIC V10
+DONBEX STATIC V12 PRO
 
-1. Doble clic en index.html para revisar el sitio localmente.
-2. No necesitas Terminal, npm ni Next.js.
-3. Para Vercel:
-   - Puedes usar el MISMO proyecto.
-   - Reemplaza el contenido anterior del repositorio por estos archivos.
-   - En Vercel usa Framework Preset: Other.
-   - Build Command: vacío.
-   - Output Directory: .
-4. El sitio es HTML/CSS/JavaScript puro y no es obsoleto.
-5. SEO: robots.txt, sitemap.xml, metadata básica y estructura semántica.
-6. Cambia enlaces sociales y correo antes de publicar definitivamente.
+Cambios:
+- Menú y chat con respuesta de un solo toque más estable.
+- X del chat vuelve a tener halo/titileo visible.
+- Chat abierto claramente distinto: fondo azul claro/blanco.
+- Botón Enviar solicitud forzado a texto blanco visible en móvil.
+- Nombre del negocio / empresa + Tipo de negocio / empresa.
+- Redes sociales movidas al pie con iconos minimalistas.
+- Eslogan corregido: Tecnología que impulsa negocios.
+- Taxi Ride con automóvil tecnológico más moderno.
+- PWA Radio Player ahora muestra un teléfono con reproductor dentro.
+- Visuales de productos más iluminadas.
+- Política de privacidad sin animaciones decorativas.
+- No-cache en Vercel para evitar versiones viejas.
+
+Doble clic en index.html para revisar localmente.
