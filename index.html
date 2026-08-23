@@ -1,33 +1,930 @@
-<!doctype html>
-<!-- DONBEX STATIC V16 LINKS I18N --><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0d131b"><meta name="description" content="DONBEX crea plataformas digitales, automatización, PWA, webs, CRM y sistemas tecnológicos para negocios."><title>DONBEX | Tecnología que impulsa negocios</title><link rel="stylesheet" href="assets/css/style.css?v=16"></head><body>
-<header class="topbar"><div class="shell topbar-inner"><button id="brandHome" class="brand"><img src="assets/img/dombex-logo.png" alt="DONBEX"></button><button id="backHome" class="back hidden">← <span data-i18n="backHome">Volver al inicio</span></button><button id="menuBtn" class="menu-btn"><i></i><i></i><i></i></button></div></header>
-<div id="overlay" class="overlay"></div><aside id="drawer" class="drawer"><div class="mesh"></div><div class="drawer-head"><b><span></span>DONBEX</b><button id="closeMenu">×</button></div><nav><button data-view="solutions"><i></i><span data-i18n="menuSolutions">Soluciones</span><b>↗</b></button><button data-view="products"><i></i><span data-i18n="menuProducts">Productos</span><b>↗</b></button><button data-view="project"><i></i><span data-i18n="buildProject">Construye tu proyecto</span><b>↗</b></button><div class="sep">MÁS</div><button class="minor" data-view="about"><span data-i18n="menuAbout">Sobre nosotros</span><b>↗</b></button><button class="minor" data-view="privacy"><span data-i18n="menuPrivacy">Política de privacidad</span><b>↗</b></button></nav><div class="drawer-foot"><span></span>Tecnología que impulsa negocios.</div></aside>
-<main id="app">
-<section class="view active" data-view-panel="home"><div class="hero"><div class="gridfx"></div><div class="shell hero-grid"><div class="hero-copy"><small><i></i><span data-i18n="homeKicker">SISTEMAS DIGITALES PARA NEGOCIOS</span></small><h1><span data-i18n="homeTitle1">Tecnología que</span><br><span data-i18n="homeTitle2">impulsa negocios.</span></h1><p><span data-i18n="homeIntro">Creamos plataformas, automatizaciones, PWA, webs y sistemas inteligentes que simplifican operaciones y convierten procesos complejos en experiencias fáciles de usar.</span></p><div class="actions"><button class="btn" data-view="project"><span data-i18n="buildProject">Construye tu proyecto</span></button><button class="btn ghost" data-view="solutions"><span data-i18n="exploreSolutions">Explorar soluciones</span></button></div></div><div class="core"><div class="core-top">DONBEX / CORE <b><span data-i18n="coreOnline">● EN LÍNEA</span></b></div><div class="core-mid"><span class="orbit o1"></span><span class="orbit o2"></span><span class="orbit o3"></span><span class="scan"></span><div class="logo-card"><img src="assets/img/dombex-logo.png" alt=""></div></div><div class="core-foot"><div>DESIGN<small>UI / UX</small></div><div>BUILD<small>CODE</small></div><div>AUTOMATE<small>AI / FLOW</small></div></div></div></div></div><footer class="home-footer"><span>© 2026 DONBEX</span><div class="socials">
-      <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" data-social="instagram" class="social instagram">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5.2"/><circle cx="12" cy="12" r="4.15"/><circle cx="17.45" cy="6.55" r="1.05" class="fill"/></svg>
+<!DOCTYPE html>
+<!-- DONBEX STATIC V16 LINKS I18N -->
+<html lang="es">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
+  <meta content="#0d131b" name="theme-color"/>
+  <meta content="DONBEX crea plataformas digitales, automatización, PWA, webs, CRM y sistemas tecnológicos para negocios." name="description"/>
+  <title>
+   DONBEX | Tecnología que impulsa negocios
+  </title>
+  <link href="assets/css/style.css?v=16" rel="stylesheet"/>
+ </head>
+ <body>
+  <header class="topbar">
+   <div class="shell topbar-inner">
+    <button class="brand" id="brandHome">
+     <img alt="DONBEX" src="assets/img/dombex-logo.png"/>
+    </button>
+    <button class="back hidden" id="backHome">
+     ←
+     <span data-i18n="backHome">
+      Volver al inicio
+     </span>
+    </button>
+    <button class="menu-btn" id="menuBtn">
+     <i>
+     </i>
+     <i>
+     </i>
+     <i>
+     </i>
+    </button>
+   </div>
+  </header>
+  <div class="overlay" id="overlay">
+  </div>
+  <aside class="drawer" id="drawer">
+   <div class="mesh">
+   </div>
+   <div class="drawer-head">
+    <b>
+     <span>
+     </span>
+     DONBEX
+    </b>
+    <button id="closeMenu">
+     ×
+    </button>
+   </div>
+   <nav>
+    <button data-view="solutions">
+     <i>
+     </i>
+     <span data-i18n="menuSolutions">
+      Soluciones
+     </span>
+     <b>
+      ↗
+     </b>
+    </button>
+    <button data-view="products">
+     <i>
+     </i>
+     <span data-i18n="menuProducts">
+      Productos
+     </span>
+     <b>
+      ↗
+     </b>
+    </button>
+    <button data-view="project">
+     <i>
+     </i>
+     <span data-i18n="buildProject">
+      Construye tu proyecto
+     </span>
+     <b>
+      ↗
+     </b>
+    </button>
+    <div class="sep">
+     MÁS
+    </div>
+    <button class="minor" data-view="about">
+     <span data-i18n="menuAbout">
+      Sobre nosotros
+     </span>
+     <b>
+      ↗
+     </b>
+    </button>
+    <button class="minor" data-view="privacy">
+     <span data-i18n="menuPrivacy">
+      Política de privacidad
+     </span>
+     <b>
+      ↗
+     </b>
+    </button>
+   </nav>
+   <div class="drawer-foot">
+    <span>
+    </span>
+    Tecnología que impulsa negocios.
+   </div>
+  </aside>
+  <main id="app">
+   <section class="view active" data-view-panel="home">
+    <div class="hero">
+     <div class="gridfx">
+     </div>
+     <div class="shell hero-grid">
+      <div class="hero-copy">
+       <small>
+        <i>
+        </i>
+        <span data-i18n="homeKicker">
+         SISTEMAS DIGITALES PARA NEGOCIOS
+        </span>
+       </small>
+       <h1>
+        <span data-i18n="homeTitle1">
+         Tecnología que
+        </span>
+        <br/>
+        <span data-i18n="homeTitle2">
+         impulsa negocios.
+        </span>
+       </h1>
+       <p>
+        <span data-i18n="homeIntro">
+         Creamos plataformas, automatizaciones, PWA, webs y sistemas inteligentes que simplifican operaciones y convierten procesos complejos en experiencias fáciles de usar.
+        </span>
+       </p>
+       <div class="actions">
+        <button class="btn" data-view="project">
+         <span data-i18n="buildProject">
+          Construye tu proyecto
+         </span>
+        </button>
+        <button class="btn ghost" data-view="solutions">
+         <span data-i18n="exploreSolutions">
+          Explorar soluciones
+         </span>
+        </button>
+       </div>
+      </div>
+      <div class="core">
+       <div class="core-top">
+        DONBEX / CORE
+        <b>
+         <span data-i18n="coreOnline">
+          ● EN LÍNEA
+         </span>
+        </b>
+       </div>
+       <div class="core-mid">
+        <span class="orbit o1">
+        </span>
+        <span class="orbit o2">
+        </span>
+        <span class="orbit o3">
+        </span>
+        <span class="scan">
+        </span>
+        <div class="logo-card">
+         <img alt="" src="assets/img/dombex-logo.png"/>
+        </div>
+       </div>
+       <div class="core-foot">
+        <div>
+         DESIGN
+         <small>
+          UI / UX
+         </small>
+        </div>
+        <div>
+         BUILD
+         <small>
+          CODE
+         </small>
+        </div>
+        <div>
+         AUTOMATE
+         <small>
+          AI / FLOW
+         </small>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <footer class="home-footer">
+     <span>
+      © 2026 DONBEX
+     </span>
+     <div class="socials">
+      <a aria-label="Instagram" class="social instagram" data-social="instagram" href="https://www.instagram.com/" rel="noopener noreferrer" target="_blank">
+       <svg aria-hidden="true" viewbox="0 0 24 24">
+        <rect height="17.6" rx="5.2" width="17.6" x="3.2" y="3.2">
+        </rect>
+        <circle cx="12" cy="12" r="4.15">
+        </circle>
+        <circle class="fill" cx="17.45" cy="6.55" r="1.05">
+        </circle>
+       </svg>
       </a>
-      <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" data-social="facebook" class="social facebook">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.9 21v-8h2.75l.41-3.2H13.9V7.75c0-.93.26-1.56 1.59-1.56h1.7V3.33c-.29-.04-1.3-.13-2.47-.13-2.44 0-4.11 1.49-4.11 4.23V9.8H7.85V13h2.76v8h3.29Z"/></svg>
+      <a aria-label="Facebook" class="social facebook" data-social="facebook" href="https://www.facebook.com/" rel="noopener noreferrer" target="_blank">
+       <svg aria-hidden="true" viewbox="0 0 24 24">
+        <path d="M13.9 21v-8h2.75l.41-3.2H13.9V7.75c0-.93.26-1.56 1.59-1.56h1.7V3.33c-.29-.04-1.3-.13-2.47-.13-2.44 0-4.11 1.49-4.11 4.23V9.8H7.85V13h2.76v8h3.29Z">
+        </path>
+       </svg>
       </a>
-      <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" aria-label="TikTok" data-social="tiktok" class="social tiktok">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.2 3.3c.34 2.22 1.62 3.54 3.8 3.83v3.12c-1.43.04-2.75-.4-3.78-1.1v5.9a5.46 5.46 0 1 1-4.72-5.4v3.16a2.36 2.36 0 1 0 1.58 2.24V3.3h3.12Z"/></svg>
+      <a aria-label="TikTok" class="social tiktok" data-social="tiktok" href="https://www.tiktok.com/" rel="noopener noreferrer" target="_blank">
+       <svg aria-hidden="true" viewbox="0 0 24 24">
+        <path d="M15.2 3.3c.34 2.22 1.62 3.54 3.8 3.83v3.12c-1.43.04-2.75-.4-3.78-1.1v5.9a5.46 5.46 0 1 1-4.72-5.4v3.16a2.36 2.36 0 1 0 1.58 2.24V3.3h3.12Z">
+        </path>
+       </svg>
       </a>
-    </div><span>Tecnología que impulsa negocios.</span></footer></section>
-<section class="view" data-view-panel="solutions"><div class="section-hero"><div class="shell"><small>SOLUCIONES</small><h2>Cuéntanos qué quieres mejorar.<br><span>Nosotros construimos la tecnología.</span></h2><p>Empieza por tu necesidad. DONBEX define la arquitectura adecuada sin obligarte a saber términos técnicos.</p></div></div><div class="shell cards">
-<article class="card automation"><div class="art nodes"></div><div class="copy"><small><span data-i18n="solAutomationLabel">AUTOMATIZACIÓN</span></small><h3>Automatización de procesos</h3><p>Conectamos formularios, avisos, seguimiento y acciones para reducir tareas repetitivas.</p><button data-view="project">Quiero automatizar ↗</button></div></article>
-<article class="card ai"><div class="art aiart"><span></span><i></i><b></b></div><div class="copy"><small><span data-i18n="solAiLabel">ASISTENTES IA</span></small><h3>Chatbots & asistentes IA</h3><p>Responden, orientan, captan datos y reducen trabajo manual antes de que intervenga una persona.</p><button data-view="project">Quiero un asistente ↗</button></div></article>
-<article class="card web"><div class="art webart"><span></span><i></i><b></b></div><div class="copy"><small><span data-i18n="solWebLabel">WEB INTELIGENTE</span></small><h3>Webs automatizadas</h3><p>Webs que captan solicitudes, organizan datos y activan atención, reservas o ventas.</p><button data-view="project">Quiero una web ↗</button></div></article>
-<article class="card platform"><div class="art cubes"><span></span><i></i><b></b></div><div class="copy"><small><span data-i18n="solPlatformLabel">SISTEMAS A MEDIDA</span></small><h3>Plataformas para negocios</h3><p>Clientes, pedidos, reservas, roles, paneles y administración hechos alrededor de tu operación.</p><button data-view="project">Quiero una plataforma ↗</button></div></article>
-<article class="card pwa"><div class="art phoneart"><span></span><b>↓</b></div><div class="copy"><small><span data-i18n="solPwaLabel">MÓVIL / PWA</span></small><h3>Apps & PWA</h3><p>Experiencias móviles instalables, rápidas y ligeras para clientes o equipos internos.</p><button data-view="project">Quiero una PWA ↗</button></div></article>
-<article class="card sales"><div class="art salesart"><span></span><i></i><b></b></div><div class="copy"><small><span data-i18n="solSalesLabel">VENTAS ONLINE</span></small><h3>Ventas & servicios online</h3><p>Catálogo, pedidos, reservas, pagos y seguimiento con menos fricción comercial.</p><button data-view="project">Quiero vender online ↗</button></div></article>
-<article class="card crm"><div class="art crmart"><span></span><i></i><b></b></div><div class="copy"><small>CRM</small><h3>CRM & gestión interna</h3><p>Clientes, historial, estados, tareas y métricas alrededor de cómo trabaja tu equipo.</p><button data-view="project">Quiero organizar mi negocio ↗</button></div></article>
-<article class="card integrations"><div class="art intart"><span></span><i></i><b></b></div><div class="copy"><small><span data-i18n="solIntegrationsLabel">INTEGRACIONES</span></small><h3>Integraciones</h3><p>Conectamos correo, formularios, bases de datos, APIs y herramientas que hoy están separadas.</p><button data-view="project">Quiero conectar sistemas ↗</button></div></article>
-</div><div class="shell strip"><div><small>CUSTOM</small><h3>¿Tu necesidad no encaja en una categoría?</h3><p>Estas categorías son una guía. También diseñamos sistemas totalmente personalizados.</p></div><button class="btn" data-view="project">Explícanos tu idea</button></div></section>
-<section class="view" data-view-panel="products"><div class="section-hero"><div class="shell"><small>PRODUCTOS DONBEX</small><h2><span data-i18n="menuProducts">Productos</span> propios.<br><span>Cada uno con una experiencia distinta.</span></h2><p>Plataformas independientes dentro del ecosistema DONBEX.</p></div></div><div class="shell product-stack"><article class="product"><div class="p-art taxi"><span class="road r1"></span><span class="road r2"></span><span class="car"></span></div><div class="p-copy"><small><span data-i18n="productTaxiSubtitle">PLATAFORMA PARA CONDUCTORES Y OPERACIONES DE TRANSPORTE</span></small><h3>Taxi Ride</h3><p><span data-i18n="productTaxiText">Solicitudes, experiencia de pasajero, gestión del conductor y herramientas operativas.</span></p><a href="#"><span data-i18n="openPlatform">Abrir plataforma</span> ↗</a></div></article><article class="product"><div class="p-art webp"><span class="globe"></span><i></i><b></b></div><div class="p-copy"><small><span data-i18n="productWebSubtitle">PLATAFORMA PARA CREAR Y ADMINISTRAR EXPERIENCIAS WEB DE NEGOCIOS</span></small><h3 data-i18n="productWebName">Plataforma Web</h3><p><span data-i18n="productWebText">Presencia digital administrable, escalable y preparada para crecer junto con el negocio.</span></p><a href="#"><span data-i18n="openPlatform">Abrir plataforma</span> ↗</a></div></article><article class="product"><div class="p-art radiop"><span class="phone-device"><i></i><b>▶</b><em></em></span></div><div class="p-copy"><small><span data-i18n="productRadioSubtitle">GENERADOR DE REPRODUCTORES PWA PARA RADIOS ONLINE</span></small><h3 data-i18n="productRadioName">Reproductor PWA para Radio</h3><p><span data-i18n="productRadioText">Agrega URL de streaming, logo e identidad y genera una experiencia instalable lista para compartir.</span></p><a href="#"><span data-i18n="openPlatform">Abrir plataforma</span> ↗</a></div></article></div></section>
-<section class="view" data-view-panel="project"><div class="section-hero"><div class="shell"><small>DESARROLLO A MEDIDA</small><h2>Cuéntanos tu proyecto,<br><span>necesidad o idea.</span></h2><p>No necesitas términos técnicos. Cuéntanos qué quieres lograr y cómo funciona hoy tu negocio.</p></div></div><div class="shell project"><div class="steps"><article><span>◎</span><div><small>DESCUBRIR</small><h3>Tu negocio</h3><p>Qué haces, a quién atiendes y qué quieres crear o mejorar.</p></div></article><article><span>◇</span><div><small>DEFINIR</small><h3>Tu necesidad</h3><p>Proyecto nuevo, idea, proceso por mejorar o necesidad específica.</p></div></article><article><span>⌁</span><div><small>DISEÑAR</small><h3>El resultado</h3><p>Cómo debería funcionar la experiencia o proceso cuando esté listo.</p></div></article><article><span>↗</span><div><small>CONECTAR</small><h3>Siguiente paso</h3><p>Revisamos tu solicitud y continuamos personalmente por correo.</p></div></article></div><form id="projectForm"><div class="formgrid"><label>Nombre<input name="nombre" required></label><label>Apellido<input name="apellido" required></label><label>Nombre del negocio / empresa<input name="negocio" required></label><label>Tipo de negocio / empresa<input name="tipo" placeholder="Restaurante, salón, transporte..." required></label><label class="full">¿Qué necesitas?<select name="servicio" required><option value="">Selecciona una categoría</option><option>Automatización</option><option>Chatbot / IA</option><option>Página web</option><option>Plataforma</option><option>App / PWA</option><option>CRM</option><option>Integraciones</option><option>Otro</option></select></label><label class="full">Correo<input type="email" name="correo" required></label><label class="full">Describe tu proyecto, necesidad o idea<textarea name="descripcion" rows="6" required></textarea></label></div><button class="submit" type="submit">Enviar solicitud</button></form></div><div class="shell specialist"><span class="signal"></span><div><small>ATENCIÓN PERSONAL</small><h3>¿Prefieres hablar con un especialista de DONBEX?</h3><p>Déjanos tus datos. Si el proyecto lo necesita, podemos coordinar una llamada.</p></div></div></section>
-<section class="view" data-view-panel="about"><div class="section-hero"><div class="shell"><small>SOBRE DONBEX</small><h2>Convertimos necesidades de negocio<br><span>en sistemas digitales útiles.</span></h2><p>Diseñamos tecnología alrededor de clientes, procesos, equipos y objetivos de crecimiento reales.</p></div></div><div class="shell about"><article><div class="a-art"><span></span></div><div><small><span data-i18n="aboutThinkLabel">CÓMO PENSAMOS</span></small><h3>La tecnología empieza por el negocio</h3><p>Primero entendemos la operación, el cliente y el resultado. Después elegimos la tecnología.</p></div></article><article><div class="a-art"><span></span></div><div><small><span data-i18n="aboutBuildLabel">QUÉ CONSTRUIMOS</span></small><h3>Infraestructura digital que puede crecer</h3><p>Plataformas web, PWA, automatización, CRM, asistentes inteligentes, reservas y ventas online.</p></div></article><article><div class="a-art"><span></span></div><div><small><span data-i18n="aboutWhoLabel">PARA QUIÉN</span></small><h3>Diseñado alrededor de negocios reales</h3><p>Para negocios y emprendedores que quieren simplificar operaciones o convertir una idea en una plataforma funcional.</p></div></article></div></section>
-<section class="view privacy" data-view-panel="privacy"><div class="section-hero"><div class="shell"><small>POLÍTICA DE PRIVACIDAD</small><h2>Tu información debe tratarse<br><span>con claridad.</span></h2><p>Esta política explica qué información puede recopilar DONBEX y cómo puede utilizarse.</p></div></div><div class="shell privacy-copy"><section><h3>1. Información que podemos recopilar</h3><p>Nombre, negocio, correo, tipo de negocio, servicio seleccionado y detalles proporcionados voluntariamente.</p></section><section><h3>2. Cómo utilizamos la información</h3><p>Para responder consultas, evaluar proyectos, preparar propuestas, brindar soporte y mejorar nuestros servicios.</p></section><section><h3>3. Asistentes automáticos</h3><p>DONBEX puede usar IA para orientación inicial. No envíes contraseñas, credenciales de pago ni información altamente sensible.</p></section><section><h3>4. Cookies y analítica</h3><p>El sitio puede utilizar cookies esenciales y herramientas de analítica para comprender tráfico y rendimiento.</p></section><section><h3>5. Servicios de terceros</h3><p>Podemos integrar proveedores de hosting, correo, pagos, analítica, automatización o IA.</p></section><section><h3>6. Seguridad</h3><p>Usamos medidas razonables para reducir accesos no autorizados, aunque ningún sistema puede garantizar seguridad absoluta.</p></section></div></section>
-</main>
-<button id="chatPeek" class="chat-peek"><span></span><img src="assets/img/dombex-x.png" alt=""></button><section id="chatPanel" class="chat"><div class="chat-head"><div><b>DONBEX AI</b><small>Asistente digital</small></div><button id="chatClose">×</button></div><div id="msgs" class="msgs"><div class="msg bot">Hola. Cuéntame qué quieres construir o mejorar.</div></div><form id="chatForm"><input id="chatInput" placeholder="¿Qué necesita tu negocio?"><button>→</button></form></section>
-<script src="assets/js/app.js?v=16"></script></body></html>
+     </div>
+     <span>
+      Tecnología que impulsa negocios.
+     </span>
+    </footer>
+   </section>
+   <section class="view" data-view-panel="solutions">
+    <div class="section-hero">
+     <div class="shell">
+      <small>
+       SOLUCIONES
+      </small>
+      <h2>
+       Cuéntanos qué quieres mejorar.
+       <br/>
+       <span>
+        Nosotros construimos la tecnología.
+       </span>
+      </h2>
+      <p>
+       Empieza por tu necesidad. DONBEX define la arquitectura adecuada sin obligarte a saber términos técnicos.
+      </p>
+     </div>
+    </div>
+    <div class="shell cards">
+     <article class="card automation">
+      <div class="art nodes">
+      </div>
+      <div class="copy">
+       <small>
+        <span data-i18n="solAutomationLabel">
+         AUTOMATIZACIÓN
+        </span>
+       </small>
+       <h3>
+        Automatización de procesos
+       </h3>
+       <p>
+        Conectamos formularios, avisos, seguimiento y acciones para reducir tareas repetitivas.
+       </p>
+       <button data-view="project">
+        Quiero automatizar ↗
+       </button>
+      </div>
+     </article>
+     <article class="card ai">
+      <div class="art aiart">
+       <span>
+       </span>
+       <i>
+       </i>
+       <b>
+       </b>
+      </div>
+      <div class="copy">
+       <small>
+        <span data-i18n="solAiLabel">
+         ASISTENTES IA
+        </span>
+       </small>
+       <h3>
+        Chatbots &amp; asistentes IA
+       </h3>
+       <p>
+        Responden, orientan, captan datos y reducen trabajo manual antes de que intervenga una persona.
+       </p>
+       <button data-view="project">
+        Quiero un asistente ↗
+       </button>
+      </div>
+     </article>
+     <article class="card web">
+      <div class="art webart">
+       <span>
+       </span>
+       <i>
+       </i>
+       <b>
+       </b>
+      </div>
+      <div class="copy">
+       <small>
+        <span data-i18n="solWebLabel">
+         WEB INTELIGENTE
+        </span>
+       </small>
+       <h3>
+        Webs automatizadas
+       </h3>
+       <p>
+        Webs que captan solicitudes, organizan datos y activan atención, reservas o ventas.
+       </p>
+       <button data-view="project">
+        Quiero una web ↗
+       </button>
+      </div>
+     </article>
+     <article class="card platform">
+      <div class="art cubes">
+       <span>
+       </span>
+       <i>
+       </i>
+       <b>
+       </b>
+      </div>
+      <div class="copy">
+       <small>
+        <span data-i18n="solPlatformLabel">
+         SISTEMAS A MEDIDA
+        </span>
+       </small>
+       <h3>
+        Plataformas para negocios
+       </h3>
+       <p>
+        Clientes, pedidos, reservas, roles, paneles y administración hechos alrededor de tu operación.
+       </p>
+       <button data-view="project">
+        Quiero una plataforma ↗
+       </button>
+      </div>
+     </article>
+     <article class="card pwa">
+      <div class="art phoneart">
+       <span>
+       </span>
+       <b>
+        ↓
+       </b>
+      </div>
+      <div class="copy">
+       <small>
+        <span data-i18n="solPwaLabel">
+         MÓVIL / PWA
+        </span>
+       </small>
+       <h3>
+        Apps &amp; PWA
+       </h3>
+       <p>
+        Experiencias móviles instalables, rápidas y ligeras para clientes o equipos internos.
+       </p>
+       <button data-view="project">
+        Quiero una PWA ↗
+       </button>
+      </div>
+     </article>
+     <article class="card sales">
+      <div class="art salesart">
+       <span>
+       </span>
+       <i>
+       </i>
+       <b>
+       </b>
+      </div>
+      <div class="copy">
+       <small>
+        <span data-i18n="solSalesLabel">
+         VENTAS ONLINE
+        </span>
+       </small>
+       <h3>
+        Ventas &amp; servicios online
+       </h3>
+       <p>
+        Catálogo, pedidos, reservas, pagos y seguimiento con menos fricción comercial.
+       </p>
+       <button data-view="project">
+        Quiero vender online ↗
+       </button>
+      </div>
+     </article>
+     <article class="card crm">
+      <div class="art crmart">
+       <span>
+       </span>
+       <i>
+       </i>
+       <b>
+       </b>
+      </div>
+      <div class="copy">
+       <small>
+        CRM
+       </small>
+       <h3>
+        CRM &amp; gestión interna
+       </h3>
+       <p>
+        Clientes, historial, estados, tareas y métricas alrededor de cómo trabaja tu equipo.
+       </p>
+       <button data-view="project">
+        Quiero organizar mi negocio ↗
+       </button>
+      </div>
+     </article>
+     <article class="card integrations">
+      <div class="art intart">
+       <span>
+       </span>
+       <i>
+       </i>
+       <b>
+       </b>
+      </div>
+      <div class="copy">
+       <small>
+        <span data-i18n="solIntegrationsLabel">
+         INTEGRACIONES
+        </span>
+       </small>
+       <h3>
+        Integraciones
+       </h3>
+       <p>
+        Conectamos correo, formularios, bases de datos, APIs y herramientas que hoy están separadas.
+       </p>
+       <button data-view="project">
+        Quiero conectar sistemas ↗
+       </button>
+      </div>
+     </article>
+    </div>
+    <div class="shell strip">
+     <div>
+      <small>
+       CUSTOM
+      </small>
+      <h3>
+       ¿Tu necesidad no encaja en una categoría?
+      </h3>
+      <p>
+       Estas categorías son una guía. También diseñamos sistemas totalmente personalizados.
+      </p>
+     </div>
+     <button class="btn" data-view="project">
+      Explícanos tu idea
+     </button>
+    </div>
+   </section>
+   <section class="view" data-view-panel="products">
+    <div class="section-hero">
+     <div class="shell">
+      <small>
+       PRODUCTOS DONBEX
+      </small>
+      <h2>
+       <span data-i18n="menuProducts">
+        Productos
+       </span>
+       propios.
+       <br/>
+       <span>
+        Cada uno con una experiencia distinta.
+       </span>
+      </h2>
+      <p>
+       Plataformas independientes dentro del ecosistema DONBEX.
+      </p>
+     </div>
+    </div>
+    <div class="shell product-stack">
+     <article class="product">
+      <div class="p-art taxi">
+       <span class="road r1">
+       </span>
+       <span class="road r2">
+       </span>
+       <span class="car">
+       </span>
+      </div>
+      <div class="p-copy">
+       <small>
+        <span data-i18n="productTaxiSubtitle">
+         PLATAFORMA PARA CONDUCTORES Y OPERACIONES DE TRANSPORTE
+        </span>
+       </small>
+       <h3>
+        Taxi Ride
+       </h3>
+       <p>
+        <span data-i18n="productTaxiText">
+         Solicitudes, experiencia de pasajero, gestión del conductor y herramientas operativas.
+        </span>
+       </p>
+       <a href="https://taxi.donbex.com/">
+        <span data-i18n="openPlatform">
+         Abrir plataforma
+        </span>
+        ↗
+       </a>
+      </div>
+     </article>
+     <article class="product">
+      <div class="p-art webp">
+       <span class="globe">
+       </span>
+       <i>
+       </i>
+       <b>
+       </b>
+      </div>
+      <div class="p-copy">
+       <small>
+        <span data-i18n="productWebSubtitle">
+         PLATAFORMA PARA CREAR Y ADMINISTRAR EXPERIENCIAS WEB DE NEGOCIOS
+        </span>
+       </small>
+       <h3 data-i18n="productWebName">
+        Plataforma Web
+       </h3>
+       <p>
+        <span data-i18n="productWebText">
+         Presencia digital administrable, escalable y preparada para crecer junto con el negocio.
+        </span>
+       </p>
+       <a href="https://web.donbex.com/">
+        <span data-i18n="openPlatform">
+         Abrir plataforma
+        </span>
+        ↗
+       </a>
+      </div>
+     </article>
+     <article class="product">
+      <div class="p-art radiop">
+       <span class="phone-device">
+        <i>
+        </i>
+        <b>
+         ▶
+        </b>
+        <em>
+        </em>
+       </span>
+      </div>
+      <div class="p-copy">
+       <small>
+        <span data-i18n="productRadioSubtitle">
+         GENERADOR DE REPRODUCTORES PWA PARA RADIOS ONLINE
+        </span>
+       </small>
+       <h3 data-i18n="productRadioName">
+        Reproductor PWA para Radio
+       </h3>
+       <p>
+        <span data-i18n="productRadioText">
+         Agrega URL de streaming, logo e identidad y genera una experiencia instalable lista para compartir.
+        </span>
+       </p>
+       <a href="#">
+        <span data-i18n="openPlatform">
+         Abrir plataforma
+        </span>
+        ↗
+       </a>
+      </div>
+     </article>
+    </div>
+   </section>
+   <section class="view" data-view-panel="project">
+    <div class="section-hero">
+     <div class="shell">
+      <small>
+       DESARROLLO A MEDIDA
+      </small>
+      <h2>
+       Cuéntanos tu proyecto,
+       <br/>
+       <span>
+        necesidad o idea.
+       </span>
+      </h2>
+      <p>
+       No necesitas términos técnicos. Cuéntanos qué quieres lograr y cómo funciona hoy tu negocio.
+      </p>
+     </div>
+    </div>
+    <div class="shell project">
+     <div class="steps">
+      <article>
+       <span>
+        ◎
+       </span>
+       <div>
+        <small>
+         DESCUBRIR
+        </small>
+        <h3>
+         Tu negocio
+        </h3>
+        <p>
+         Qué haces, a quién atiendes y qué quieres crear o mejorar.
+        </p>
+       </div>
+      </article>
+      <article>
+       <span>
+        ◇
+       </span>
+       <div>
+        <small>
+         DEFINIR
+        </small>
+        <h3>
+         Tu necesidad
+        </h3>
+        <p>
+         Proyecto nuevo, idea, proceso por mejorar o necesidad específica.
+        </p>
+       </div>
+      </article>
+      <article>
+       <span>
+        ⌁
+       </span>
+       <div>
+        <small>
+         DISEÑAR
+        </small>
+        <h3>
+         El resultado
+        </h3>
+        <p>
+         Cómo debería funcionar la experiencia o proceso cuando esté listo.
+        </p>
+       </div>
+      </article>
+      <article>
+       <span>
+        ↗
+       </span>
+       <div>
+        <small>
+         CONECTAR
+        </small>
+        <h3>
+         Siguiente paso
+        </h3>
+        <p>
+         Revisamos tu solicitud y continuamos personalmente por correo.
+        </p>
+       </div>
+      </article>
+     </div>
+     <form id="projectForm">
+      <div class="formgrid">
+       <label>
+        Nombre
+        <input name="nombre" required=""/>
+       </label>
+       <label>
+        Apellido
+        <input name="apellido" required=""/>
+       </label>
+       <label>
+        Nombre del negocio / empresa
+        <input name="negocio" required=""/>
+       </label>
+       <label>
+        Tipo de negocio / empresa
+        <input name="tipo" placeholder="Restaurante, salón, transporte..." required=""/>
+       </label>
+       <label class="full">
+        ¿Qué necesitas?
+        <select name="servicio" required="">
+         <option value="">
+          Selecciona una categoría
+         </option>
+         <option>
+          Automatización
+         </option>
+         <option>
+          Chatbot / IA
+         </option>
+         <option>
+          Página web
+         </option>
+         <option>
+          Plataforma
+         </option>
+         <option>
+          App / PWA
+         </option>
+         <option>
+          CRM
+         </option>
+         <option>
+          Integraciones
+         </option>
+         <option>
+          Otro
+         </option>
+        </select>
+       </label>
+       <label class="full">
+        Correo
+        <input name="correo" required="" type="email"/>
+       </label>
+       <label class="full">
+        Describe tu proyecto, necesidad o idea
+        <textarea name="descripcion" required="" rows="6"></textarea>
+       </label>
+      </div>
+      <button class="submit" type="submit">
+       Enviar solicitud
+      </button>
+     </form>
+    </div>
+    <div class="shell specialist">
+     <span class="signal">
+     </span>
+     <div>
+      <small>
+       ATENCIÓN PERSONAL
+      </small>
+      <h3>
+       ¿Prefieres hablar con un especialista de DONBEX?
+      </h3>
+      <p>
+       Déjanos tus datos. Si el proyecto lo necesita, podemos coordinar una llamada.
+      </p>
+     </div>
+    </div>
+   </section>
+   <section class="view" data-view-panel="about">
+    <div class="section-hero">
+     <div class="shell">
+      <small>
+       SOBRE DONBEX
+      </small>
+      <h2>
+       Convertimos necesidades de negocio
+       <br/>
+       <span>
+        en sistemas digitales útiles.
+       </span>
+      </h2>
+      <p>
+       Diseñamos tecnología alrededor de clientes, procesos, equipos y objetivos de crecimiento reales.
+      </p>
+     </div>
+    </div>
+    <div class="shell about">
+     <article>
+      <div class="a-art">
+       <span>
+       </span>
+      </div>
+      <div>
+       <small>
+        <span data-i18n="aboutThinkLabel">
+         CÓMO PENSAMOS
+        </span>
+       </small>
+       <h3>
+        La tecnología empieza por el negocio
+       </h3>
+       <p>
+        Primero entendemos la operación, el cliente y el resultado. Después elegimos la tecnología.
+       </p>
+      </div>
+     </article>
+     <article>
+      <div class="a-art">
+       <span>
+       </span>
+      </div>
+      <div>
+       <small>
+        <span data-i18n="aboutBuildLabel">
+         QUÉ CONSTRUIMOS
+        </span>
+       </small>
+       <h3>
+        Infraestructura digital que puede crecer
+       </h3>
+       <p>
+        Plataformas web, PWA, automatización, CRM, asistentes inteligentes, reservas y ventas online.
+       </p>
+      </div>
+     </article>
+     <article>
+      <div class="a-art">
+       <span>
+       </span>
+      </div>
+      <div>
+       <small>
+        <span data-i18n="aboutWhoLabel">
+         PARA QUIÉN
+        </span>
+       </small>
+       <h3>
+        Diseñado alrededor de negocios reales
+       </h3>
+       <p>
+        Para negocios y emprendedores que quieren simplificar operaciones o convertir una idea en una plataforma funcional.
+       </p>
+      </div>
+     </article>
+    </div>
+   </section>
+   <section class="view privacy" data-view-panel="privacy">
+    <div class="section-hero">
+     <div class="shell">
+      <small>
+       POLÍTICA DE PRIVACIDAD
+      </small>
+      <h2>
+       Tu información debe tratarse
+       <br/>
+       <span>
+        con claridad.
+       </span>
+      </h2>
+      <p>
+       Esta política explica qué información puede recopilar DONBEX y cómo puede utilizarse.
+      </p>
+     </div>
+    </div>
+    <div class="shell privacy-copy">
+     <section>
+      <h3>
+       1. Información que podemos recopilar
+      </h3>
+      <p>
+       Nombre, negocio, correo, tipo de negocio, servicio seleccionado y detalles proporcionados voluntariamente.
+      </p>
+     </section>
+     <section>
+      <h3>
+       2. Cómo utilizamos la información
+      </h3>
+      <p>
+       Para responder consultas, evaluar proyectos, preparar propuestas, brindar soporte y mejorar nuestros servicios.
+      </p>
+     </section>
+     <section>
+      <h3>
+       3. Asistentes automáticos
+      </h3>
+      <p>
+       DONBEX puede usar IA para orientación inicial. No envíes contraseñas, credenciales de pago ni información altamente sensible.
+      </p>
+     </section>
+     <section>
+      <h3>
+       4. Cookies y analítica
+      </h3>
+      <p>
+       El sitio puede utilizar cookies esenciales y herramientas de analítica para comprender tráfico y rendimiento.
+      </p>
+     </section>
+     <section>
+      <h3>
+       5. Servicios de terceros
+      </h3>
+      <p>
+       Podemos integrar proveedores de hosting, correo, pagos, analítica, automatización o IA.
+      </p>
+     </section>
+     <section>
+      <h3>
+       6. Seguridad
+      </h3>
+      <p>
+       Usamos medidas razonables para reducir accesos no autorizados, aunque ningún sistema puede garantizar seguridad absoluta.
+      </p>
+     </section>
+    </div>
+   </section>
+  </main>
+  <button class="chat-peek" id="chatPeek">
+   <span>
+   </span>
+   <img alt="" src="assets/img/dombex-x.png"/>
+  </button>
+  <section class="chat" id="chatPanel">
+   <div class="chat-head">
+    <div>
+     <b>
+      DONBEX AI
+     </b>
+     <small>
+      Asistente digital
+     </small>
+    </div>
+    <button id="chatClose">
+     ×
+    </button>
+   </div>
+   <div class="msgs" id="msgs">
+    <div class="msg bot">
+     Hola. Cuéntame qué quieres construir o mejorar.
+    </div>
+   </div>
+   <form id="chatForm">
+    <input id="chatInput" placeholder="¿Qué necesita tu negocio?"/>
+    <button>
+     →
+    </button>
+   </form>
+  </section>
+  <script src="assets/js/app.js?v=16">
+  </script>
+ </body>
+</html>
