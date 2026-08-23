@@ -1,15 +1,14 @@
-DONBEX STATIC V14 POLISHED
+DONBEX STATIC V15 FIXED
 
-Cambios:
-- Idioma automático por navegador/dispositivo.
-- En español: Plataforma Web / Reproductor PWA para Radio.
-- En inglés: Web Platform / PWA Radio Player.
-- Microtextos azules y subtítulos más grandes y robustos.
-- “de negocio” corregido a “de negocios”.
-- Íconos sociales redibujados y claramente reconocibles.
-- Navegación simplificada a evento click estándar para mejorar respuesta en iPhone/Safari.
-- Menú conserva el mismo diseño, con transición más corta.
-- No se alteró la estructura visual general aprobada de V13.
-- Al recargar o restaurar la pestaña, inicia en Home.
+CAUSA REAL DEL FALLO DE V14:
+- El HTML usaba id="overlay", pero app.js buscaba #menuOverlay.
+- JavaScript recibía null y se detenía al intentar overlay.addEventListener(...).
+- Por eso NO funcionaban menú, volver al inicio, traducciones ni parte del chat.
+- Además HTML usaba id="msgs", pero JS buscaba #chatMessages.
+- Los iconos sociales anteriores tampoco se reemplazaron porque el HTML real usaba class="socials" y el parche anterior esperaba otra clase.
 
-Doble clic en index.html para revisar localmente.
+V15 corrige los selectores contra el DOM REAL.
+También añade ?v=15 a style.css y app.js para romper caché.
+
+Prueba local:
+doble clic en index.html.

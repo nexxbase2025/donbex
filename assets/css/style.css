@@ -124,3 +124,82 @@
     font-size:10.8px !important;
   }
 }
+
+
+/* ===== V15 FIX: exact DOM selectors ===== */
+
+.overlay.show{
+  opacity:1 !important;
+  pointer-events:auto !important;
+}
+.drawer.open{
+  transform:translateX(0) !important;
+}
+.chat.open{
+  display:grid !important;
+}
+
+/* Back button and menu are always above the views and easy to tap. */
+.topbar{
+  z-index:100 !important;
+}
+.back,.menu-btn{
+  position:relative;
+  z-index:102;
+  pointer-events:auto !important;
+}
+
+/* Recognizable social icons in the ACTUAL .socials container. */
+.socials{
+  display:flex !important;
+  justify-content:center;
+  align-items:center;
+  gap:9px !important;
+}
+.socials a.social{
+  width:34px !important;
+  height:34px !important;
+  display:grid !important;
+  place-items:center;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.035);
+  color:#d7e0ea;
+}
+.socials a.social svg{
+  width:18px;
+  height:18px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.85;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.socials a.facebook svg,
+.socials a.tiktok svg{
+  fill:currentColor;
+  stroke:none;
+}
+.socials .fill{
+  fill:currentColor;
+  stroke:none;
+}
+
+/* Make all micro labels legible but keep layout size. */
+.copy small,
+.p-copy small,
+.about small,
+.steps small,
+.section-hero small{
+  font-weight:900 !important;
+  letter-spacing:.10em !important;
+}
+.copy small{font-size:11px !important}
+.p-copy small{font-size:12px !important;line-height:1.45 !important;color:#9bedff !important}
+.about small{font-size:11px !important;color:#8cecff !important}
+.steps small{font-size:10.5px !important}
+
+/* Reduce animation delay perception. */
+.drawer{transition:transform .13s cubic-bezier(.2,.7,.2,1) !important}
+.overlay{transition:opacity .10s linear !important}
+.view.active{animation-duration:.12s !important}
