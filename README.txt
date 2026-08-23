@@ -1,7 +1,15 @@
-DONBEX STATIC V13 INSTANT
+DONBEX STATIC V14 POLISHED
 
-- Una sola app HTML/CSS/JS: las vistas cambian al tacto sin recargar.
-- Al reabrir o refrescar, siempre inicia en Home.
-- Doble clic en index.html para probar.
-- Reemplaza los # de redes/productos por URLs reales.
-- Correo provisional: hello@dombex.com
+Cambios:
+- Idioma automático por navegador/dispositivo.
+- En español: Plataforma Web / Reproductor PWA para Radio.
+- En inglés: Web Platform / PWA Radio Player.
+- Microtextos azules y subtítulos más grandes y robustos.
+- “de negocio” corregido a “de negocios”.
+- Íconos sociales redibujados y claramente reconocibles.
+- Navegación simplificada a evento click estándar para mejorar respuesta en iPhone/Safari.
+- Menú conserva el mismo diseño, con transición más corta.
+- No se alteró la estructura visual general aprobada de V13.
+- Al recargar o restaurar la pestaña, inicia en Home.
+
+Doble clic en index.html para revisar localmente.
