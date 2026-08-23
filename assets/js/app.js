@@ -52,7 +52,14 @@
       openPlatform:'Open platform',
       aboutThinkLabel:'HOW WE THINK',
       aboutBuildLabel:'WHAT WE BUILD',
-      aboutWhoLabel:'WHO IT IS FOR'
+      aboutWhoLabel:'WHO IT IS FOR',
+      coreSystem:'DONBEX / CORE SYSTEM',
+      coreOnline:'● ONLINE',
+      coreDesign:'DESIGN',
+      coreBuild:'BUILD',
+      coreCode:'CODE',
+      coreAutomate:'AUTOMATE',
+      coreAiFlow:'AI / FLOW'
     }
   };
 
@@ -172,14 +179,7 @@
       location.href=`mailto:hello@dombex.com?subject=${encodeURIComponent('Nueva solicitud de proyecto - DONBEX')}&body=${encodeURIComponent(body)}`;
     };
   }
-
-  $$('[data-social]').forEach(a=>{
-    a.onclick=(e)=>{
-      if(a.getAttribute('href')==='#') e.preventDefault();
-    };
-  });
-
-  applyLanguage();
+applyLanguage();
 
   // Always begin at HOME, including Safari back-forward cache restoration.
   showView('home');

@@ -1,14 +1,14 @@
-DONBEX STATIC V15 FIXED
+DONBEX STATIC V16 — LINKS + I18N
 
-CAUSA REAL DEL FALLO DE V14:
-- El HTML usaba id="overlay", pero app.js buscaba #menuOverlay.
-- JavaScript recibía null y se detenía al intentar overlay.addEventListener(...).
-- Por eso NO funcionaban menú, volver al inicio, traducciones ni parte del chat.
-- Además HTML usaba id="msgs", pero JS buscaba #chatMessages.
-- Los iconos sociales anteriores tampoco se reemplazaron porque el HTML real usaba class="socials" y el parche anterior esperaba otra clase.
-
-V15 corrige los selectores contra el DOM REAL.
-También añade ?v=15 a style.css y app.js para romper caché.
-
-Prueba local:
-doble clic en index.html.
+ÚNICOS CAMBIOS SOBRE V15:
+- Iconos de Instagram, Facebook y TikTok ahora son enlaces clickeables.
+- Abren en una pestaña nueva.
+- De momento apuntan a las páginas generales de cada red; reemplaza esas URLs por las cuentas oficiales DONBEX cuando las tengas.
+- El bloque DONBEX Core/System del inicio ahora aparece en español cuando el dispositivo está en español:
+  DONBEX / SISTEMA CENTRAL
+  EN LÍNEA
+  DISEÑO
+  CONSTRUIR / CÓDIGO
+  AUTOMATIZAR / IA / FLUJO
+- En dispositivos en inglés, esos mismos textos cambian automáticamente a inglés.
+- No se modificó el resto del diseño ni funcionamiento.
