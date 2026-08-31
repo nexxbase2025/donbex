@@ -1,0 +1,11 @@
+V18.9
+- Rebuilt support form containment so it cannot collapse into a narrow right column.
+- Chat uses compact desktop/mobile bounds and internal scrolling.
+- iPhone inputs stay at 16px to prevent Safari auto-zoom.
+- Removed chat decorative pseudo-element that could create visual artifacts.
+- Typing indicator preserved with 3 dots.
+- Support and project forms share one endpoint.
+- Endpoint now mirrors the proven Radio App Resend implementation.
+- Destination: soporte@donbex.com.
+- Sender default: DONBEX <radio@donbex.com>.
+- Safe provider diagnostics are returned/logged when Resend rejects delivery.

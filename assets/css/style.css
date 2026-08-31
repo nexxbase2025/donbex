@@ -481,3 +481,22 @@ body{background:radial-gradient(circle at 12% 4%,rgba(45,222,255,.085),transpare
 #projectForm .submit{min-height:50px!important;border-radius:14px!important}
 .drawer nav button i{animation:dbxMenuPulse 1.7s ease-in-out infinite!important}
 @media(max-width:540px){#chatPanel{left:10px!important;right:10px!important;bottom:84px!important;height:min(610px,calc(100dvh - 118px))!important;max-height:calc(100dvh - 118px)!important;border-radius:22px!important}.chat-peek{right:14px!important;bottom:18px!important}.hero-grid{padding-top:26px!important}.actions{gap:8px!important}.actions .btn{min-height:45px!important;padding:0 14px!important;font-size:10px!important}.section-hero{padding-top:45px!important}.solution-detail-shell{padding-bottom:40px!important}}
+
+/* V18.9 — definitive chat layout: stable, compact, no support overflow */
+#chatPanel{width:min(430px,calc(100vw - 32px))!important;height:min(640px,calc(100dvh - 120px))!important;max-height:calc(100dvh - 120px)!important;right:16px!important;bottom:82px!important;left:auto!important;grid-template-rows:auto minmax(0,1fr) auto!important;overflow:hidden!important}
+#chatPanel .msgs{min-width:0!important;min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;padding:16px!important}
+#chatPanel .support-contact-card{display:block!important;width:100%!important;min-width:0!important;max-width:100%!important;margin:0!important;padding:14px!important;overflow:hidden!important}
+#chatPanel .support-contact-card p{margin:0 0 12px!important}
+#chatPanel .support-contact-grid{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:9px!important;width:100%!important;min-width:0!important}
+#chatPanel .support-contact-grid>*{min-width:0!important;max-width:100%!important}
+#chatPanel .support-contact-grid .full{grid-column:1/-1!important}
+#chatPanel .support-contact-card input,#chatPanel .support-contact-card textarea{display:block!important;width:100%!important;min-width:0!important;max-width:100%!important;font-size:16px!important}
+#chatPanel .support-contact-submit{display:block!important;width:100%!important;min-width:0!important;margin-top:10px!important;height:46px!important}
+#chatPanel .support-contact-status{margin-top:8px!important}
+#chatPanel .chat-head:after,#chatPanel:after{display:none!important;content:none!important}
+#chatPanel .typing{display:flex!important;align-items:center!important;gap:5px!important;padding:13px 15px!important}
+#chatPanel .typing i{display:block!important;width:6px!important;height:6px!important;border-radius:50%!important;background:#5fe2ff!important;animation:dbxTypingDot 1s ease-in-out infinite!important}
+#chatPanel .typing i:nth-child(2){animation-delay:.14s!important}#chatPanel .typing i:nth-child(3){animation-delay:.28s!important}
+@keyframes dbxTypingDot{0%,60%,100%{opacity:.25;transform:translateY(0)}30%{opacity:1;transform:translateY(-4px)}}
+@media(max-width:600px){#chatPanel{left:14px!important;right:14px!important;bottom:78px!important;width:auto!important;height:min(600px,calc(100dvh - 112px))!important;max-height:calc(100dvh - 112px)!important;border-radius:22px!important}#chatPanel .support-contact-grid{grid-template-columns:1fr!important}#chatPanel .support-contact-grid .full{grid-column:auto!important}#chatPanel .chat-chips{grid-template-columns:1fr 1fr!important}#chatPanel input,#chatPanel textarea,#chatPanel select,#chatPanel button{font-size:max(16px,1em)}#chatPanel .chat-chips button,#chatPanel #chatForm>button,#chatPanel .support-contact-submit{font-size:12px!important}}
+@media(max-width:370px){#chatPanel{left:9px!important;right:9px!important;bottom:72px!important;height:min(570px,calc(100dvh - 102px))!important}#chatPanel .chat-chips{grid-template-columns:1fr!important}}
