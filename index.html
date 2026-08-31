@@ -793,7 +793,21 @@
 <div class="msgs" id="msgs">
 <div class="msg bot welcome" data-i18n="chatWelcome">Hola. Soy el asistente virtual de DONBEX. Puedo orientarte sobre nuestros productos, soluciones y cómo iniciar tu proyecto. ¿Qué necesitas saber?</div>
 </div>
-<div class="support-view" id="supportView" aria-hidden="true"></div>
+<div class="support-view" id="supportView" aria-hidden="true">
+  <div class="dbx-support-top">SOPORTE DONBEX</div>
+  <div class="dbx-support-note">Déjanos tus datos y tu consulta. El mensaje se enviará directamente al equipo de soporte DONBEX.</div>
+  <form id="chatSupportFormStatic" class="dbx-support-form" novalidate>
+    <div class="dbx-support-row">
+      <input name="name" required autocomplete="name" inputmode="text" placeholder="Nombre y apellido">
+      <input name="email" type="email" required autocomplete="email" inputmode="email" placeholder="Correo">
+    </div>
+    <input name="phone" autocomplete="tel" inputmode="tel" placeholder="Teléfono / WhatsApp (opcional)">
+    <textarea name="message" required rows="4" placeholder="Escribe tu consulta"></textarea>
+    <input name="company" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
+    <button class="dbx-support-send" type="submit">Enviar consulta</button>
+    <small class="dbx-support-status" role="status" aria-live="polite"></small>
+  </form>
+</div>
 <form id="chatForm"><input autocomplete="off" id="chatInput" placeholder="Escribe tu pregunta..."/><button aria-label="Enviar">Enviar</button></form>
 </section>
 <script src="assets/js/app.js?v=19.0">

@@ -751,3 +751,14 @@ body{background:radial-gradient(circle at 12% 4%,rgba(45,222,255,.085),transpare
   #chatPanel .chat-chips{grid-template-columns:1fr!important}
   #chatPanel .chat-chips .support-chip{grid-column:auto!important}
 }
+
+/* V19.1 — soporte estático estable: una vista dedicada, sin inserción dinámica */
+#chatPanel.support-mode .msgs{display:none!important}
+#chatPanel.support-mode #supportView.show{display:block!important;min-height:0!important;overflow-y:auto!important;padding:14px!important}
+#chatPanel.support-mode{grid-template-rows:auto minmax(0,1fr) auto!important}
+#supportView .dbx-support-top{display:flex!important}
+#supportView .dbx-support-note{display:block!important}
+#supportView .dbx-support-form{display:flex!important;flex-direction:column!important}
+#supportView .dbx-support-row{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}
+#supportView .dbx-support-send{display:block!important;width:100%!important}
+@media(max-width:600px){#supportView .dbx-support-row{grid-template-columns:1fr!important}#chatPanel{left:12px!important;right:12px!important;top:auto!important;bottom:76px!important;height:min(620px,calc(100dvh - 104px))!important;max-height:calc(100dvh - 104px)!important}#supportView input,#supportView textarea,#chatInput{font-size:16px!important}}

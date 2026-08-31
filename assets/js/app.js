@@ -223,16 +223,19 @@
   }
 
   function showSupportForm(){
-    if(!msgs)return;
-    msgs.querySelectorAll('#chatSupportForm').forEach(x=>x.remove());
-    ensureQuickPanel();
-    const wrap=document.createElement('div');
-    wrap.innerHTML=supportCard();
-    const form=wrap.firstElementChild;
-    msgs.appendChild(form);
-    form.addEventListener('submit',submitSupport);
-    pruneChat();
-    scrollChatTo(form);
+    if(!supportView||!chatPanel)return;
+    chatPanel.classList.add('support-mode');
+    supportView.classList.add('show');
+    supportView.setAttribute('aria-hidden','false');
+    const f=supportView.querySelector('#chatSupportFormStatic');
+    if(f&&!f.dataset.bound){f.addEventListener('submit',submitSupportStatic);f.dataset.bound='1'}
+    requestAnimationFrame(()=>supportView.scrollTo({top:0,behavior:'smooth'}));
+  }
+
+  function closeSupportForm(){
+    chatPanel?.classList.remove('support-mode');
+    supportView?.classList.remove('show');
+    supportView?.setAttribute('aria-hidden','true');
   }
 
   async function postSupport(payload){
@@ -270,6 +273,15 @@
         :(lang==='en'?'We could not send it right now. Please try again.':'No pudimos enviarla en este momento. Inténtalo nuevamente.');
       b.disabled=false;
     }
+  }
+
+  async function submitSupportStatic(e){
+    e.preventDefault();
+    const form=e.currentTarget;if(!form.reportValidity())return;
+    const b=form.querySelector('.dbx-support-send'),st=form.querySelector('.dbx-support-status');
+    b.disabled=true;st.textContent=lang==='en'?'Sending securely…':'Enviando de forma segura…';
+    try{const fd=new FormData(form);await postSupport({type:'support',name:fd.get('name'),email:fd.get('email'),phone:fd.get('phone'),message:fd.get('message'),company:fd.get('company'),language:lang,page:location.href});st.textContent=lang==='en'?'Request sent successfully. We will reply by email.':'Consulta enviada correctamente. Te responderemos por correo.';st.style.color='#63eeb8';b.textContent=lang==='en'?'Sent ✓':'Enviado ✓';form.querySelector('textarea').value='';}
+    catch(err){console.error('DONBEX support send',err,err.details||'');st.textContent=err.code==='email_not_configured'?(lang==='en'?'Email delivery still needs to be connected in Vercel.':'El envío de correo todavía necesita conectarse en Vercel.'):(lang==='en'?'We could not send it right now. Please try again.':'No pudimos enviarla en este momento. Inténtalo nuevamente.');st.style.color='#ff9da9';b.disabled=false;}
   }
 
   function topic(t){
