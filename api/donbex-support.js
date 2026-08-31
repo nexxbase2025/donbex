@@ -5,7 +5,7 @@ export default async function handler(req,res){
  if(req.method!=="POST")return res.status(405).json({ok:false,error:"method_not_allowed"});
  const apiKey=process.env.RESEND_API_KEY;
  if(!apiKey){console.error("DONBEX support: RESEND_API_KEY missing in this Vercel project");return res.status(503).json({ok:false,error:"email_not_configured"});}
- const b=req.body||{}; if(clean(b.company,120))return res.status(200).json({ok:true});
+ const b=req.body||{};
  const type=b.type==="project"?"project":"support"; const email=clean(b.email,180);
  if(!emailOk(email))return res.status(400).json({ok:false,error:"invalid_email"});
  let subject,html;

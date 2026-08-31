@@ -170,7 +170,7 @@
   function pruneChat(){
     if(!msgs)return;
     const nodes=[...msgs.querySelectorAll('.msg:not(.welcome):not(.typing)')];
-    while(nodes.length>6)nodes.shift().remove();
+    while(nodes.length>4)nodes.shift().remove();
     const forms=[...msgs.querySelectorAll('#chatSupportForm')];
     while(forms.length>1)forms.shift().remove();
   }
@@ -259,7 +259,7 @@
     st.textContent=lang==='en'?'Sending securely…':'Enviando de forma segura…';
     try{
       const fd=new FormData(form);
-      await postSupport({type:'support',name:fd.get('name'),email:fd.get('email'),phone:fd.get('phone'),message:fd.get('message'),company:fd.get('company'),language:lang,page:location.href});
+      await postSupport({type:'support',name:fd.get('name'),email:fd.get('email'),phone:fd.get('phone'),message:fd.get('message'),language:lang,page:location.href});
       st.classList.add('ok');
       st.textContent=lang==='en'?'Request sent successfully. We will reply by email.':'Consulta enviada correctamente. Te responderemos por correo.';
       b.textContent=lang==='en'?'Sent ✓':'Enviado ✓';
@@ -280,7 +280,14 @@
     const form=e.currentTarget;if(!form.reportValidity())return;
     const b=form.querySelector('.dbx-support-send'),st=form.querySelector('.dbx-support-status');
     b.disabled=true;st.textContent=lang==='en'?'Sending securely…':'Enviando de forma segura…';
-    try{const fd=new FormData(form);await postSupport({type:'support',name:fd.get('name'),email:fd.get('email'),phone:fd.get('phone'),message:fd.get('message'),company:fd.get('company'),language:lang,page:location.href});st.textContent=lang==='en'?'Request sent successfully. We will reply by email.':'Consulta enviada correctamente. Te responderemos por correo.';st.style.color='#63eeb8';b.textContent=lang==='en'?'Sent ✓':'Enviado ✓';form.querySelector('textarea').value='';}
+    try{
+      const fd=new FormData(form);
+      await postSupport({type:'support',name:fd.get('name'),email:fd.get('email'),phone:fd.get('phone'),message:fd.get('message'),language:lang,page:location.href});
+      form.reset();
+      closeSupportForm();
+      ensureQuickPanel();
+      addMsg(lang==='en'?'Thank you. Your message was sent successfully. A DONBEX advisor will contact you very soon.':'Gracias por enviar tu mensaje. Tu consulta fue enviada correctamente y un asesor de DONBEX se comunicará contigo muy pronto.','bot');
+    }
     catch(err){console.error('DONBEX support send',err,err.details||'');st.textContent=err.code==='email_not_configured'?(lang==='en'?'Email delivery still needs to be connected in Vercel.':'El envío de correo todavía necesita conectarse en Vercel.'):(lang==='en'?'We could not send it right now. Please try again.':'No pudimos enviarla en este momento. Inténtalo nuevamente.');st.style.color='#ff9da9';b.disabled=false;}
   }
 
