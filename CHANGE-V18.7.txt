@@ -1,0 +1,8 @@
+DONBEX V18.7
+- Corrected support domain/email from dombex.com to donbex.com.
+- Support destination: soporte@donbex.com.
+- Sender fallback: DONBEX <soporte@donbex.com>.
+- Mobile assistant sizing aligned to Radio App behavior.
+- All chat/support fields forced to 16px to prevent iOS Safari focus zoom.
+- Removed decorative blinking line inside welcome message.
+- Existing SEO/products/project/ES-EN behavior preserved.
