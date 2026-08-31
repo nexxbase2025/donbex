@@ -94,8 +94,22 @@
   $('#solutionBack')?.addEventListener('click',()=>showView('solutions'));
   $('#solutionDetailCta')?.addEventListener('click',()=>{const d=solutionData[lang][activeSolution];showView('project');setTimeout(()=>{const sel=$('#projectForm select[name="servicio"]');if(sel)sel.value=d.category;$('#projectForm')?.scrollIntoView({behavior:'smooth',block:'start'})},120)});
 
-  function toggleChat(force){if(!chatPanel)return;const open=typeof force==='boolean'?force:!chatPanel.classList.contains('open');chatPanel.classList.toggle('open',open);chatPanel.setAttribute('aria-hidden',open?'false':'true');chatPeek?.classList.toggle('chat-hidden',open);if(open){renderQuick();if(!matchMedia('(max-width:680px)').matches)setTimeout(()=>chatInput?.focus({preventScroll:true}),220)}}
-  chatPeek?.addEventListener('click',()=>toggleChat()); chatClose?.addEventListener('click',()=>toggleChat(false));
+  function toggleChat(force){
+    if(!chatPanel)return;
+    const open=typeof force==='boolean'?force:!chatPanel.classList.contains('open');
+    chatPanel.classList.toggle('open',open);
+    chatPanel.setAttribute('aria-hidden',open?'false':'true');
+    chatPeek?.classList.toggle('chat-hidden',open);
+    if(open){
+      ensureQuickPanel();
+      requestAnimationFrame(()=>chatPanel.classList.add('chat-ready'));
+      if(!matchMedia('(max-width:680px)').matches)setTimeout(()=>chatInput?.focus({preventScroll:true}),260);
+    }else{
+      chatPanel.classList.remove('chat-ready');
+    }
+  }
+  chatPeek?.addEventListener('click',()=>toggleChat());
+  chatClose?.addEventListener('click',()=>toggleChat(false));
 
   const answers={
     es:{
@@ -107,7 +121,7 @@
       products:'En “Nuestros productos” encontrarás tecnología creada por DONBEX. Actualmente está disponible Radio App, nuestro reproductor PWA para radios online. Taxi Ride y Plataforma Web aparecen como próximos lanzamientos.',
       radio:'DONBEX Radio App permite crear un reproductor PWA profesional para radio online con streaming HTTPS, identidad visual, redes, enlace público, QR y experiencia instalable. Puedes abrirlo desde “Nuestros productos”.',
       pricing:'Los proyectos personalizados se cotizan según el alcance real. Radio App está disponible desde $11.99 en pago único. Si me cuentas qué necesitas, puedo orientarte o ayudarte a enviar una solicitud.',
-      support:'Claro. Dame un momento y te muestro el formulario de soporte aquí mismo para que puedas enviar tu consulta directamente al equipo DONBEX.'
+      support:'Perfecto. Te muestro aquí mismo el formulario de soporte para que dejes tus datos y tu consulta al equipo DONBEX.'
     },
     en:{
       start:'Getting started is simple. Tell me what your business does, what you want to improve and the result you want. You do not need technical terms; I can guide you toward the most suitable DONBEX solution.',
@@ -118,27 +132,196 @@
       products:'Under “Our products” you will find technology created by DONBEX. Radio App, our PWA player for online radio, is currently available. Taxi Ride and Web Platform are upcoming products.',
       radio:'DONBEX Radio App creates a professional PWA player for online radio with HTTPS streaming, visual identity, social links, public URL, QR and an installable experience. Open it from “Our products”.',
       pricing:'Custom projects are quoted based on the real scope. Radio App starts at $11.99 as a one-time payment. Tell me what you need and I can guide you or help you send a request.',
-      support:'Of course. Give me a moment and I will open the support form right here so you can send your request directly to the DONBEX team.'
+      support:'Perfect. I will show the support form right here so you can leave your details and request for the DONBEX team.'
     }
   };
-  const quickLabels=lang==='en'?{start:'How do I start my project?',solutions:'DONBEX solutions',automation:'Automation',ai:'AI assistant / Chatbot',web:'Professional website',products:'Our products',radio:'Radio App',pricing:'Pricing & quote',support:'Talk to support'}:{start:'¿Cómo empiezo mi proyecto?',solutions:'Soluciones DONBEX',automation:'Automatización',ai:'Asistente IA / Chatbot',web:'Página web profesional',products:'Nuestros productos',radio:'Radio App',pricing:'Precios y cotización',support:'Hablar con soporte'};
-  function quickHtml(){return `<div class="chat-query-block"><div class="chat-query-label">${lang==='en'?'YOU CAN ALSO ASK':'TAMBIÉN PUEDES CONSULTAR'}</div><div class="chat-chips">${['start','solutions','automation','ai','web','products','radio','pricing'].map(k=>`<button data-chat-topic="${k}" type="button">${quickLabels[k]}</button>`).join('')}<button class="support-chip" data-chat-topic="support" type="button">${quickLabels.support}</button></div></div>`}
-  function renderQuick(){if(!msgs)return;msgs.querySelectorAll('.chat-query-block').forEach(n=>n.remove());const div=document.createElement('div');div.innerHTML=quickHtml();msgs.appendChild(div.firstElementChild);msgs.scrollTop=msgs.scrollHeight}
+
+  const quickLabels=lang==='en'
+    ?{start:'How do I start my project?',solutions:'DONBEX solutions',automation:'Automation',ai:'AI assistant / Chatbot',web:'Professional website',products:'Our products',radio:'Radio App',pricing:'Pricing & quote',support:'Talk to support'}
+    :{start:'¿Cómo empiezo mi proyecto?',solutions:'Soluciones DONBEX',automation:'Automatización',ai:'Asistente IA / Chatbot',web:'Página web profesional',products:'Nuestros productos',radio:'Radio App',pricing:'Precios y cotización',support:'Hablar con soporte'};
+
+  function quickHtml(){
+    return `<div class="chat-query-block"><div class="chat-query-label">${lang==='en'?'YOU CAN ALSO ASK':'TAMBIÉN PUEDES CONSULTAR'}</div><div class="chat-chips">${['start','solutions','automation','ai','web','products','radio','pricing'].map(k=>`<button data-chat-topic="${k}" type="button">${quickLabels[k]}</button>`).join('')}<button class="support-chip" data-chat-topic="support" type="button">${quickLabels.support}</button></div></div>`;
+  }
+
+  function ensureQuickPanel(){
+    if(!msgs)return null;
+    // Remove the old unwrapped quick controls from previous versions.
+    [...msgs.children].forEach(el=>{
+      if(el.classList?.contains('chat-query-label')||el.id==='chatChips')el.remove();
+    });
+    let block=msgs.querySelector('.chat-query-block');
+    if(!block){
+      const wrap=document.createElement('div');
+      wrap.innerHTML=quickHtml();
+      block=wrap.firstElementChild;
+    }
+    const welcome=msgs.querySelector('.msg.welcome');
+    if(welcome){
+      if(welcome.nextElementSibling!==block)welcome.insertAdjacentElement('afterend',block);
+    }else if(msgs.firstElementChild!==block){
+      msgs.prepend(block);
+    }
+    return block;
+  }
+
   if(chatInput)chatInput.placeholder=lang==='en'?'Type your question...':'Escribe tu pregunta...';
-  function pruneChat(){if(!msgs)return;const nodes=[...msgs.querySelectorAll('.msg:not(.welcome)')];while(nodes.length>8){nodes.shift().remove()}}
-  function addMsg(text,who='bot'){const d=document.createElement('div');d.className='msg '+who;d.textContent=text;msgs?.appendChild(d);pruneChat();if(msgs)msgs.scrollTop=msgs.scrollHeight;return d}
-  function typingThen(text,cb,opts={}){msgs?.querySelector('.chat-query-block')?.remove();const d=document.createElement('div');d.className='msg bot typing';d.innerHTML='<i></i><i></i><i></i>';msgs?.appendChild(d);if(msgs)msgs.scrollTop=msgs.scrollHeight;setTimeout(()=>{d.remove();if(text)addMsg(text);cb?.();renderQuick()},opts.delay||2250)}
-  function supportCard(){return lang==='en'?`<form id="chatSupportForm" class="support-contact-card"><div class="support-section-title">DONBEX SUPPORT</div><p>Send us your details and request. It will go directly to the DONBEX support team.</p><div class="support-contact-grid"><input name="name" required autocomplete="name" placeholder="Full name"><input name="email" type="email" required autocomplete="email" placeholder="Email"><input class="full" name="phone" autocomplete="tel" placeholder="Phone / WhatsApp (optional)"><textarea class="full" name="message" required rows="4" placeholder="Write your request"></textarea><input name="company" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true"></div><button class="support-contact-submit" type="submit">Send request</button><small class="support-contact-status"></small></form>`:`<form id="chatSupportForm" class="support-contact-card"><div class="support-section-title">SOPORTE DONBEX</div><p>Déjanos tus datos y tu consulta. Se enviará directamente al equipo de soporte DONBEX.</p><div class="support-contact-grid"><input name="name" required autocomplete="name" placeholder="Nombre y apellido"><input name="email" type="email" required autocomplete="email" placeholder="Correo"><input class="full" name="phone" autocomplete="tel" placeholder="Teléfono / WhatsApp (opcional)"><textarea class="full" name="message" required rows="4" placeholder="Escribe tu consulta"></textarea><input name="company" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true"></div><button class="support-contact-submit" type="submit">Enviar consulta</button><small class="support-contact-status"></small></form>`}
-  function showSupportForm(){if(!msgs)return;msgs.querySelectorAll('#chatSupportForm').forEach(x=>x.remove());msgs.querySelector('.chat-query-block')?.remove();const wrap=document.createElement('div');wrap.innerHTML=supportCard();msgs.appendChild(wrap.firstElementChild);msgs.scrollTop=msgs.scrollHeight;const form=$('#chatSupportForm',msgs);form?.addEventListener('submit',submitSupport)}
-  async function postSupport(payload){const ctrl=new AbortController();const timer=setTimeout(()=>ctrl.abort(),15000);try{const r=await fetch('/api/donbex-support',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),signal:ctrl.signal});const data=await r.json().catch(()=>({}));if(!r.ok||!data.ok){const err=new Error(data.error||`http_${r.status}`);err.code=data.error;throw err}return data}finally{clearTimeout(timer)}}
-  async function submitSupport(e){e.preventDefault();const form=e.currentTarget;if(!form.reportValidity())return;const b=form.querySelector('.support-contact-submit'),st=form.querySelector('.support-contact-status');b.disabled=true;st.className='support-contact-status';st.textContent=lang==='en'?'Sending securely…':'Enviando de forma segura…';try{const fd=new FormData(form);await postSupport({type:'support',name:fd.get('name'),email:fd.get('email'),phone:fd.get('phone'),message:fd.get('message'),company:fd.get('company'),language:lang,page:location.href});st.classList.add('ok');st.textContent=lang==='en'?'Request sent successfully. We will reply by email.':'Consulta enviada correctamente. Te responderemos por correo.';b.textContent=lang==='en'?'Sent ✓':'Enviado ✓';form.querySelector('textarea').value=''}catch(err){console.error('DONBEX support send',err);st.classList.add('err');const cfg=err.code==='email_not_configured';st.textContent=cfg?(lang==='en'?'Email service is not configured in this Vercel project.':'El servicio de correo no está configurado en este proyecto de Vercel.'):(lang==='en'?'We could not send it right now. Please try again.':'No pudimos enviarla en este momento. Inténtalo nuevamente.');b.disabled=false}}
-  function topic(t){const text=answers[lang][t]||answers[lang].start;typingThen(text,()=>{if(t==='support')showSupportForm()})}
-  msgs?.addEventListener('click',e=>{const b=e.target.closest('[data-chat-topic]');if(!b)return;const t=b.dataset.chatTopic;addMsg(b.textContent.trim(),'user');topic(t)});
-  function greetingReply(q){const x=q.toLowerCase().trim();if(/^(hola|hello|hi|hey)\b/.test(x))return lang==='en'?'Hi! How are you? Tell me what you would like to create, improve or learn about DONBEX and I will be happy to guide you.':'¡Hola! ¿Cómo estás? Cuéntame qué quieres crear, mejorar o conocer de DONBEX y con gusto te oriento.';if(/buenos? días|buen día|good morning/.test(x))return lang==='en'?'Good morning! How are you? Tell me what you need and I will gladly guide you through DONBEX solutions, products or your project.':'¡Buenos días! ¿Cómo estás? Cuéntame en qué te puedo ayudar con tu proyecto, tu negocio o alguna solución DONBEX.';if(/buenas tardes|good afternoon/.test(x))return lang==='en'?'Good afternoon! How are you? Tell me what you need and I will gladly guide you.':'¡Buenas tardes! ¿Cómo estás? Cuéntame qué necesitas y con gusto te oriento sobre las soluciones y productos DONBEX.';if(/buenas noches|good evening|good night/.test(x))return lang==='en'?'Good evening! How are you? Tell me what you need and I will help you find the right DONBEX option.':'¡Buenas noches! ¿Cómo estás? Cuéntame qué necesitas y con gusto te ayudo a encontrar la mejor opción dentro de DONBEX.';if(/gracias|muchas gracias|thank you|thanks/.test(x))return lang==='en'?'You are very welcome. I am here whenever you need me. You can keep asking about a solution, product, pricing or your project.':'¡Con mucho gusto! Estoy aquí para ayudarte. Puedes seguir preguntándome sobre una solución, un producto, precios o tu proyecto.';if(/adiós|adios|hasta luego|nos vemos|bye|goodbye/.test(x))return lang==='en'?'See you soon! Whenever you need DONBEX, I will be here to help.':'¡Hasta pronto! Cuando necesites a DONBEX, aquí estaré para ayudarte.';return null}
-  function freeReply(q){const greet=greetingReply(q);if(greet)return ['greeting',greet];const x=q.toLowerCase();if(/support|soporte|ayuda|help|contact|humano|persona|especialista/.test(x))return ['support',answers[lang].support];if(/precio|precios|costo|cuanto|cuánto|cotiza|quote|price|cost/.test(x))return ['pricing',answers[lang].pricing];if(/radio|stream|emisora|reproductor/.test(x))return ['radio',answers[lang].radio];if(/chatbot|asistente|inteligencia artificial|\bia\b|\bai\b/.test(x))return ['ai',answers[lang].ai];if(/automat|proceso|tarea repet|workflow/.test(x))return ['automation',answers[lang].automation];if(/página|pagina|website|sitio web|web profesional/.test(x))return ['web',answers[lang].web];if(/producto|product|taxi|platform|plataforma/.test(x))return ['products',answers[lang].products];if(/crm|integr|pwa|venta|reserva/.test(x))return ['solutions',answers[lang].solutions];if(/empez|start|proyecto|project|idea|crear|negocio/.test(x))return ['start',answers[lang].start];return ['start',lang==='en'?'Tell me a little more about what you need. I can guide you through automation, AI assistants, websites, platforms, PWA, Radio App, pricing or how to start a project.':'Cuéntame un poco más sobre lo que necesitas. Puedo orientarte sobre automatización, asistentes IA, webs, plataformas, PWA, Radio App, precios o cómo iniciar un proyecto.']}
-  chatForm?.addEventListener('submit',e=>{e.preventDefault();const q=chatInput.value.trim();if(!q)return;addMsg(q,'user');chatInput.value='';const [t,a]=freeReply(q);typingThen(a,()=>{if(t==='support')showSupportForm()})});
+
+  function pruneChat(){
+    if(!msgs)return;
+    const nodes=[...msgs.querySelectorAll('.msg:not(.welcome):not(.typing)')];
+    while(nodes.length>6)nodes.shift().remove();
+    const forms=[...msgs.querySelectorAll('#chatSupportForm')];
+    while(forms.length>1)forms.shift().remove();
+  }
+
+  function scrollChatTo(el){
+    if(!msgs||!el)return;
+    requestAnimationFrame(()=>{
+      const top=Math.max(0,el.offsetTop-msgs.clientHeight+Math.min(el.offsetHeight+20,msgs.clientHeight*.78));
+      msgs.scrollTo({top,behavior:'smooth'});
+    });
+  }
+
+  function addMsg(text,who='bot'){
+    if(!msgs)return null;
+    ensureQuickPanel();
+    const d=document.createElement('div');
+    d.className='msg '+who;
+    d.textContent=text;
+    msgs.appendChild(d);
+    pruneChat();
+    scrollChatTo(d);
+    return d;
+  }
+
+  let typingTimer=null;
+  function typingThen(text,cb,opts={}){
+    if(!msgs)return;
+    ensureQuickPanel();
+    msgs.querySelectorAll('.typing').forEach(x=>x.remove());
+    if(typingTimer)clearTimeout(typingTimer);
+    const d=document.createElement('div');
+    d.className='msg bot typing';
+    d.setAttribute('aria-label',lang==='en'?'Assistant is typing':'El asistente está escribiendo');
+    d.innerHTML='<i></i><i></i><i></i>';
+    msgs.appendChild(d);
+    scrollChatTo(d);
+    typingTimer=setTimeout(()=>{
+      d.remove();
+      const response=text?addMsg(text):null;
+      cb?.(response);
+      typingTimer=null;
+    },opts.delay||2300);
+  }
+
+  function supportCard(){
+    const copy=lang==='en'
+      ?{title:'DONBEX SUPPORT',text:'Leave your details and request. The message will be sent directly to the DONBEX support team.',name:'Full name',email:'Email',phone:'Phone / WhatsApp (optional)',message:'Write your request',send:'Send request'}
+      :{title:'SOPORTE DONBEX',text:'Déjanos tus datos y tu consulta. El mensaje se enviará directamente al equipo de soporte DONBEX.',name:'Nombre y apellido',email:'Correo',phone:'Teléfono / WhatsApp (opcional)',message:'Escribe tu consulta',send:'Enviar consulta'};
+    return `<form id="chatSupportForm" class="support-contact-card" novalidate><div class="support-section-title">${copy.title}</div><p>${copy.text}</p><div class="support-contact-grid"><input name="name" required autocomplete="name" inputmode="text" placeholder="${copy.name}"><input name="email" type="email" required autocomplete="email" inputmode="email" placeholder="${copy.email}"><input class="full" name="phone" autocomplete="tel" inputmode="tel" placeholder="${copy.phone}"><textarea class="full" name="message" required rows="4" placeholder="${copy.message}"></textarea><input name="company" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true"></div><button class="support-contact-submit" type="submit">${copy.send}</button><small class="support-contact-status" role="status" aria-live="polite"></small></form>`;
+  }
+
+  function showSupportForm(){
+    if(!msgs)return;
+    msgs.querySelectorAll('#chatSupportForm').forEach(x=>x.remove());
+    ensureQuickPanel();
+    const wrap=document.createElement('div');
+    wrap.innerHTML=supportCard();
+    const form=wrap.firstElementChild;
+    msgs.appendChild(form);
+    form.addEventListener('submit',submitSupport);
+    pruneChat();
+    scrollChatTo(form);
+  }
+
+  async function postSupport(payload){
+    const ctrl=new AbortController();
+    const timer=setTimeout(()=>ctrl.abort(),15000);
+    try{
+      const r=await fetch('/api/donbex-support',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),signal:ctrl.signal});
+      const data=await r.json().catch(()=>({}));
+      if(!r.ok||!data.ok){const err=new Error(data.error||`http_${r.status}`);err.code=data.error;err.details=data;throw err}
+      return data;
+    }finally{clearTimeout(timer)}
+  }
+
+  async function submitSupport(e){
+    e.preventDefault();
+    const form=e.currentTarget;
+    if(!form.reportValidity())return;
+    const b=form.querySelector('.support-contact-submit'),st=form.querySelector('.support-contact-status');
+    b.disabled=true;
+    st.className='support-contact-status';
+    st.textContent=lang==='en'?'Sending securely…':'Enviando de forma segura…';
+    try{
+      const fd=new FormData(form);
+      await postSupport({type:'support',name:fd.get('name'),email:fd.get('email'),phone:fd.get('phone'),message:fd.get('message'),company:fd.get('company'),language:lang,page:location.href});
+      st.classList.add('ok');
+      st.textContent=lang==='en'?'Request sent successfully. We will reply by email.':'Consulta enviada correctamente. Te responderemos por correo.';
+      b.textContent=lang==='en'?'Sent ✓':'Enviado ✓';
+      form.querySelector('textarea').value='';
+    }catch(err){
+      console.error('DONBEX support send',err,err.details||'');
+      st.classList.add('err');
+      const cfg=err.code==='email_not_configured';
+      st.textContent=cfg
+        ?(lang==='en'?'Email delivery still needs to be connected in Vercel.':'El envío de correo todavía necesita conectarse en Vercel.')
+        :(lang==='en'?'We could not send it right now. Please try again.':'No pudimos enviarla en este momento. Inténtalo nuevamente.');
+      b.disabled=false;
+    }
+  }
+
+  function topic(t){
+    const text=answers[lang][t]||answers[lang].start;
+    typingThen(text,()=>{if(t==='support')showSupportForm()},{delay:t==='support'?2350:2200});
+  }
+
+  msgs?.addEventListener('click',e=>{
+    const b=e.target.closest('[data-chat-topic]');
+    if(!b)return;
+    const t=b.dataset.chatTopic;
+    addMsg(b.textContent.trim(),'user');
+    topic(t);
+  });
+
+  function greetingReply(q){
+    const x=q.toLowerCase().trim();
+    if(/^(hola|hello|hi|hey)\b/.test(x))return lang==='en'?'Hi! How are you? Tell me what you would like to create, improve or learn about DONBEX and I will be happy to guide you.':'¡Hola! ¿Cómo estás? Cuéntame qué quieres crear, mejorar o conocer de DONBEX y con gusto te oriento.';
+    if(/buenos? días|buen día|good morning/.test(x))return lang==='en'?'Good morning! How are you? Tell me what you need and I will gladly guide you through DONBEX solutions, products or your project.':'¡Buenos días! ¿Cómo estás? Cuéntame en qué te puedo ayudar con tu proyecto, tu negocio o alguna solución DONBEX.';
+    if(/buenas tardes|good afternoon/.test(x))return lang==='en'?'Good afternoon! How are you? Tell me what you need and I will gladly guide you.':'¡Buenas tardes! ¿Cómo estás? Cuéntame qué necesitas y con gusto te oriento sobre las soluciones y productos DONBEX.';
+    if(/buenas noches|good evening|good night/.test(x))return lang==='en'?'Good evening! How are you? Tell me what you need and I will help you find the right DONBEX option.':'¡Buenas noches! ¿Cómo estás? Cuéntame qué necesitas y con gusto te ayudo a encontrar la mejor opción dentro de DONBEX.';
+    if(/gracias|muchas gracias|thank you|thanks/.test(x))return lang==='en'?'You are very welcome. I am here whenever you need me. You can keep asking about a solution, product, pricing or your project.':'¡Con mucho gusto! Estoy aquí para ayudarte. Puedes seguir preguntándome sobre una solución, un producto, precios o tu proyecto.';
+    if(/adiós|adios|hasta luego|nos vemos|bye|goodbye/.test(x))return lang==='en'?'See you soon! Whenever you need DONBEX, I will be here to help.':'¡Hasta pronto! Cuando necesites a DONBEX, aquí estaré para ayudarte.';
+    return null;
+  }
+
+  function freeReply(q){
+    const greet=greetingReply(q);if(greet)return ['greeting',greet];
+    const x=q.toLowerCase();
+    if(/support|soporte|ayuda|help|contact|humano|persona|especialista/.test(x))return ['support',answers[lang].support];
+    if(/precio|precios|costo|cuanto|cuánto|cotiza|quote|price|cost/.test(x))return ['pricing',answers[lang].pricing];
+    if(/radio|stream|emisora|reproductor/.test(x))return ['radio',answers[lang].radio];
+    if(/chatbot|asistente|inteligencia artificial|\bia\b|\bai\b/.test(x))return ['ai',answers[lang].ai];
+    if(/automat|proceso|tarea repet|workflow/.test(x))return ['automation',answers[lang].automation];
+    if(/página|pagina|website|sitio web|web profesional/.test(x))return ['web',answers[lang].web];
+    if(/producto|product|taxi|platform|plataforma/.test(x))return ['products',answers[lang].products];
+    if(/crm|integr|pwa|venta|reserva/.test(x))return ['solutions',answers[lang].solutions];
+    if(/empez|start|proyecto|project|idea|crear|negocio/.test(x))return ['start',answers[lang].start];
+    return ['start',lang==='en'?'Tell me a little more about what you need. I can guide you through automation, AI assistants, websites, platforms, PWA, Radio App, pricing or how to start a project.':'Cuéntame un poco más sobre lo que necesitas. Puedo orientarte sobre automatización, asistentes IA, webs, plataformas, PWA, Radio App, precios o cómo iniciar un proyecto.'];
+  }
+
+  chatForm?.addEventListener('submit',e=>{
+    e.preventDefault();
+    const q=chatInput.value.trim();
+    if(!q)return;
+    addMsg(q,'user');
+    chatInput.value='';
+    const [t,a]=freeReply(q);
+    typingThen(a,()=>{if(t==='support')showSupportForm()},{delay:t==='support'?2350:2200});
+  });
 
   projectForm?.addEventListener('submit',async e=>{e.preventDefault();if(!projectForm.reportValidity())return;const btn=projectForm.querySelector('.submit');btn.disabled=true;projectStatus.className='form-status';projectStatus.textContent=lang==='en'?'Sending your request securely...':'Enviando tu solicitud de forma segura...';const fd=new FormData(projectForm);const payload={type:'project',firstName:fd.get('nombre'),lastName:fd.get('apellido'),business:fd.get('negocio'),businessType:fd.get('tipo'),category:fd.get('servicio'),email:fd.get('correo'),message:fd.get('descripcion'),language:lang,page:location.href};try{await postSupport(payload);projectForm.reset();projectStatus.classList.add('ok');projectStatus.textContent=lang==='en'?'Request sent. The DONBEX team will review it and contact you by email.':'Solicitud enviada. El equipo de DONBEX la revisará y te contactará por correo.';}catch(err){console.error('DONBEX project send',err);projectStatus.classList.add('error');projectStatus.textContent=err.code==='email_not_configured'?(lang==='en'?'Email service is not configured in this Vercel project.':'El servicio de correo no está configurado en este proyecto de Vercel.'):(lang==='en'?'We could not send your request right now. Please try again.':'No pudimos enviar tu solicitud en este momento. Inténtalo nuevamente.');}finally{btn.disabled=false;}});
-  renderQuick(); showView('home'); window.addEventListener('pageshow',()=>showView('home'));
+  ensureQuickPanel(); showView('home'); window.addEventListener('pageshow',()=>showView('home'));
 
 })();

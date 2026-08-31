@@ -500,3 +500,254 @@ body{background:radial-gradient(circle at 12% 4%,rgba(45,222,255,.085),transpare
 @keyframes dbxTypingDot{0%,60%,100%{opacity:.25;transform:translateY(0)}30%{opacity:1;transform:translateY(-4px)}}
 @media(max-width:600px){#chatPanel{left:14px!important;right:14px!important;bottom:78px!important;width:auto!important;height:min(600px,calc(100dvh - 112px))!important;max-height:calc(100dvh - 112px)!important;border-radius:22px!important}#chatPanel .support-contact-grid{grid-template-columns:1fr!important}#chatPanel .support-contact-grid .full{grid-column:auto!important}#chatPanel .chat-chips{grid-template-columns:1fr 1fr!important}#chatPanel input,#chatPanel textarea,#chatPanel select,#chatPanel button{font-size:max(16px,1em)}#chatPanel .chat-chips button,#chatPanel #chatForm>button,#chatPanel .support-contact-submit{font-size:12px!important}}
 @media(max-width:370px){#chatPanel{left:9px!important;right:9px!important;bottom:72px!important;height:min(570px,calc(100dvh - 102px))!important}#chatPanel .chat-chips{grid-template-columns:1fr!important}}
+
+/* =========================================================
+   DONBEX V19.0 — CHAT ESTABLE / ORDEN RADIO APP
+   Las consultas sugeridas permanecen ARRIBA de cada respuesta.
+   El soporte se revela después del indicador de escritura.
+   ========================================================= */
+#chatPanel{
+  width:min(430px,calc(100vw - 34px))!important;
+  height:min(620px,calc(100dvh - 132px))!important;
+  max-height:calc(100dvh - 132px)!important;
+  right:17px!important;
+  bottom:82px!important;
+  left:auto!important;
+  display:grid!important;
+  grid-template-rows:auto minmax(0,1fr) auto!important;
+  overflow:hidden!important;
+  border-radius:24px!important;
+  border:1px solid rgba(73,214,255,.22)!important;
+  background:linear-gradient(180deg,rgba(7,24,37,.985),rgba(3,14,24,.99))!important;
+  box-shadow:0 28px 90px rgba(0,0,0,.55),0 0 38px rgba(29,160,255,.10)!important;
+  transform-origin:calc(100% - 26px) 100%!important;
+  transform:translateY(16px) scale(.965)!important;
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+  transition:opacity .24s ease,transform .30s cubic-bezier(.2,.8,.2,1),visibility .24s ease!important;
+}
+#chatPanel.open{
+  transform:none!important;
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:auto!important;
+}
+#chatPanel .chat-head{
+  min-height:78px!important;
+  padding:15px 16px!important;
+  background:
+    radial-gradient(circle at 86% -20%,rgba(33,187,255,.20),transparent 42%),
+    linear-gradient(135deg,rgba(16,59,88,.76),rgba(5,27,42,.94))!important;
+  border-bottom:1px solid rgba(80,214,255,.18)!important;
+}
+#chatPanel .chat-head:after,#chatPanel:after{display:none!important;content:none!important}
+#chatPanel .chat-brand b{display:block!important;color:#6be8ff!important;font-size:10px!important;letter-spacing:.24em!important;margin-bottom:3px!important}
+#chatPanel .chat-brand small{display:block!important;color:#f5f9fd!important;font-size:17px!important;line-height:1.1!important;font-weight:900!important}
+#chatPanel .chat-brand em{display:flex!important;align-items:center!important;gap:6px!important;margin-top:5px!important;color:#91a8ba!important;font-size:10px!important;font-style:normal!important}
+#chatPanel .chat-brand em i{width:7px!important;height:7px!important;border-radius:50%!important;background:#35e2a3!important;box-shadow:0 0 12px rgba(53,226,163,.8)!important}
+#chatPanel #chatClose{width:39px!important;height:39px!important;border-radius:13px!important;color:#e9f8ff!important;background:rgba(255,255,255,.055)!important;border:1px solid rgba(255,255,255,.10)!important}
+#chatPanel .msgs{
+  min-width:0!important;
+  min-height:0!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  overscroll-behavior:contain!important;
+  padding:16px!important;
+  background:linear-gradient(180deg,rgba(4,18,29,.22),rgba(2,12,21,.08))!important;
+  scrollbar-width:thin!important;
+  scrollbar-color:rgba(70,192,245,.25) transparent!important;
+}
+#chatPanel .msg{
+  max-width:94%!important;
+  margin:0 0 10px!important;
+  padding:12px 13px!important;
+  border-radius:15px!important;
+  font-size:12px!important;
+  line-height:1.52!important;
+  overflow-wrap:anywhere!important;
+}
+#chatPanel .msg.welcome{max-width:100%!important;margin-bottom:14px!important}
+#chatPanel .msg.bot{background:linear-gradient(145deg,rgba(23,55,78,.82),rgba(10,32,49,.92))!important;border:1px solid rgba(82,200,255,.14)!important;color:#e8f4fc!important}
+#chatPanel .msg.user{margin-left:auto!important;background:linear-gradient(135deg,#176dff,#08afe5)!important;border:1px solid rgba(255,255,255,.10)!important;color:#fff!important}
+
+/* Las sugerencias siempre viven debajo del saludo y por encima de la conversación dinámica. */
+#chatPanel .chat-query-block{
+  position:relative!important;
+  margin:0 0 16px!important;
+  padding:0 0 15px!important;
+  border-bottom:1px solid rgba(76,179,226,.10)!important;
+}
+#chatPanel .chat-query-label{
+  margin:0 0 9px!important;
+  color:#7f99ad!important;
+  font-size:9px!important;
+  font-weight:900!important;
+  letter-spacing:.20em!important;
+}
+#chatPanel .chat-chips{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+  gap:8px!important;
+}
+#chatPanel .chat-chips button{
+  width:100%!important;
+  min-width:0!important;
+  min-height:43px!important;
+  padding:9px 11px!important;
+  border-radius:12px!important;
+  border:1px solid rgba(75,190,240,.17)!important;
+  background:linear-gradient(145deg,rgba(15,45,65,.88),rgba(8,29,44,.94))!important;
+  color:#e7f4fc!important;
+  font-size:11px!important;
+  font-weight:800!important;
+  line-height:1.16!important;
+  text-align:left!important;
+  white-space:normal!important;
+}
+#chatPanel .chat-chips button:hover,#chatPanel .chat-chips button:active{
+  border-color:rgba(85,219,255,.42)!important;
+  background:linear-gradient(145deg,rgba(20,75,103,.94),rgba(7,41,60,.97))!important;
+}
+#chatPanel .chat-chips .support-chip{
+  grid-column:1/-1!important;
+  text-align:center!important;
+  color:#a9f3d7!important;
+  border-color:rgba(53,226,163,.28)!important;
+  background:linear-gradient(135deg,rgba(20,88,73,.32),rgba(8,51,49,.38))!important;
+}
+
+#chatPanel .typing{
+  display:flex!important;
+  align-items:center!important;
+  gap:5px!important;
+  width:max-content!important;
+  min-width:54px!important;
+  padding:13px 15px!important;
+}
+#chatPanel .typing i{display:block!important;width:6px!important;height:6px!important;border-radius:50%!important;background:#62e6ff!important;animation:dbxTypingDot 1s ease-in-out infinite!important}
+#chatPanel .typing i:nth-child(2){animation-delay:.14s!important}
+#chatPanel .typing i:nth-child(3){animation-delay:.28s!important}
+@keyframes dbxTypingDot{0%,60%,100%{transform:translateY(0);opacity:.35}30%{transform:translateY(-4px);opacity:1}}
+
+/* Soporte: una sola tarjeta estable, jamás comprimida ni en columna lateral. */
+#chatPanel .support-contact-card{
+  display:block!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  margin:2px 0 12px!important;
+  padding:14px!important;
+  overflow:hidden!important;
+  border:1px solid rgba(73,207,255,.18)!important;
+  border-radius:17px!important;
+  background:linear-gradient(160deg,rgba(7,30,45,.94),rgba(3,18,29,.98))!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.025)!important;
+}
+#chatPanel .support-section-title{margin:0 0 7px!important;color:#64e3ff!important;font-size:9px!important;font-weight:900!important;letter-spacing:.20em!important}
+#chatPanel .support-contact-card p{margin:0 0 12px!important;color:#a7bbca!important;font-size:10.5px!important;line-height:1.45!important}
+#chatPanel .support-contact-grid{
+  width:100%!important;
+  min-width:0!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+  gap:8px!important;
+}
+#chatPanel .support-contact-grid>*{min-width:0!important;max-width:100%!important}
+#chatPanel .support-contact-grid .full{grid-column:1/-1!important}
+#chatPanel .support-contact-card input,#chatPanel .support-contact-card textarea{
+  display:block!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  box-sizing:border-box!important;
+  border:1px solid rgba(87,178,220,.20)!important;
+  border-radius:11px!important;
+  background:#071521!important;
+  color:#f3f9fd!important;
+  padding:10px 11px!important;
+  outline:none!important;
+  font-size:16px!important;
+  font-weight:600!important;
+  -webkit-text-size-adjust:100%!important;
+}
+#chatPanel .support-contact-card input{height:44px!important}
+#chatPanel .support-contact-card textarea{min-height:92px!important;resize:vertical!important}
+#chatPanel .support-contact-card input:focus,#chatPanel .support-contact-card textarea:focus{border-color:rgba(69,218,255,.58)!important;box-shadow:0 0 0 3px rgba(42,181,235,.08)!important}
+#chatPanel .support-contact-submit{
+  display:block!important;
+  width:100%!important;
+  min-width:0!important;
+  min-height:45px!important;
+  margin:10px 0 0!important;
+  padding:0 14px!important;
+  border:0!important;
+  border-radius:12px!important;
+  background:linear-gradient(105deg,#196cff,#0bb9e4)!important;
+  color:#fff!important;
+  font-size:12px!important;
+  font-weight:900!important;
+  white-space:nowrap!important;
+}
+#chatPanel .support-contact-status{display:block!important;min-height:14px!important;margin-top:8px!important;color:#8198a9!important;font-size:10px!important;text-align:center!important}
+#chatPanel .support-contact-status.ok{color:#63eeb8!important}
+#chatPanel .support-contact-status.err{color:#ff9da9!important}
+
+#chatPanel #chatForm{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 76px!important;
+  gap:8px!important;
+  padding:11px 12px calc(11px + env(safe-area-inset-bottom))!important;
+  border-top:1px solid rgba(89,190,236,.12)!important;
+  background:rgba(3,13,22,.985)!important;
+}
+#chatPanel #chatInput{
+  width:100%!important;
+  min-width:0!important;
+  height:44px!important;
+  border-radius:12px!important;
+  border:1px solid rgba(86,177,218,.20)!important;
+  background:#081824!important;
+  color:#f1f8fc!important;
+  padding:0 13px!important;
+  font-size:16px!important;
+  font-weight:600!important;
+  outline:none!important;
+  -webkit-text-size-adjust:100%!important;
+}
+#chatPanel #chatForm>button{
+  width:76px!important;
+  height:44px!important;
+  border:0!important;
+  border-radius:12px!important;
+  background:linear-gradient(135deg,#1774ff,#0cb7e4)!important;
+  color:#fff!important;
+  font-size:12px!important;
+  font-weight:900!important;
+}
+#chatPanel .support-view{display:none!important}
+#chatPanel .hp{position:absolute!important;left:-10000px!important;top:auto!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important}
+
+@media(max-width:600px){
+  #chatPanel{
+    left:14px!important;
+    right:14px!important;
+    bottom:86px!important;
+    width:auto!important;
+    height:min(600px,calc(100dvh - 146px))!important;
+    max-height:calc(100dvh - 146px)!important;
+    border-radius:22px!important;
+  }
+  #chatPanel .chat-head{min-height:74px!important;padding:14px 14px!important}
+  #chatPanel .msgs{padding:14px 13px!important}
+  #chatPanel .chat-chips{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}
+  #chatPanel .chat-chips button{font-size:10.5px!important;min-height:43px!important}
+  #chatPanel .support-contact-grid{grid-template-columns:1fr!important}
+  #chatPanel .support-contact-grid .full{grid-column:auto!important}
+  #chatPanel input,#chatPanel textarea,#chatPanel select{font-size:16px!important}
+}
+@media(max-width:370px){
+  #chatPanel{left:9px!important;right:9px!important;bottom:80px!important;height:min(560px,calc(100dvh - 128px))!important;max-height:calc(100dvh - 128px)!important}
+  #chatPanel .chat-chips{grid-template-columns:1fr!important}
+  #chatPanel .chat-chips .support-chip{grid-column:auto!important}
+}

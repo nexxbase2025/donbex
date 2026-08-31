@@ -1,0 +1,11 @@
+DONBEX Web V19.0
+
+- Reestructura completa del flujo interno del chat.
+- Las preguntas sugeridas permanecen siempre arriba de las respuestas.
+- Soporte muestra 3 puntos ~2.35 s y luego abre el formulario real inmediatamente.
+- Se elimina el bug que desplazaba/ocultaba el formulario de soporte por el re-render de preguntas.
+- Historial dinámico limitado; no se almacena en localStorage.
+- Chat responsivo, compacto y sin autozoom en iPhone (inputs 16px).
+- Tarjeta de soporte estable en desktop/móvil, sin compresión lateral.
+- Endpoint de soporte queda preparado para conectar RESEND_API_KEY posteriormente.
+- No altera productos, soluciones, SEO ni navegación ya trabajada.
