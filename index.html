@@ -1,629 +1,930 @@
-<!doctype html>
-<html lang="es" data-support-email="radio@donbex.com">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#070b12">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta id="appleAppTitle" name="apple-mobile-web-app-title" content="Radio App">
-<link id="dynamicAppleIcon" rel="apple-touch-icon" href="/icons/default-radio.png">
-
-<meta name="robots" content="index,follow,max-image-preview:large">
-<meta name="keywords" content="reproductor para radio online, reproductor web radio, app radio online, PWA radio, streaming radio online, reproductor responsive radio, crear reproductor radio, radio app, reproductor HTML5 radio">
-<link rel="canonical" href="https://radio.donbex.com/">
-<meta property="og:type" content="website">
-<meta property="og:title" content="DONBEX Radio App | Reproductores premium para radio online">
-<meta property="og:description" content="Crea un reproductor profesional para tu radio online, responsive, compatible con iPhone y Android, con streaming HTTPS, logo, redes, QR y experiencia PWA.">
-<meta property="og:url" content="https://radio.donbex.com/">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="DONBEX Radio App">
-<meta name="twitter:description" content="Crea reproductores premium para radio online, responsive y compatibles con PWA.">
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"SoftwareApplication",
-  "name":"DONBEX Radio App Studio",
-  "applicationCategory":"MultimediaApplication",
-  "operatingSystem":"Web, iOS, Android",
-  "url":"https://radio.donbex.com/",
-  "description":"Plataforma web para crear reproductores premium para radios online con streaming HTTPS, logo, redes sociales, diseño responsive, QR y experiencia PWA.",
-  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/PreOrder"},
-  "provider":{"@type":"Organization","name":"DONBEX","url":"https://donbex.com/"}
-}
-</script>
-
-<meta name="description" content="Crea reproductores premium para radio online con DONBEX Radio App Studio: streaming HTTPS, logo, redes sociales, diseño responsive, QR y experiencia PWA compatible con iPhone y Android.">
-<title>DONBEX Radio App | Reproductores para radio online</title>
-<link rel="stylesheet" href="/assets/style.css?v=player-v2628-20260830">
-<link rel="stylesheet" href="/assets/support.css?v=support-v2629-20260830">
-
-<style id="routeGuardStyle">
-  html.route-tracking body > header.top,
-  html.route-tracking body > main,
-  html.route-tracking body > .support-whatsapp,
-  html.route-tracking body > #publicRadioShell{display:none!important}
-  html.route-tracking #trackingView{display:block!important}
-
-  html.route-public body > header.top,
-  html.route-public body > main,
-  html.route-public body > .support-whatsapp,
-  html.route-public #trackingView{display:none!important}
-  html.route-public #publicRadioShell{display:grid!important}
-
-  html.route-edit body > header.top,
-  html.route-edit body > main,
-  html.route-edit body > .support-whatsapp,
-  html.route-edit #publicRadioShell{display:none!important}
-</style>
-<script>
-(function(){
-  var p=location.pathname.replace(/^\/+|\/+$/g,"");
-  if(/^order\//.test(p))document.documentElement.classList.add("route-tracking");
-  else if(/^edit\//.test(p))document.documentElement.classList.add("route-edit");
-  else if(p && p!=="index.html" && !/^api\//.test(p))document.documentElement.classList.add("route-public");
-})();
-</script>
-
-</head>
-<body id="pageBody">
-
-<section id="publicRadioShell" class="public-radio-shell hidden">
-  <div class="public-radio-wrap">
-    <div id="publicLoading" class="public-loading">Cargando radio…</div>
-    <div id="publicError" class="public-error hidden">
-      <b>Radio no disponible</b>
-      <p>Este enlace no está activo o todavía no ha sido publicado.</p>
-    </div>
-  </div>
-</section>
-
-
-<section id="trackingView" class="tracking-view hidden">
-  <div class="tracking-shell">
-    <header class="tracking-header">
-      <div class="tracking-brand"><b>DONBEX</b><span>RADIO APP</span></div>
-      <span id="trackingStatusPill" class="tracking-status-pill pending">Verificando</span>
-    </header>
-
-    <div class="tracking-grid">
-      <section class="tracking-preview">
-        <div class="tracking-player-host" id="trackingPlayerHost"></div>
-      </section>
-
-      <section class="tracking-panel">
-        <small>SEGUIMIENTO DE TU RADIO</small>
-        <h1 id="trackingStationName">Mi Radio Online</h1>
-        <p id="trackingIntroText">Aquí puedes revisar el estado de tu Radio App y administrar la edición cuando esté disponible.</p>
-
-        <div class="tracking-info">
-          <div><small>Estado</small><b id="trackingStateText">Verificando estado</b></div>
-          <div><small>Enlace público</small><b id="trackingPublicUrl">—</b></div>
-          <div><small>Edición activa</small><b id="trackingEditState">No activa</b></div>
-          <div><small>Vencimiento</small><b id="trackingEditExpiry">—</b></div>
-        </div>
-
-        <div id="trackingApprovedActions" class="tracking-approved-actions hidden">
-          <button id="trackingEditRadio" type="button" class="hidden">Editar mi radio</button>
-          <button id="trackingCopyUrl" type="button">Copiar enlace</button>
-          <button id="trackingDownloadQr" type="button">Descargar QR</button>
-        </div>
-        <section id="trackingInlineEditor" class="tracking-inline-editor hidden" aria-hidden="true">
-          <div class="inline-editor-head">
-            <div>
-              <small>EDITOR DE TU RADIO</small>
-              <b>Haz los cambios y míralos en vivo</b>
-            </div>
-            <button id="closeTrackingEditor" type="button" aria-label="Cerrar editor">×</button>
-          </div>
-
-          <div class="inline-editor-grid">
-            <label>Nombre de la radio
-              <input id="inlineStationName" maxlength="100">
-            </label>
-
-            <label>URL de streaming HTTPS
-              <input id="inlineStreamUrl" type="url" inputmode="url">
-            </label>
-
-            <label>Plantilla
-              <select id="inlineTemplate">
-                <option value="orbit">Orbit</option>
-                <option value="glass">Glass</option>
-                <option value="stage">Stage</option>
-                <option value="pulse">Pulse</option>
-              </select>
-            </label>
-
-            <label>Nuevo logo
-              <input id="inlineLogo" type="file" accept="image/*">
-            </label>
-
-            <label>Instagram
-              <input id="inlineInstagram" type="url" inputmode="url">
-            </label>
-
-            <label>Facebook
-              <input id="inlineFacebook" type="url" inputmode="url">
-            </label>
-
-            <label>TikTok
-              <input id="inlineTiktok" type="url" inputmode="url">
-            </label>
-          </div>
-
-          <div class="inline-editor-actions">
-            <button id="cancelInlineEdit" type="button">Cancelar</button>
-            <button id="saveInlineEdit" type="button">Guardar cambios</button>
-          </div>
-          <small id="inlineEditState"></small>
-        </section>
-<div id="trackingRenewBlock" class="tracking-renew-block">
-          <div class="tracking-renew-head">
-            <div><small>EDICIÓN DE TU RADIO</small><b>Activa o renueva tus cambios</b></div>
-          </div>
-          <p>La radio pública sigue funcionando aunque no tengas edición activa. Contrata un plan solo cuando necesites actualizar logo, streaming, redes o diseño.</p>
-          <div class="renew-plans">
-            <button type="button" data-renew-plan="monthly" data-renew-price="5.99"><b>1 mes</b><span>$5.99</span></button>
-            <button type="button" data-renew-plan="six" data-renew-price="24.99"><b>6 meses</b><span>$24.99</span></button>
-            <button type="button" data-renew-plan="year" data-renew-price="39.99"><b>12 meses</b><span>$39.99</span></button>
-          </div>
-          <button id="trackingRequestEdit" class="tracking-request-edit" type="button" disabled>Solicitar edición</button>
-        </div>
-      </section>
-    </div>
-  </div>
-</section>
-
-
-<section id="editionCheckout" class="edition-checkout hidden" aria-hidden="true">
-  <div class="edition-backdrop" id="editionBackdrop"></div>
-  <div class="edition-card">
-    <div class="edition-top">
-      <div><small>EDICIÓN DE TU RADIO APP</small><h3 id="editionCheckoutTitle">Activar edición</h3></div>
-      <button id="closeEditionCheckout" type="button" aria-label="Cerrar">×</button>
-    </div>
-
-    <div class="edition-body">
-      <div class="edition-summary">
-        <div><small>Radio</small><b id="editionStation">—</b></div>
-        <div><small>Plan</small><b id="editionPlanLabel">—</b></div>
-        <div><small>Total</small><b id="editionPlanPrice">—</b></div>
-      </div>
-
-      <div class="edition-payment-methods">
-        <button type="button" class="active" data-edition-method="paypal">Pago en línea</button>
-        <button type="button" data-edition-method="bank">Transferencia</button>
-      </div>
-
-      <div id="editionPaypalInfo" class="edition-pay-info hidden">
-        <small>PAGO EN LÍNEA</small><b>Tarjeta o PayPal</b><span>Pago seguro. Al confirmarse, la edición se activa automáticamente.</span>
-        <div id="editionPaypalButtonContainer" class="paypal-button-container hidden"></div>
-        <small id="editionPaypalState" class="paypal-state">Completa tus datos y pulsa “Continuar al pago”.</small>
-      </div>
-
-      <div id="editionBankInfo" class="edition-pay-info edition-bank-info hidden">
-        <small>TRANSFERENCIA BANCARIA</small>
-        <b>Banco Guayaquil</b>
-        <span>Realiza la transferencia con estos datos y luego adjunta tu comprobante.</span>
-        <div class="edition-bank-account-card" aria-label="Datos bancarios DONBEX">
-          <div class="edition-bank-account-row"><small>Banco</small><b>Banco Guayaquil</b></div>
-          <div class="edition-bank-account-row"><small>Titular</small><b>Luis Alexander Beltran Calle</b></div>
-          <div class="edition-bank-account-row"><small>Tipo de cuenta</small><b>Cuenta de ahorros</b></div>
-          <div class="edition-bank-account-row"><small>Número de cuenta</small><b>0060949250</b></div>
-        </div>
-        <div class="edition-bank-help"><small>¿Tu banco solicita información adicional?</small><button type="button" data-open-bank-support>Solicitar datos para transferencia</button></div>
-      </div>
-
-      <form id="editionForm" class="hidden">
-        <label>Nombre<input id="editionCustomerName" required></label>
-        <label>Correo<input id="editionCustomerEmail" type="email" required></label>
-        <label>WhatsApp<input id="editionCustomerWhatsapp" required></label>
-        <label id="editionReceiptField" class="hidden">Comprobante<input id="editionReceipt" type="file" accept="image/*"></label>
-        <button type="submit" class="edition-submit">Continuar al pago</button>
-        <small id="editionFormState"></small>
-      </form>
-    </div>
-  </div>
-</section>
-
-<button id="publicInstallBtn" class="public-install-btn hidden" type="button">
-  <span class="public-install-icon">⇩</span>
-  <span><b id="publicInstallTitle">Instalar Radio App</b><small id="publicInstallSubtitle">Agregar a tu dispositivo</small></span>
-</button>
-
-<div id="iosInstallSheet" class="ios-install-sheet hidden">
-  <div id="iosInstallBackdrop" class="ios-install-backdrop"></div>
-  <div class="ios-install-card">
-    <button id="closeIosInstall" type="button">×</button>
-    <small>INSTALAR EN IPHONE</small>
-    <h3>Añade esta radio a tu pantalla de inicio</h3>
-    <p>Toca <b>Compartir</b> en Safari y luego <b>Añadir a pantalla de inicio</b>. El icono usará el logo de esta radio.</p>
-    <div class="ios-install-steps">
-      <span>1. Compartir</span><span>2. Añadir a pantalla de inicio</span><span>3. Agregar</span>
-    </div>
-  </div>
-</div>
-
-<header class="top studio-header">
-  <div class="brand radio-brand"><img src="/assets/donbex-radio-app-logo.png" alt="DONBEX Radio App"><span>RADIO APP STUDIO</span></div>
-  <div class="provider-note"><span>PROVEEDOR</span><b>DONBEX</b></div>
-</header>
-
-<main>
-<section class="intro">
-  <div class="intro-brand-row">
-    <div class="intro-brand-copy" aria-label="Creador de reproductor PWA para radio online">
-      <small>CREADOR DE REPRODUCTOR</small>
-      <b>PWA PARA RADIO ONLINE</b>
-    </div>
-    <img class="intro-brand-logo" src="/assets/donbex-radio-app-logo.png" alt="DONBEX Radio App">
-  </div>
-  <h1><span data-i18n="introTitle1">Tu radio.</span> <span data-i18n="introTitle2">Una experiencia premium.</span></h1>
-  <p data-i18n="introText">Elige un diseño, nombra tu radio, conecta y verifica tu URL HTTPS, agrega tu logo y tus redes sociales y publica tu Radio App. Al activarse recibirás por correo tu enlace público, QR y acceso privado de seguimiento.</p>
-  <div class="intro-offer" aria-label="Precio DONBEX Radio App">
-    <div><small>RADIO APP PWA</small><strong>$11.99</strong><span>pago único</span></div>
-    <p>Tu Radio App permanece publicada sin mensualidad obligatoria. Si necesitas cambiar datos más adelante, activa edición únicamente por el período que necesites.</p>
-  </div>
-  <button id="howItWorksBtn" class="how-video-btn" type="button"><span class="video-play-icon">▶</span><span><b>¿Cómo funciona?</b><small>Ver video explicativo</small></span></button>
-</section>
-
-<section class="studio">
-  <aside class="panel">
-    <div class="step"><span>01</span><div><b data-i18n="chooseTemplate">Elige una plantilla</b><small data-i18n="fourDesigns">4 diseños realmente distintos</small></div></div>
-
-    <div class="templates">
-      <button class="tpl active" data-template="orbit">
-        <i class="t-orbit"></i><b>Orbit</b><small data-i18n="tplOrbit">3D / inmersiva</small>
-      </button>
-      <button class="tpl" data-template="glass">
-        <i class="t-glass"></i><b>Glass</b><small data-i18n="tplGlass">Editorial / cristal</small>
-      </button>
-      <button class="tpl" data-template="stage">
-        <i class="t-stage"></i><b>Stage</b><small data-i18n="tplStage">Broadcast / escenario</small>
-      </button>
-      <button class="tpl" data-template="pulse">
-        <i class="t-pulse"></i><b>Pulse</b><small data-i18n="tplPulse">Minimal / audio</small>
-      </button>
-    </div>
-
-    <div class="step"><span>02</span><div><b data-i18n="configureRadio">Configura tu radio</b><small data-i18n="onlyNecessary">Completa tu configuración</small></div></div>
-
-    <label><span data-i18n="stationNameLabel">Nombre de la radio</span><input id="stationName" value="Mi Radio Online" maxlength="36"></label>
-    <label><span data-i18n="streamUrlLabel">URL de streaming HTTPS</span><input id="streamUrl" type="url" placeholder="https://servidor.com/stream"></label>
-    <div class="testrow"><button id="testStream" class="secondary" data-i18n="testStream">Probar stream</button><span id="streamState" data-i18n="notTested">Sin probar</span></div>
-    <label><span data-i18n="radioLogo">Logo de la radio</span><input id="logoInput" type="file" accept="image/*"></label>
-    <label>Instagram <input id="instagram" type="url" placeholder="https://instagram.com/..."></label>
-    <label>Facebook <input id="facebook" type="url" placeholder="https://facebook.com/..."></label>
-    <label>TikTok <input id="tiktok" type="url" placeholder="https://tiktok.com/@..."></label>
-
-    <div class="step"><span>03</span><div><b data-i18n="generate">Publica</b><small>Verifica tu señal antes de continuar</small></div></div>
-    <button id="generate" class="primary" disabled>Publicar mi Radio App</button>
-    <p id="publishRequirement" class="publish-requirement">Agrega una URL HTTPS y pulsa <b>Probar stream</b>. El botón se activará cuando confirmemos que la señal reproduce correctamente.</p>
-
-
-    <div id="result" class="result hidden" aria-hidden="true">
-      <canvas id="qrCanvas" width="420" height="420"></canvas>
-    </div>
-
-    
-
-<section class="checkout-modal" id="checkoutModal" aria-hidden="true">
-  <div class="checkout-backdrop" id="checkoutBackdrop"></div>
-  <div class="checkout-card" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
-    <div class="checkout-top">
-      <div>
-        <small>ACTIVACIÓN DONBEX RADIO APP</small>
-        <h3 id="checkoutTitle">Activa tu Radio App por $11.99</h3>
-      </div>
-      <button id="closeCheckout" type="button" aria-label="Cerrar">×</button>
-    </div>
-
-    <div class="checkout-layout">
-      <div class="checkout-main">
-        <div class="checkout-section">
-          <div class="section-title product-title"><span>1</span><div><b>Tu Radio App</b><small>Pago único</small></div></div>
-          <div class="base-product">
-            <div><strong>$11.99</strong><small>PWA instalable + enlace público + QR con logo + acceso privado</small></div>
-            <span class="included">INCLUIDO</span>
-          </div>
-        </div>
-
-        <div class="checkout-section optional-edit-section">
-          <div class="section-title"><span>2</span><div><b>Edición opcional</b><small>Actívala ahora o cuando la necesites</small></div></div>
-          <div class="edit-options compact">
-            <button type="button" data-edit-plan="monthly"><span>1 mes</span><b>$5.99</b></button>
-            <button type="button" data-edit-plan="six"><span>6 meses</span><b>$24.99</b></button>
-            <button type="button" data-edit-plan="year"><span>12 meses</span><b>$39.99</b></button>
-          </div>
-          <div id="selectedEditPlanSummary" class="selected-edit-plan-summary hidden">
-            <div><small>Edición seleccionada</small><b id="selectedEditPlanText">—</b></div>
-            <button id="removeSelectedEditPlan" type="button">Quitar</button>
-          </div>
-          <p class="microcopy">Si no activas edición, tu radio pública sigue funcionando. Puedes activar un período más adelante desde tu acceso privado.</p>
-        </div>
-
-        <div class="checkout-section">
-          <div class="section-title"><span>3</span><div><b>Método de pago</b><small>Selecciona una opción</small></div></div>
-          <div class="payment-methods compact-methods">
-            <button type="button" class="payment-method active" data-method="paypal"><b>Pago en línea</b><span>Tarjeta o PayPal</span></button>
-            <button type="button" class="payment-method" data-method="bank"><b>Transferencia</b><span>Banco Guayaquil</span></button>
-          </div>
-
-          <div id="paypalInfo" class="payment-info paypal-info hidden">
-            <div class="online-payment-copy">
-              <b>Pago seguro</b>
-              <small>Elige PayPal o tarjeta y completa el pago dentro del módulo protegido.</small>
-              <p class="payment-delivery-note">Al confirmarse el pago, tu Radio App se activa automáticamente y se abre tu panel privado de seguimiento. El QR, el enlace público y el enlace de seguimiento se enviarán al correo indicado.</p>
-            </div>
-          </div>
-
-          <div id="bankInfo" class="payment-info hidden bank-details">
-            <div class="bank-payment-copy"><b>Transferencia bancaria</b><small>Realiza la transferencia y adjunta tu comprobante. Tu Radio App se activará cuando el pago sea verificado y aprobado.</small></div>
-            <div class="bank-account-card" aria-label="Datos bancarios DONBEX">
-              <div class="bank-account-row"><small>Banco</small><b id="bankName">Banco Guayaquil</b></div>
-              <div class="bank-account-row"><small>Titular</small><b id="bankHolder">Luis Alexander Beltran Calle</b></div>
-              <div class="bank-account-row"><small>Tipo de cuenta</small><b id="bankAccountType">Cuenta de ahorros</b></div>
-              <div class="bank-account-row"><small>Número de cuenta</small><b id="bankAccountNumber">0060949250</b></div>
-            </div>
-            <div class="bank-help"><small>¿Tu banco solicita información adicional?</small><button type="button" id="bankHelpBtn">Solicitar datos para transferencia</button></div>
-          </div>
-        </div>
-
-        <form id="purchaseForm" class="purchase-form compact-form hidden">
-          <div class="section-title customer-data-title"><span>4</span><div><b id="purchaseDataTitle">Datos para recibir tu Radio App</b><small id="purchaseDataSubtitle">Necesarios para enviarte por correo el QR, los enlaces y tu acceso privado</small></div></div>
-
-          <div class="purchase-form-grid">
-            <label><span>Nombre</span><input name="customerName" required></label>
-            <label><span>Correo</span><input type="email" name="customerEmail" required></label>
-
-            <label class="full">
-              <span>WhatsApp</span>
-              <div class="phone-row">
-                <select id="countryCode" name="countryCode" aria-label="Código de país">
-                  <option value="+1">🇺🇸 +1</option>
-                  <option value="+593" selected>🇪🇨 +593</option>
-                  <option value="+57">🇨🇴 +57</option>
-                  <option value="+51">🇵🇪 +51</option>
-                  <option value="+52">🇲🇽 +52</option>
-                  <option value="+34">🇪🇸 +34</option>
-                  <option value="+56">🇨🇱 +56</option>
-                </select>
-                <input name="customerWhatsapp" inputmode="tel" placeholder="Número de WhatsApp" required>
-              </div>
-            </label>
-
-
-            <label class="full hidden" id="receiptField">
-              <span>Comprobante de transferencia</span>
-              <input id="receiptInput" type="file" accept="image/*">
-              <div id="receiptPreview" class="receipt-preview hidden">
-                <img id="receiptImage" alt="Comprobante">
-                <button id="removeReceipt" type="button">Quitar</button>
-              </div>
-            </label>
-          </div>
-
-          <div class="purchase-summary">
-            <div><span>Radio App</span><b>$11.99</b></div>
-            <div id="editSummaryRow" class="hidden"><span id="editSummaryLabel">Edición</span><b id="editSummaryPrice">$0.00</b></div>
-            <div class="total"><span>Total</span><b id="purchaseTotal">$11.99</b></div>
-          </div>
-
-          <button type="submit" class="submit-order">Continuar al pago</button>
-          <small id="paymentActionHint" class="payment-action-hint hidden"></small>
-          <div id="paypalButtonContainer" class="paypal-button-container hidden"></div>
-          <small id="paypalState" class="paypal-state hidden"></small>
-        </form>
-
-        
-<div id="pendingBox" class="pending-box hidden final-state">
-  <div id="trackingStatusIcon" class="status-orbit pending"><i></i></div>
-  <div class="tracking-state-content">
-    <small id="trackingKicker">SOLICITUD RECIBIDA</small>
-    <h4 id="trackingTitle">Pendiente de aprobación</h4>
-    <p id="trackingMessage">Pago pendiente de verificación. Puedes cerrar esta página; no necesitas mantenerla abierta. Guarda tu enlace de seguimiento y vuelve cuando quieras. La verificación puede tardar hasta 2 horas.</p>
-
-    <div id="trackingBox" class="tracking-box">
-      <small>TU ENLACE DE SEGUIMIENTO</small>
-      <div class="tracking-url"><span id="trackingUrlText">radio.donbex.com/order/...</span></div>
-      <p>Guarda este enlace. Cuando tu pago sea aprobado, aquí mismo aparecerán tu Radio App, tu enlace público, tu QR con logo y tu acceso privado.</p>
-      <div class="tracking-actions">
-        <button id="copyTrackingLink" type="button">Copiar enlace</button>
-        <button id="openTrackingLink" type="button">Abrir seguimiento</button>
-      </div>
-    </div>
-
-    <div id="approvedActions" class="approved-actions hidden">
-      <div class="approved-head">
-        <span class="approved-check">✓</span>
-        <div><small>RADIO APP ACTIVA</small><b>Tu solicitud fue aprobada</b></div>
-      </div>
-      <div class="approved-grid">
-        <button id="openPublicRadio" type="button">Abrir mi radio</button>
-        <button id="copyPublicUrl" type="button">Copiar enlace público</button>
-        <button id="downloadApprovedQr" type="button">Descargar QR</button>
-        <button id="copyPrivateEditUrl" type="button">Guardar acceso privado</button>
-      </div>
-      <div class="approved-links">
-        <small>Enlace público</small><b id="approvedPublicUrl">—</b>
-        <small>Acceso privado</small><b id="approvedPrivateUrl">—</b>
-      </div>
-      <canvas id="approvedQrCanvas" width="420" height="420"></canvas>
-    </div>
-  </div>
-</div>
-</div>
-</div>
-        </div>
-      </div>
-
-      <aside class="checkout-side">
-        <small>VISTA DE TU COMPRA</small>
-        <h4 id="checkoutStationName">Mi Radio Online</h4>
-        <div class="mini-url">radio.donbex.com/<b id="checkoutSlug">mi-radio-online</b></div>
-        <div class="side-points">
-          <span>✓ PWA instalable</span>
-          <span>✓ QR con tu logo</span>
-          <span>✓ Enlace público</span>
-          <span>✓ Acceso privado</span>
-        </div>
-        <div class="privacy-note">Tu URL privada de edición no será pública ni aparecerá en Google.</div>
-      </aside>
-    </div>
-  </div>
-</section>
-
-<div class="technical-note">
-      <b data-i18n="audioReactiveTitle">Visualización reactiva al audio</b>
-      <p data-i18n="audioReactiveNote">Si el servidor de streaming permite CORS, las animaciones reaccionan al audio real. Si no, el reproductor mantiene una animación visual inteligente sin interrumpir la radio.</p>
-    </div>
-  </aside>
-
-  <section class="preview-area">
-    <div class="preview-head">
-      <div><small data-i18n="livePreview">PREVISUALIZACIÓN EN VIVO</small><b id="templateTitle">ORBIT — 3D / INMERSIVA</b></div>
-      <div class="preview-actions"><span>RESPONSIVE</span></div>
-    </div>
-
-    <div class="device">
-      <div class="speaker"></div>
-
-      <div id="player" class="player orbit">
-        <div class="ambient"></div>
-        <div class="stars"></div>
-        <div class="stage-lights"></div>
-        <div class="template-ornament orbit-ornament" aria-hidden="true"><i></i><i></i><i></i></div>
-        <div class="template-ornament glass-ornament" aria-hidden="true"><i></i><i></i><i></i></div>
-        <div class="template-ornament stage-ornament" aria-hidden="true"><i></i><i></i><i></i></div>
-        <div class="template-ornament pulse-ornament" aria-hidden="true"><i></i><i></i><i></i></div>
-
-        <div class="station-top">
-          <span id="statusLabel">RADIO EN VIVO</span>
-          <div class="top-right">
-            <span id="infoBadge" class="info-badge"></span>
-            <i></i>
-          </div>
-        </div>
-
-        <div class="visual">
-          <div class="disc" id="disc">
-            <div class="logo" id="logoShell">
-              <span id="logoFallback">R</span>
-              <img id="logoPreview" alt="">
-            </div>
-            <div class="orbit-reactive" id="orbitReactive"></div>
-          </div>
-
-          <div class="bars orbit-bars" id="orbitBars" aria-hidden="true"></div>
-          <div class="glass-meter" id="glassMeter" aria-hidden="true"></div>
-          <div class="stage-vu" id="stageVu" aria-hidden="true">
-            <div class="vu left"><span></span></div>
-            <div class="vu right"><span></span></div>
-          </div>
-          <canvas id="pulseCanvas" class="pulse-canvas" width="640" height="180" aria-hidden="true"></canvas>
-        </div>
-
-        <div class="meta">
-          <small id="nowLabel">AHORA AL AIRE</small>
-          <h2 id="namePreview">Mi Radio Online</h2>
-          <p id="liveText">Transmitiendo en vivo</p>
-        </div>
-
-        <div class="wave audio-spectrum orbit-spectrum" id="legacyWave" aria-hidden="true"></div>
-
-        <div class="controls">
-          <button id="playBtn" class="play play-orbit" aria-label="Reproducir">
-            <span class="play-icon">▶</span>
-            <span class="play-ring"></span>
-          </button>
-        </div>
-
-        <div id="socialPreview" class="social-preview orbit-socials" aria-label="Redes sociales"></div>
-
-        <div class="player-brand" aria-label="DONBEX Radio Player">
-          <a id="playerBrandLink" href="https://donbex.com/" target="_blank" rel="noopener noreferrer external">DONBEX</a>
-          <span>RADIO PLAYER</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="compat">
-      <span>✓ iPhone</span><span>✓ Android</span><span data-i18n="smallScreens">✓ Pantallas pequeñas</span><span>✓ PWA ready</span>
-    </div>
-  </section>
-</section>
-</main>
-
-
-<section id="bankSupportModal" class="bank-support-modal" aria-hidden="true">
-  <div id="bankSupportBackdrop" class="bank-support-backdrop"></div>
-  <div class="bank-support-card" role="dialog" aria-modal="true" aria-labelledby="bankSupportTitle">
-    <div class="bank-support-top">
-      <div><small>TRANSFERENCIA BANCARIA</small><h3 id="bankSupportTitle">Solicitar información adicional</h3></div>
-      <button id="closeBankSupport" type="button" aria-label="Cerrar">×</button>
-    </div>
-    <form id="bankSupportForm" class="bank-support-form">
-      <p>Completa tus datos. Te responderemos al correo indicado con la información adicional necesaria para realizar la transferencia.</p>
-      <label><span>Nombre y apellido</span><input name="supportFullName" autocomplete="name" required></label>
-      <label><span>Correo</span><input name="supportEmail" type="email" autocomplete="email" required></label>
-      <label><span>Teléfono</span><input name="supportPhone" type="tel" autocomplete="tel" inputmode="tel" required></label>
-      <label><span>Información adicional que necesitas</span><textarea name="supportRequest" rows="3" placeholder="Ej.: datos requeridos por mi banco" required></textarea></label>
-      <input name="company" class="support-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <button type="submit" class="bank-support-submit">Enviar solicitud</button>
-      <small id="bankSupportStatus" class="bank-support-note">La solicitud se enviará directamente a radio@donbex.com</small>
-    </form>
-  </div>
-</section>
-
-<section id="howItWorksModal" class="how-modal" aria-hidden="true">
-  <div id="howItWorksBackdrop" class="how-modal-backdrop"></div>
-  <div class="how-modal-card" role="dialog" aria-modal="true" aria-labelledby="howItWorksTitle">
-    <button id="closeHowItWorks" class="how-modal-close" type="button" aria-label="Cerrar">×</button>
-    <div class="how-modal-video" id="howVideoBox" data-video-src-es="/assets/como-funciona-es.mp4" data-video-src-en="/assets/how-it-works-en.mp4">
-      <span class="how-placeholder-play">▶</span>
-      <b>Video explicativo</b>
-      <small>Espacio listo para conectar tu video cuando lo publiques.</small>
-    </div>
-    <small>DONBEX RADIO APP</small>
-    <h3 id="howItWorksTitle">Cómo funciona</h3>
-    <p>Configura tu radio, prueba el streaming, elige una plantilla y publica tu PWA. Recibirás por correo el enlace público, el QR y tu acceso privado de seguimiento. Podrás instalarla desde navegadores compatibles en iPhone, Android, tablets y computadoras.</p>
-  </div>
-</section>
-
-<button id="donbexSupportLauncher" class="donbex-support-launcher" type="button" aria-label="Soporte DONBEX Radio App" aria-expanded="false" aria-controls="donbexSupportPanel">
-  <img src="/assets/donbex-support-x.webp" alt="" aria-hidden="true">
-  <span class="support-live-dot" aria-hidden="true"></span>
-</button>
-
-<section id="donbexSupportPanel" class="donbex-support-panel" aria-hidden="true" aria-label="Soporte DONBEX Radio App">
-  <header class="support-panel-head">
-    <img class="support-panel-logo" src="/assets/donbex-support-x.webp" alt="DONBEX">
-    <div class="support-panel-brand">
-      <small>DONBEX RADIO APP</small>
-      <b id="supportTitle">Asistente DONBEX Radio App</b>
-      <span id="supportOnline">Soporte disponible</span>
-    </div>
-    <button id="supportClose" class="support-close" type="button" aria-label="Cerrar soporte">×</button>
+<!DOCTYPE html>
+<!-- DONBEX STATIC V16 LINKS I18N -->
+<html lang="es">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
+  <meta content="#0d131b" name="theme-color"/>
+  <meta content="DONBEX crea plataformas digitales, automatización, PWA, webs, CRM y sistemas tecnológicos para negocios." name="description"/>
+  <title>
+   DONBEX | Tecnología que impulsa negocios
+  </title>
+  <link href="assets/css/style.css?v=16" rel="stylesheet"/>
+ </head>
+ <body>
+  <header class="topbar">
+   <div class="shell topbar-inner">
+    <button class="brand" id="brandHome">
+     <img alt="DONBEX" src="assets/img/dombex-logo.png"/>
+    </button>
+    <button class="back hidden" id="backHome">
+     ←
+     <span data-i18n="backHome">
+      Volver al inicio
+     </span>
+    </button>
+    <button class="menu-btn" id="menuBtn">
+     <i>
+     </i>
+     <i>
+     </i>
+     <i>
+     </i>
+    </button>
+   </div>
   </header>
-  <div id="supportFeed" class="support-feed" role="log" aria-live="polite"></div>
-  <div class="support-composer">
-    <input id="supportInput" type="text" autocomplete="off" placeholder="Escribe tu pregunta…" maxlength="300" aria-label="Escribe tu pregunta">
-    <button id="supportSend" class="support-send" type="button" aria-label="Enviar pregunta">➤</button>
+  <div class="overlay" id="overlay">
   </div>
-</section>
-
-<!-- Legacy WhatsApp control retained hidden to avoid altering the proven core app script. -->
-<button id="supportWhatsapp" class="support-whatsapp" type="button" hidden aria-hidden="true" tabindex="-1"></button>
-
-
-<button id="privateHubBack" class="private-hub-back hidden" type="button" style="display:none!important">← Volver a mi panel</button>
-
-<audio id="audio" preload="none" playsinline></audio>
-<audio id="analysisAudio" preload="none" playsinline muted></audio>
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js"></script>
-<script src="/assets/app.js?v=player-v2628-20260830"></script>
-<script src="/assets/support.js?v=support-v2629-20260830"></script>
-<script type="module" src="/assets/firebase-radio.js?v=24.1-final"></script>
-</body>
+  <aside class="drawer" id="drawer">
+   <div class="mesh">
+   </div>
+   <div class="drawer-head">
+    <b>
+     <span>
+     </span>
+     DONBEX
+    </b>
+    <button id="closeMenu">
+     ×
+    </button>
+   </div>
+   <nav>
+    <button data-view="solutions">
+     <i>
+     </i>
+     <span data-i18n="menuSolutions">
+      Soluciones
+     </span>
+     <b>
+      ↗
+     </b>
+    </button>
+    <button data-view="products">
+     <i>
+     </i>
+     <span data-i18n="menuProducts">
+      Productos
+     </span>
+     <b>
+      ↗
+     </b>
+    </button>
+    <button data-view="project">
+     <i>
+     </i>
+     <span data-i18n="buildProject">
+      Construye tu proyecto
+     </span>
+     <b>
+      ↗
+     </b>
+    </button>
+    <div class="sep">
+     MÁS
+    </div>
+    <button class="minor" data-view="about">
+     <span data-i18n="menuAbout">
+      Sobre nosotros
+     </span>
+     <b>
+      ↗
+     </b>
+    </button>
+    <button class="minor" data-view="privacy">
+     <span data-i18n="menuPrivacy">
+      Política de privacidad
+     </span>
+     <b>
+      ↗
+     </b>
+    </button>
+   </nav>
+   <div class="drawer-foot">
+    <span>
+    </span>
+    Tecnología que impulsa negocios.
+   </div>
+  </aside>
+  <main id="app">
+   <section class="view active" data-view-panel="home">
+    <div class="hero">
+     <div class="gridfx">
+     </div>
+     <div class="shell hero-grid">
+      <div class="hero-copy">
+       <small>
+        <i>
+        </i>
+        <span data-i18n="homeKicker">
+         SISTEMAS DIGITALES PARA NEGOCIOS
+        </span>
+       </small>
+       <h1>
+        <span data-i18n="homeTitle1">
+         Tecnología que
+        </span>
+        <br/>
+        <span data-i18n="homeTitle2">
+         impulsa negocios.
+        </span>
+       </h1>
+       <p>
+        <span data-i18n="homeIntro">
+         Creamos plataformas, automatizaciones, PWA, webs y sistemas inteligentes que simplifican operaciones y convierten procesos complejos en experiencias fáciles de usar.
+        </span>
+       </p>
+       <div class="actions">
+        <button class="btn" data-view="project">
+         <span data-i18n="buildProject">
+          Construye tu proyecto
+         </span>
+        </button>
+        <button class="btn ghost" data-view="solutions">
+         <span data-i18n="exploreSolutions">
+          Explorar soluciones
+         </span>
+        </button>
+       </div>
+      </div>
+      <div class="core">
+       <div class="core-top">
+        DONBEX / CORE
+        <b>
+         <span data-i18n="coreOnline">
+          ● EN LÍNEA
+         </span>
+        </b>
+       </div>
+       <div class="core-mid">
+        <span class="orbit o1">
+        </span>
+        <span class="orbit o2">
+        </span>
+        <span class="orbit o3">
+        </span>
+        <span class="scan">
+        </span>
+        <div class="logo-card">
+         <img alt="" src="assets/img/dombex-logo.png"/>
+        </div>
+       </div>
+       <div class="core-foot">
+        <div>
+         DESIGN
+         <small>
+          UI / UX
+         </small>
+        </div>
+        <div>
+         BUILD
+         <small>
+          CODE
+         </small>
+        </div>
+        <div>
+         AUTOMATE
+         <small>
+          AI / FLOW
+         </small>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <footer class="home-footer">
+     <span>
+      © 2026 DONBEX
+     </span>
+     <div class="socials">
+      <a aria-label="Instagram" class="social instagram" data-social="instagram" href="https://www.instagram.com/" rel="noopener noreferrer" target="_blank">
+       <svg aria-hidden="true" viewbox="0 0 24 24">
+        <rect height="17.6" rx="5.2" width="17.6" x="3.2" y="3.2">
+        </rect>
+        <circle cx="12" cy="12" r="4.15">
+        </circle>
+        <circle class="fill" cx="17.45" cy="6.55" r="1.05">
+        </circle>
+       </svg>
+      </a>
+      <a aria-label="Facebook" class="social facebook" data-social="facebook" href="https://www.facebook.com/" rel="noopener noreferrer" target="_blank">
+       <svg aria-hidden="true" viewbox="0 0 24 24">
+        <path d="M13.9 21v-8h2.75l.41-3.2H13.9V7.75c0-.93.26-1.56 1.59-1.56h1.7V3.33c-.29-.04-1.3-.13-2.47-.13-2.44 0-4.11 1.49-4.11 4.23V9.8H7.85V13h2.76v8h3.29Z">
+        </path>
+       </svg>
+      </a>
+      <a aria-label="TikTok" class="social tiktok" data-social="tiktok" href="https://www.tiktok.com/" rel="noopener noreferrer" target="_blank">
+       <svg aria-hidden="true" viewbox="0 0 24 24">
+        <path d="M15.2 3.3c.34 2.22 1.62 3.54 3.8 3.83v3.12c-1.43.04-2.75-.4-3.78-1.1v5.9a5.46 5.46 0 1 1-4.72-5.4v3.16a2.36 2.36 0 1 0 1.58 2.24V3.3h3.12Z">
+        </path>
+       </svg>
+      </a>
+     </div>
+     <span>
+      Tecnología que impulsa negocios.
+     </span>
+    </footer>
+   </section>
+   <section class="view" data-view-panel="solutions">
+    <div class="section-hero">
+     <div class="shell">
+      <small>
+       SOLUCIONES
+      </small>
+      <h2>
+       Cuéntanos qué quieres mejorar.
+       <br/>
+       <span>
+        Nosotros construimos la tecnología.
+       </span>
+      </h2>
+      <p>
+       Empieza por tu necesidad. DONBEX define la arquitectura adecuada sin obligarte a saber términos técnicos.
+      </p>
+     </div>
+    </div>
+    <div class="shell cards">
+     <article class="card automation">
+      <div class="art nodes">
+      </div>
+      <div class="copy">
+       <small>
+        <span data-i18n="solAutomationLabel">
+         AUTOMATIZACIÓN
+        </span>
+       </small>
+       <h3>
+        Automatización de procesos
+       </h3>
+       <p>
+        Conectamos formularios, avisos, seguimiento y acciones para reducir tareas repetitivas.
+       </p>
+       <button data-view="project">
+        Quiero automatizar ↗
+       </button>
+      </div>
+     </article>
+     <article class="card ai">
+      <div class="art aiart">
+       <span>
+       </span>
+       <i>
+       </i>
+       <b>
+       </b>
+      </div>
+      <div class="copy">
+       <small>
+        <span data-i18n="solAiLabel">
+         ASISTENTES IA
+        </span>
+       </small>
+       <h3>
+        Chatbots &amp; asistentes IA
+       </h3>
+       <p>
+        Responden, orientan, captan datos y reducen trabajo manual antes de que intervenga una persona.
+       </p>
+       <button data-view="project">
+        Quiero un asistente ↗
+       </button>
+      </div>
+     </article>
+     <article class="card web">
+      <div class="art webart">
+       <span>
+       </span>
+       <i>
+       </i>
+       <b>
+       </b>
+      </div>
+      <div class="copy">
+       <small>
+        <span data-i18n="solWebLabel">
+         WEB INTELIGENTE
+        </span>
+       </small>
+       <h3>
+        Webs automatizadas
+       </h3>
+       <p>
+        Webs que captan solicitudes, organizan datos y activan atención, reservas o ventas.
+       </p>
+       <button data-view="project">
+        Quiero una web ↗
+       </button>
+      </div>
+     </article>
+     <article class="card platform">
+      <div class="art cubes">
+       <span>
+       </span>
+       <i>
+       </i>
+       <b>
+       </b>
+      </div>
+      <div class="copy">
+       <small>
+        <span data-i18n="solPlatformLabel">
+         SISTEMAS A MEDIDA
+        </span>
+       </small>
+       <h3>
+        Plataformas para negocios
+       </h3>
+       <p>
+        Clientes, pedidos, reservas, roles, paneles y administración hechos alrededor de tu operación.
+       </p>
+       <button data-view="project">
+        Quiero una plataforma ↗
+       </button>
+      </div>
+     </article>
+     <article class="card pwa">
+      <div class="art phoneart">
+       <span>
+       </span>
+       <b>
+        ↓
+       </b>
+      </div>
+      <div class="copy">
+       <small>
+        <span data-i18n="solPwaLabel">
+         MÓVIL / PWA
+        </span>
+       </small>
+       <h3>
+        Apps &amp; PWA
+       </h3>
+       <p>
+        Experiencias móviles instalables, rápidas y ligeras para clientes o equipos internos.
+       </p>
+       <button data-view="project">
+        Quiero una PWA ↗
+       </button>
+      </div>
+     </article>
+     <article class="card sales">
+      <div class="art salesart">
+       <span>
+       </span>
+       <i>
+       </i>
+       <b>
+       </b>
+      </div>
+      <div class="copy">
+       <small>
+        <span data-i18n="solSalesLabel">
+         VENTAS ONLINE
+        </span>
+       </small>
+       <h3>
+        Ventas &amp; servicios online
+       </h3>
+       <p>
+        Catálogo, pedidos, reservas, pagos y seguimiento con menos fricción comercial.
+       </p>
+       <button data-view="project">
+        Quiero vender online ↗
+       </button>
+      </div>
+     </article>
+     <article class="card crm">
+      <div class="art crmart">
+       <span>
+       </span>
+       <i>
+       </i>
+       <b>
+       </b>
+      </div>
+      <div class="copy">
+       <small>
+        CRM
+       </small>
+       <h3>
+        CRM &amp; gestión interna
+       </h3>
+       <p>
+        Clientes, historial, estados, tareas y métricas alrededor de cómo trabaja tu equipo.
+       </p>
+       <button data-view="project">
+        Quiero organizar mi negocio ↗
+       </button>
+      </div>
+     </article>
+     <article class="card integrations">
+      <div class="art intart">
+       <span>
+       </span>
+       <i>
+       </i>
+       <b>
+       </b>
+      </div>
+      <div class="copy">
+       <small>
+        <span data-i18n="solIntegrationsLabel">
+         INTEGRACIONES
+        </span>
+       </small>
+       <h3>
+        Integraciones
+       </h3>
+       <p>
+        Conectamos correo, formularios, bases de datos, APIs y herramientas que hoy están separadas.
+       </p>
+       <button data-view="project">
+        Quiero conectar sistemas ↗
+       </button>
+      </div>
+     </article>
+    </div>
+    <div class="shell strip">
+     <div>
+      <small>
+       CUSTOM
+      </small>
+      <h3>
+       ¿Tu necesidad no encaja en una categoría?
+      </h3>
+      <p>
+       Estas categorías son una guía. También diseñamos sistemas totalmente personalizados.
+      </p>
+     </div>
+     <button class="btn" data-view="project">
+      Explícanos tu idea
+     </button>
+    </div>
+   </section>
+   <section class="view" data-view-panel="products">
+    <div class="section-hero">
+     <div class="shell">
+      <small>
+       PRODUCTOS DONBEX
+      </small>
+      <h2>
+       <span data-i18n="menuProducts">
+        Productos
+       </span>
+       propios.
+       <br/>
+       <span>
+        Cada uno con una experiencia distinta.
+       </span>
+      </h2>
+      <p>
+       Plataformas independientes dentro del ecosistema DONBEX.
+      </p>
+     </div>
+    </div>
+    <div class="shell product-stack">
+     <article class="product">
+      <div class="p-art taxi">
+       <span class="road r1">
+       </span>
+       <span class="road r2">
+       </span>
+       <span class="car">
+       </span>
+      </div>
+      <div class="p-copy">
+       <small>
+        <span data-i18n="productTaxiSubtitle">
+         PLATAFORMA PARA CONDUCTORES Y OPERACIONES DE TRANSPORTE
+        </span>
+       </small>
+       <h3>
+        Taxi Ride
+       </h3>
+       <p>
+        <span data-i18n="productTaxiText">
+         Solicitudes, experiencia de pasajero, gestión del conductor y herramientas operativas.
+        </span>
+       </p>
+       <a href="https://taxi.donbex.com/">
+        <span data-i18n="openPlatform">
+         Abrir plataforma
+        </span>
+        ↗
+       </a>
+      </div>
+     </article>
+     <article class="product">
+      <div class="p-art webp">
+       <span class="globe">
+       </span>
+       <i>
+       </i>
+       <b>
+       </b>
+      </div>
+      <div class="p-copy">
+       <small>
+        <span data-i18n="productWebSubtitle">
+         PLATAFORMA PARA CREAR Y ADMINISTRAR EXPERIENCIAS WEB DE NEGOCIOS
+        </span>
+       </small>
+       <h3 data-i18n="productWebName">
+        Plataforma Web
+       </h3>
+       <p>
+        <span data-i18n="productWebText">
+         Presencia digital administrable, escalable y preparada para crecer junto con el negocio.
+        </span>
+       </p>
+       <a href="https://web.donbex.com/">
+        <span data-i18n="openPlatform">
+         Abrir plataforma
+        </span>
+        ↗
+       </a>
+      </div>
+     </article>
+     <article class="product">
+      <div class="p-art radiop">
+       <span class="phone-device">
+        <i>
+        </i>
+        <b>
+         ▶
+        </b>
+        <em>
+        </em>
+       </span>
+      </div>
+      <div class="p-copy">
+       <small>
+        <span data-i18n="productRadioSubtitle">
+         GENERADOR DE REPRODUCTORES PWA PARA RADIOS ONLINE
+        </span>
+       </small>
+       <h3 data-i18n="productRadioName">
+        Reproductor PWA para Radio
+       </h3>
+       <p>
+        <span data-i18n="productRadioText">
+         Agrega URL de streaming, logo e identidad y genera una experiencia instalable lista para compartir.
+        </span>
+       </p>
+       <a href="#">
+        <span data-i18n="openPlatform">
+         Abrir plataforma
+        </span>
+        ↗
+       </a>
+      </div>
+     </article>
+    </div>
+   </section>
+   <section class="view" data-view-panel="project">
+    <div class="section-hero">
+     <div class="shell">
+      <small>
+       DESARROLLO A MEDIDA
+      </small>
+      <h2>
+       Cuéntanos tu proyecto,
+       <br/>
+       <span>
+        necesidad o idea.
+       </span>
+      </h2>
+      <p>
+       No necesitas términos técnicos. Cuéntanos qué quieres lograr y cómo funciona hoy tu negocio.
+      </p>
+     </div>
+    </div>
+    <div class="shell project">
+     <div class="steps">
+      <article>
+       <span>
+        ◎
+       </span>
+       <div>
+        <small>
+         DESCUBRIR
+        </small>
+        <h3>
+         Tu negocio
+        </h3>
+        <p>
+         Qué haces, a quién atiendes y qué quieres crear o mejorar.
+        </p>
+       </div>
+      </article>
+      <article>
+       <span>
+        ◇
+       </span>
+       <div>
+        <small>
+         DEFINIR
+        </small>
+        <h3>
+         Tu necesidad
+        </h3>
+        <p>
+         Proyecto nuevo, idea, proceso por mejorar o necesidad específica.
+        </p>
+       </div>
+      </article>
+      <article>
+       <span>
+        ⌁
+       </span>
+       <div>
+        <small>
+         DISEÑAR
+        </small>
+        <h3>
+         El resultado
+        </h3>
+        <p>
+         Cómo debería funcionar la experiencia o proceso cuando esté listo.
+        </p>
+       </div>
+      </article>
+      <article>
+       <span>
+        ↗
+       </span>
+       <div>
+        <small>
+         CONECTAR
+        </small>
+        <h3>
+         Siguiente paso
+        </h3>
+        <p>
+         Revisamos tu solicitud y continuamos personalmente por correo.
+        </p>
+       </div>
+      </article>
+     </div>
+     <form id="projectForm">
+      <div class="formgrid">
+       <label>
+        Nombre
+        <input name="nombre" required=""/>
+       </label>
+       <label>
+        Apellido
+        <input name="apellido" required=""/>
+       </label>
+       <label>
+        Nombre del negocio / empresa
+        <input name="negocio" required=""/>
+       </label>
+       <label>
+        Tipo de negocio / empresa
+        <input name="tipo" placeholder="Restaurante, salón, transporte..." required=""/>
+       </label>
+       <label class="full">
+        ¿Qué necesitas?
+        <select name="servicio" required="">
+         <option value="">
+          Selecciona una categoría
+         </option>
+         <option>
+          Automatización
+         </option>
+         <option>
+          Chatbot / IA
+         </option>
+         <option>
+          Página web
+         </option>
+         <option>
+          Plataforma
+         </option>
+         <option>
+          App / PWA
+         </option>
+         <option>
+          CRM
+         </option>
+         <option>
+          Integraciones
+         </option>
+         <option>
+          Otro
+         </option>
+        </select>
+       </label>
+       <label class="full">
+        Correo
+        <input name="correo" required="" type="email"/>
+       </label>
+       <label class="full">
+        Describe tu proyecto, necesidad o idea
+        <textarea name="descripcion" required="" rows="6"></textarea>
+       </label>
+      </div>
+      <button class="submit" type="submit">
+       Enviar solicitud
+      </button>
+     </form>
+    </div>
+    <div class="shell specialist">
+     <span class="signal">
+     </span>
+     <div>
+      <small>
+       ATENCIÓN PERSONAL
+      </small>
+      <h3>
+       ¿Prefieres hablar con un especialista de DONBEX?
+      </h3>
+      <p>
+       Déjanos tus datos. Si el proyecto lo necesita, podemos coordinar una llamada.
+      </p>
+     </div>
+    </div>
+   </section>
+   <section class="view" data-view-panel="about">
+    <div class="section-hero">
+     <div class="shell">
+      <small>
+       SOBRE DONBEX
+      </small>
+      <h2>
+       Convertimos necesidades de negocio
+       <br/>
+       <span>
+        en sistemas digitales útiles.
+       </span>
+      </h2>
+      <p>
+       Diseñamos tecnología alrededor de clientes, procesos, equipos y objetivos de crecimiento reales.
+      </p>
+     </div>
+    </div>
+    <div class="shell about">
+     <article>
+      <div class="a-art">
+       <span>
+       </span>
+      </div>
+      <div>
+       <small>
+        <span data-i18n="aboutThinkLabel">
+         CÓMO PENSAMOS
+        </span>
+       </small>
+       <h3>
+        La tecnología empieza por el negocio
+       </h3>
+       <p>
+        Primero entendemos la operación, el cliente y el resultado. Después elegimos la tecnología.
+       </p>
+      </div>
+     </article>
+     <article>
+      <div class="a-art">
+       <span>
+       </span>
+      </div>
+      <div>
+       <small>
+        <span data-i18n="aboutBuildLabel">
+         QUÉ CONSTRUIMOS
+        </span>
+       </small>
+       <h3>
+        Infraestructura digital que puede crecer
+       </h3>
+       <p>
+        Plataformas web, PWA, automatización, CRM, asistentes inteligentes, reservas y ventas online.
+       </p>
+      </div>
+     </article>
+     <article>
+      <div class="a-art">
+       <span>
+       </span>
+      </div>
+      <div>
+       <small>
+        <span data-i18n="aboutWhoLabel">
+         PARA QUIÉN
+        </span>
+       </small>
+       <h3>
+        Diseñado alrededor de negocios reales
+       </h3>
+       <p>
+        Para negocios y emprendedores que quieren simplificar operaciones o convertir una idea en una plataforma funcional.
+       </p>
+      </div>
+     </article>
+    </div>
+   </section>
+   <section class="view privacy" data-view-panel="privacy">
+    <div class="section-hero">
+     <div class="shell">
+      <small>
+       POLÍTICA DE PRIVACIDAD
+      </small>
+      <h2>
+       Tu información debe tratarse
+       <br/>
+       <span>
+        con claridad.
+       </span>
+      </h2>
+      <p>
+       Esta política explica qué información puede recopilar DONBEX y cómo puede utilizarse.
+      </p>
+     </div>
+    </div>
+    <div class="shell privacy-copy">
+     <section>
+      <h3>
+       1. Información que podemos recopilar
+      </h3>
+      <p>
+       Nombre, negocio, correo, tipo de negocio, servicio seleccionado y detalles proporcionados voluntariamente.
+      </p>
+     </section>
+     <section>
+      <h3>
+       2. Cómo utilizamos la información
+      </h3>
+      <p>
+       Para responder consultas, evaluar proyectos, preparar propuestas, brindar soporte y mejorar nuestros servicios.
+      </p>
+     </section>
+     <section>
+      <h3>
+       3. Asistentes automáticos
+      </h3>
+      <p>
+       DONBEX puede usar IA para orientación inicial. No envíes contraseñas, credenciales de pago ni información altamente sensible.
+      </p>
+     </section>
+     <section>
+      <h3>
+       4. Cookies y analítica
+      </h3>
+      <p>
+       El sitio puede utilizar cookies esenciales y herramientas de analítica para comprender tráfico y rendimiento.
+      </p>
+     </section>
+     <section>
+      <h3>
+       5. Servicios de terceros
+      </h3>
+      <p>
+       Podemos integrar proveedores de hosting, correo, pagos, analítica, automatización o IA.
+      </p>
+     </section>
+     <section>
+      <h3>
+       6. Seguridad
+      </h3>
+      <p>
+       Usamos medidas razonables para reducir accesos no autorizados, aunque ningún sistema puede garantizar seguridad absoluta.
+      </p>
+     </section>
+    </div>
+   </section>
+  </main>
+  <button class="chat-peek" id="chatPeek">
+   <span>
+   </span>
+   <img alt="" src="assets/img/dombex-x.png"/>
+  </button>
+  <section class="chat" id="chatPanel">
+   <div class="chat-head">
+    <div>
+     <b>
+      DONBEX AI
+     </b>
+     <small>
+      Asistente digital
+     </small>
+    </div>
+    <button id="chatClose">
+     ×
+    </button>
+   </div>
+   <div class="msgs" id="msgs">
+    <div class="msg bot">
+     Hola. Cuéntame qué quieres construir o mejorar.
+    </div>
+   </div>
+   <form id="chatForm">
+    <input id="chatInput" placeholder="¿Qué necesita tu negocio?"/>
+    <button>
+     →
+    </button>
+   </form>
+  </section>
+  <script src="assets/js/app.js?v=16">
+  </script>
+ </body>
 </html>
