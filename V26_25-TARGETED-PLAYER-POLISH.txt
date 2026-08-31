@@ -1,0 +1,2 @@
+DONBEX RADIO APP V26.25
+Cambios limitados al player: enlace DONBEX en pestaña nueva, Orbit logo estable + espectro natural, Glass paneles más diferenciados, Stage logo centrado. No se modificó audio/reconexión, pagos, Firebase, checkout ni Pulse.

@@ -1,0 +1,8 @@
+V26.14
+- Fixed payment detail visibility so PayPal copy never remains visible when bank transfer is selected.
+- Selected optional editing plan now has an explicit summary and a Quitar action before payment.
+- Checkout header reflects the full total when an editing plan is selected.
+- PayPal server response now includes the server-calculated amount; client validates it against the checkout selection.
+- PayPal order reuse is allowed only when stored amount/plan still match the current selection.
+- Added checkoutEditPlan fallback while preserving server-side price validation.
+- paypal-capture-order.js, firebase-radio.js, Firebase rules, manifest, service worker and Vercel config are unchanged.

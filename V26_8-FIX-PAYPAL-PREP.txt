@@ -1,0 +1,1 @@
+V26.8: Corrige referencia incorrecta ensurePayPalSDK -> loadPayPalSdk en precarga y preparación de checkout. No cambia endpoints, precios, Firebase, reglas ni captura PayPal.

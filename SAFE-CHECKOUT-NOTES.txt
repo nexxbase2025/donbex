@@ -1,0 +1,22 @@
+DONBEX RADIO APP — AJUSTE SEGURO SOBRE EL ZIP RECIBIDO
+
+Base utilizada:
+radioapp-main (2)JUEVES AGOSTO27.zip
+
+IMPORTANTE:
+- assets/app.js: INTACTO
+- assets/firebase-radio.js: INTACTO
+- APIs: INTACTAS
+- rutas: INTACTAS
+- IDs / hooks del sistema: INTACTOS
+- QR / guardado / tracking / radio pública: lógica intacta
+
+Solo se modificó:
+- textos del checkout
+- clases visuales nuevas
+- CSS del checkout
+- ocultar visualmente el bloque redundante de enlace público SIN eliminar su DOM
+- ocultar visualmente el QR grande SIN tocar el botón ni lógica de descarga
+- corrección RAHWAY ENTERTAINMENT LLC
+
+No se implementó todavía el envío real de correo.

@@ -1,0 +1,9 @@
+
+V26.22 changes:
+- Removed legacy "Instala esta radio" text from all four templates.
+- Public DONBEX RADIO PLAYER brand moved below/outside player; DONBEX links to https://donbex.com/.
+- Orbit, Glass, Stage, Pulse visually differentiated with isolated CSS only.
+- Local weather on public radio uses device geolocation when granted, IP fallback otherwise.
+- Added conservative live-stream recovery after tab/app/call interruptions.
+- Refined public install bubble and mobile responsiveness.
+- Checkout/PayPal/Firebase/server payment files were not changed.

@@ -1,0 +1,13 @@
+DONBEX Radio App V26.6 — UX polish
+
+- Home copy now mentions email delivery, QR and private tracking access.
+- How-it-works copy clarifies installation on iPhone, Android, tablets and computers via compatible browsers.
+- Removed all client-facing Firebase/MVP/demo wording.
+- Publish is disabled until the current HTTPS stream URL is successfully tested.
+- Checkout product title/features are more legible.
+- Optional editor plans remain in one horizontal 3-column row, including mobile.
+- Customer delivery copy is more prominent and email remains required.
+- Legacy pending/approval card is forcibly hidden inside checkout; /order/... is the tracking screen.
+- PayPal SDK locale is explicitly es-EC for Spanish devices and en-US otherwise.
+- PayPal-hosted branding is not hidden or altered.
+- PayPal backend, Firebase rules, PWA configs and templates are unchanged.

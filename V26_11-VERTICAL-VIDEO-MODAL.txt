@@ -1,0 +1,7 @@
+DONBEX Radio App V26.11
+Cambio aislado: modal "¿Cómo funciona?" preparado en formato vertical 4:5, optimizado para móvil y escritorio.
+- Video vertical 4:5 sin deformación.
+- Modal limitado a la pantalla y con scroll vertical interno solo si hace falta.
+- Botón cerrar permanece accesible.
+- Video/iframe futuro usa object-fit: contain.
+- No se modificó PayPal, checkout, Firebase, APIs, activación, precios, plantillas ni lógica del reproductor.

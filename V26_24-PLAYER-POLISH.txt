@@ -1,0 +1,9 @@
+DONBEX Radio App V26.24
+- Glass wet-crystal polish, circular full logo, meter moved above info card, play no longer covers text.
+- Orbit spectrum widened and made more energetic.
+- Pulse generic copy and larger fully visible logo.
+- Stage/general station logos enlarged without cropping.
+- DONBEX remains a real target=_blank external link to https://donbex.com/.
+- iOS foreground audio recovery performs one controlled live-edge reconnect after leaving the app, avoiding repeated stale-buffer loops.
+- Media Session metadata/artwork uses the current station logo for lock screen / system media controls when supported.
+- No payment/checkout/Firebase server logic changed.

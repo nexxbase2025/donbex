@@ -1,0 +1,6 @@
+V26.27 — requested-only player corrections
+- Orbit: removed template name from live label; re-centered disc/orbits/logo; more expressive spectrum.
+- Orbit/Glass only: larger social buttons. Stage/Pulse unchanged.
+- Glass: stronger aqua wet-glass panels/droplets and more dynamic meter.
+- DONBEX: explicit external-browser handoff sheet; final link remains target=_blank to donbex.com.
+- No payment, checkout, Firebase, receipt, or audio-recovery logic changed.

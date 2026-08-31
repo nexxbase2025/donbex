@@ -1,0 +1,7 @@
+V26.9 — PayPal estable
+
+- Se eliminó la precarga paralela de PayPal introducida en V26.7/V26.8.
+- Se restauró la secuencia de pago comprobada en V26.5: preparar orden DONBEX -> cargar/renderizar PayPal.
+- Se restauró el cargador crítico del SDK de PayPal de V26.5.
+- Se mantienen los cambios visuales y de textos de V26.6-V26.8.
+- No se modificaron los endpoints de creación/captura, Firebase, reglas, precios ni activación automática.

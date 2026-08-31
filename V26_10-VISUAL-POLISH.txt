@@ -1,0 +1,7 @@
+DONBEX Radio App V26.10 — cambio visual únicamente
+
+- Se elimina visualmente la barra superior negra en la portada del creador.
+- Se integra un encabezado de hero con texto a la izquierda y logo DONBEX Radio App más grande a la derecha.
+- Los planes de edición 1 / 6 / 12 meses permanecen siempre en una fila horizontal de tres tarjetas, también en teléfonos.
+- Se refuerza la legibilidad de textos secundarios del checkout.
+- No se modificó lógica de PayPal, captura, Firebase, activación, precios ni rutas API.

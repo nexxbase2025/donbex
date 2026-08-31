@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es" data-support-email="radio@donbex.com">
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -35,8 +35,7 @@
 
 <meta name="description" content="Crea reproductores premium para radio online con DONBEX Radio App Studio: streaming HTTPS, logo, redes sociales, diseño responsive, QR y experiencia PWA compatible con iPhone y Android.">
 <title>DONBEX Radio App | Reproductores para radio online</title>
-<link rel="stylesheet" href="/assets/style.css?v=player-v2628-20260830">
-<link rel="stylesheet" href="/assets/support.css?v=support-v2629-20260830">
+<link rel="stylesheet" href="/assets/style.css?v=checkout-v2615-20260829">
 
 <style id="routeGuardStyle">
   html.route-tracking body > header.top,
@@ -70,6 +69,7 @@
 
 <section id="publicRadioShell" class="public-radio-shell hidden">
   <div class="public-radio-wrap">
+    <div class="public-brand"><b>DONBEX</b><span>RADIO PLAYER</span></div>
     <div id="publicLoading" class="public-loading">Cargando radio…</div>
     <div id="publicError" class="public-error hidden">
       <b>Radio no disponible</b>
@@ -202,17 +202,9 @@
         <small id="editionPaypalState" class="paypal-state">Completa tus datos y pulsa “Continuar al pago”.</small>
       </div>
 
-      <div id="editionBankInfo" class="edition-pay-info edition-bank-info hidden">
+      <div id="editionBankInfo" class="edition-pay-info hidden">
         <small>TRANSFERENCIA BANCARIA</small>
-        <b>Banco Guayaquil</b>
-        <span>Realiza la transferencia con estos datos y luego adjunta tu comprobante.</span>
-        <div class="edition-bank-account-card" aria-label="Datos bancarios DONBEX">
-          <div class="edition-bank-account-row"><small>Banco</small><b>Banco Guayaquil</b></div>
-          <div class="edition-bank-account-row"><small>Titular</small><b>Luis Alexander Beltran Calle</b></div>
-          <div class="edition-bank-account-row"><small>Tipo de cuenta</small><b>Cuenta de ahorros</b></div>
-          <div class="edition-bank-account-row"><small>Número de cuenta</small><b>0060949250</b></div>
-        </div>
-        <div class="edition-bank-help"><small>¿Tu banco solicita información adicional?</small><button type="button" data-open-bank-support>Solicitar datos para transferencia</button></div>
+        <span>Usa los datos bancarios configurados para DONBEX.</span>
       </div>
 
       <form id="editionForm" class="hidden">
@@ -360,12 +352,13 @@
 
           <div id="bankInfo" class="payment-info hidden bank-details">
             <div class="bank-payment-copy"><b>Transferencia bancaria</b><small>Realiza la transferencia y adjunta tu comprobante. Tu Radio App se activará cuando el pago sea verificado y aprobado.</small></div>
-            <div class="bank-account-card" aria-label="Datos bancarios DONBEX">
-              <div class="bank-account-row"><small>Banco</small><b id="bankName">Banco Guayaquil</b></div>
-              <div class="bank-account-row"><small>Titular</small><b id="bankHolder">Luis Alexander Beltran Calle</b></div>
-              <div class="bank-account-row"><small>Tipo de cuenta</small><b id="bankAccountType">Cuenta de ahorros</b></div>
-              <div class="bank-account-row"><small>Número de cuenta</small><b id="bankAccountNumber">0060949250</b></div>
-            </div>
+            <!-- DATOS BANCARIOS PROVISIONALES:
+                 Edita únicamente los textos entre las etiquetas <b>.
+                 La cédula/identificación es OPCIONAL y puedes dejarla vacía. -->
+            <div><small>Banco</small><b id="bankName">Banco Guayaquil</b></div>
+            <div><small>Titular</small><b id="bankHolder">PENDIENTE DE CONFIGURAR</b></div>
+            <div><small>Tipo de cuenta</small><b id="bankAccountType">PENDIENTE DE CONFIGURAR</b></div>
+            <div><small>Número de cuenta</small><b id="bankAccountNumber">PENDIENTE DE CONFIGURAR</b></div>
             <div class="bank-help"><small>¿Tu banco solicita información adicional?</small><button type="button" id="bankHelpBtn">Solicitar datos para transferencia</button></div>
           </div>
         </div>
@@ -493,10 +486,6 @@
         <div class="ambient"></div>
         <div class="stars"></div>
         <div class="stage-lights"></div>
-        <div class="template-ornament orbit-ornament" aria-hidden="true"><i></i><i></i><i></i></div>
-        <div class="template-ornament glass-ornament" aria-hidden="true"><i></i><i></i><i></i></div>
-        <div class="template-ornament stage-ornament" aria-hidden="true"><i></i><i></i><i></i></div>
-        <div class="template-ornament pulse-ornament" aria-hidden="true"><i></i><i></i><i></i></div>
 
         <div class="station-top">
           <span id="statusLabel">RADIO EN VIVO</span>
@@ -541,9 +530,9 @@
 
         <div id="socialPreview" class="social-preview orbit-socials" aria-label="Redes sociales"></div>
 
-        <div class="player-brand" aria-label="DONBEX Radio Player">
-          <a id="playerBrandLink" href="https://donbex.com/" target="_blank" rel="noopener noreferrer external">DONBEX</a>
-          <span>RADIO PLAYER</span>
+        <div class="install-hint">
+          <b data-i18n="installThisRadio">Instala esta radio</b>
+          <small id="installHint">Android: menú del navegador → Instalar app · iPhone: Compartir → Añadir a pantalla de inicio</small>
         </div>
       </div>
     </div>
@@ -555,26 +544,6 @@
 </section>
 </main>
 
-
-<section id="bankSupportModal" class="bank-support-modal" aria-hidden="true">
-  <div id="bankSupportBackdrop" class="bank-support-backdrop"></div>
-  <div class="bank-support-card" role="dialog" aria-modal="true" aria-labelledby="bankSupportTitle">
-    <div class="bank-support-top">
-      <div><small>TRANSFERENCIA BANCARIA</small><h3 id="bankSupportTitle">Solicitar información adicional</h3></div>
-      <button id="closeBankSupport" type="button" aria-label="Cerrar">×</button>
-    </div>
-    <form id="bankSupportForm" class="bank-support-form">
-      <p>Completa tus datos. Te responderemos al correo indicado con la información adicional necesaria para realizar la transferencia.</p>
-      <label><span>Nombre y apellido</span><input name="supportFullName" autocomplete="name" required></label>
-      <label><span>Correo</span><input name="supportEmail" type="email" autocomplete="email" required></label>
-      <label><span>Teléfono</span><input name="supportPhone" type="tel" autocomplete="tel" inputmode="tel" required></label>
-      <label><span>Información adicional que necesitas</span><textarea name="supportRequest" rows="3" placeholder="Ej.: datos requeridos por mi banco" required></textarea></label>
-      <input name="company" class="support-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <button type="submit" class="bank-support-submit">Enviar solicitud</button>
-      <small id="bankSupportStatus" class="bank-support-note">La solicitud se enviará directamente a radio@donbex.com</small>
-    </form>
-  </div>
-</section>
 
 <section id="howItWorksModal" class="how-modal" aria-hidden="true">
   <div id="howItWorksBackdrop" class="how-modal-backdrop"></div>
@@ -591,30 +560,10 @@
   </div>
 </section>
 
-<button id="donbexSupportLauncher" class="donbex-support-launcher" type="button" aria-label="Soporte DONBEX Radio App" aria-expanded="false" aria-controls="donbexSupportPanel">
-  <img src="/assets/donbex-support-x.webp" alt="" aria-hidden="true">
-  <span class="support-live-dot" aria-hidden="true"></span>
+<button id="supportWhatsapp" class="support-whatsapp" type="button" aria-label="Soporte por WhatsApp">
+  <span class="wa-icon">◔</span>
+  <span class="wa-copy"><b>Soporte</b><small>WhatsApp</small></span>
 </button>
-
-<section id="donbexSupportPanel" class="donbex-support-panel" aria-hidden="true" aria-label="Soporte DONBEX Radio App">
-  <header class="support-panel-head">
-    <img class="support-panel-logo" src="/assets/donbex-support-x.webp" alt="DONBEX">
-    <div class="support-panel-brand">
-      <small>DONBEX RADIO APP</small>
-      <b id="supportTitle">Asistente DONBEX Radio App</b>
-      <span id="supportOnline">Soporte disponible</span>
-    </div>
-    <button id="supportClose" class="support-close" type="button" aria-label="Cerrar soporte">×</button>
-  </header>
-  <div id="supportFeed" class="support-feed" role="log" aria-live="polite"></div>
-  <div class="support-composer">
-    <input id="supportInput" type="text" autocomplete="off" placeholder="Escribe tu pregunta…" maxlength="300" aria-label="Escribe tu pregunta">
-    <button id="supportSend" class="support-send" type="button" aria-label="Enviar pregunta">➤</button>
-  </div>
-</section>
-
-<!-- Legacy WhatsApp control retained hidden to avoid altering the proven core app script. -->
-<button id="supportWhatsapp" class="support-whatsapp" type="button" hidden aria-hidden="true" tabindex="-1"></button>
 
 
 <button id="privateHubBack" class="private-hub-back hidden" type="button" style="display:none!important">← Volver a mi panel</button>
@@ -622,8 +571,7 @@
 <audio id="audio" preload="none" playsinline></audio>
 <audio id="analysisAudio" preload="none" playsinline muted></audio>
 <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js"></script>
-<script src="/assets/app.js?v=player-v2628-20260830"></script>
-<script src="/assets/support.js?v=support-v2629-20260830"></script>
+<script src="/assets/app.js?v=checkout-v2615-20260829"></script>
 <script type="module" src="/assets/firebase-radio.js?v=24.1-final"></script>
 </body>
 </html>

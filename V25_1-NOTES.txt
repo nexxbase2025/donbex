@@ -1,0 +1,19 @@
+V25.1 SAFE CHECKOUT POLISH
+Base: V24 confirmada como funcional por el usuario.
+
+No se modificó assets/app.js.
+No se modificó assets/firebase-radio.js.
+No se modificaron rutas, tracking, carga pública, QR API, guardado ni Firebase.
+
+Cambios exclusivamente visuales/textuales en checkout:
+- secciones diferenciadas;
+- explicación más clara de edición opcional;
+- correo enfatizado;
+- WhatsApp -> Número de teléfono;
+- enlace público redundante oculto sin borrar su DOM/ID;
+- resumen con carrito;
+- mensaje pendiente más visible;
+- RAHWAY ENTERTAINMENT LLC;
+- QR visual oculto, botón de descarga preservado.
+
+El envío real por correo NO está implementado todavía.

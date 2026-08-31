@@ -1,0 +1,13 @@
+DONBEX RADIO APP V15.3
+
+Correcciones:
+1. Vercel routing:
+   /order/:token -> /
+   /edit/:token  -> /
+   /:slug        -> /
+   El navegador conserva la URL original; Vercel sirve internamente index.html desde la raíz.
+2. Responsive móvil endurecido para checkout/formularios.
+3. Cobertura adicional max-device-width para iPhone/Safari con viewport tipo escritorio.
+4. Inputs/file inputs contenidos al ancho disponible.
+5. Cache bust 15.3 para CSS/JS.
+No se cambió Firebase, Firestore, Storage, lógica de órdenes, QR ni diseños de reproductores.

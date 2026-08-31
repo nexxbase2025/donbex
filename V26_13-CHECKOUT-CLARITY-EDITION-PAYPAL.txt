@@ -1,0 +1,14 @@
+DONBEX Radio App V26.13
+
+- Cropped official logo asset to keep only DONBEX + RADIO APP; removed large upper X/tagline.
+- "Solo lo necesario" -> "Completa tu configuración".
+- Optional editing and customer-data sections visually separated.
+- Main checkout keeps payment details collapsed until a method is tapped.
+- After Continue to PayPal, prior checkout controls/data are hidden; only official PayPal/card module remains.
+- PayPal SDK locale follows browser language: es_EC or en_US.
+- Edition checkout hides receipt for PayPal and shows it only for bank transfer.
+- Edition PayPal uses a server-side PayPal session without creating an unpaid pending Admin request.
+- Fixed edition PayPal amount: base $0 + plan price ($5.99/$24.99/$39.99).
+- After Continue in edition PayPal, previous fields/methods collapse and only PayPal/card remains.
+
+Untouched: player templates, streaming logic, Firebase rules, service worker, manifest, Vercel config, main PayPal capture architecture.

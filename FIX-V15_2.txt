@@ -1,0 +1,16 @@
+DONBEX RADIO PLAYER V15.2 — STORAGE FIX
+
+Causa corregida:
+- El comprobante se subía correctamente a Storage.
+- Inmediatamente después, el frontend intentaba pedir getDownloadURL().
+- Las reglas de Storage bloqueaban la lectura del comprobante por seguridad.
+- Resultado: Firebase lanzaba error y la solicitud completa se marcaba como fallida.
+
+Solución:
+- El comprobante sigue PRIVADO.
+- Se guarda receiptPath en Firestore, no una URL pública.
+- El logo sí puede obtener URL porque debe mostrarse luego en la radio pública.
+- El panel Admin genera una URL temporal segura para visualizar el comprobante.
+
+IMPORTANTE:
+Publica de nuevo el archivo storage.rules de esta V15.2.

@@ -1,0 +1,8 @@
+V26.20
+- Edition checkout strictly isolates online vs bank transfer UI.
+- Online edition: no bank information and no receipt upload.
+- Bank edition: compact Banco Guayaquil account card, receipt upload, and additional-info support action.
+- PayPal successful captures now send a DONBEX Radio App purchase receipt to the customer's email via existing RESEND_API_KEY.
+- Receipt branding is DONBEX only; no RAHWAY/RAVO references in executable project code.
+- Email failure never reverses or blocks a successfully captured PayPal payment.
+- PayPal/Firebase pricing and activation logic otherwise unchanged.

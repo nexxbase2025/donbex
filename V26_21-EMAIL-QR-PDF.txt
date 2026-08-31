@@ -1,0 +1,12 @@
+DONBEX RADIO APP V26.21
+
+Cambios limitados al correo posterior a pago PayPal confirmado:
+- Restaura correo completo de activacion/edicion con enlaces publico y privado.
+- Adjunta QR personalizado en PNG.
+- Si la Radio App tiene logo configurado, el QR adjunto usa ese logo.
+- Adjunta comprobante informativo de pago DONBEX en PDF.
+- El comprobante es DONBEX y no menciona RAHWAY/RAVO ni se presenta como factura tributaria.
+- Para renovaciones de edicion, el servidor recupera el logo actual de la radio antes de generar el QR si hace falta.
+- Si falla el correo, no se revierte ni bloquea un pago ya confirmado.
+
+No se modificaron precios, PayPal create-order, Firebase, checkout, plantillas, PWA ni reglas.

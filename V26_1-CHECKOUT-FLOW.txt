@@ -1,0 +1,22 @@
+DONBEX RADIO APP — V26.1 CHECKOUT / PAYPAL FLOW
+
+ALCANCE DE ESTA REVISIÓN
+Se modificaron únicamente index.html y assets/app.js para ajustar el checkout y sus estados.
+
+CAMBIOS
+- El método comercial se presenta como “Pago en línea” / “Tarjeta o PayPal”.
+- Botón principal: “Continuar al pago”.
+- Se eliminó la fila “Tu enlace público” del formulario de compra.
+- Pago en línea: guardar la solicitud previa NO muestra “Pendiente de aprobación”.
+- PayPal se captura en servidor; cuando el pago queda confirmado, se escribe status=approved y payment.status=approved y se abre automáticamente el panel privado de seguimiento.
+- Transferencia Banco Guayaquil mantiene comprobante + aprobación manual.
+- Mientras una transferencia no sea aprobada, enlace público, QR y acciones privadas permanecen bloqueados.
+- Si un pago en línea aún no se confirmó, el seguimiento lo identifica como pago pendiente y no como aprobación manual pendiente.
+- La misma presentación neutral se aplicó al pago posterior de períodos de edición.
+
+INTEGRIDAD
+No se modificaron: vercel.json, manifest.webmanifest, sw.js, firestore.rules, storage.rules, Firebase client config, plantillas visuales, streaming, PWA ni rutas públicas/privadas.
+Se conservaron los endpoints y variables de entorno PAYPAL_* y RADIO_FIREBASE_* ya preparados para Vercel.
+
+AUTOMATIZACIONES EXISTENTES
+La activación PayPal utiliza el mismo estado final Firestore approved/payment.status=approved. Si el correo, factura, QR y enlaces ya están conectados externamente a ese cambio de estado, podrán seguir usando el mismo disparador sin duplicar esa lógica en el checkout.

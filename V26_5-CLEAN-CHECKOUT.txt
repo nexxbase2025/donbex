@@ -1,0 +1,11 @@
+DONBEX Radio App V26.5 — Checkout condicional limpio
+
+- Al abrir “Publicar mi Radio App” solo se muestran producto, edición opcional y las dos tarjetas de método de pago.
+- Pago en línea queda marcado visualmente por defecto, pero su contenido se despliega únicamente al pulsarlo.
+- Pago en línea: primero solicita únicamente los datos DONBEX necesarios para entregar QR/enlaces/acceso; al continuar, esos campos se contraen y aparece el módulo seguro de PayPal/tarjeta.
+- Los datos de tarjeta NO se solicitan ni almacenan en DONBEX; pertenecen al módulo seguro de PayPal.
+- Transferencia: despliega Banco Guayaquil, datos del cliente y comprobante; al enviarlo, abre directamente el panel privado de seguimiento.
+- Ya no se muestra “Solicitud recibida / Pendiente de aprobación” dentro del checkout.
+- En /order/... se utiliza exclusivamente el panel de seguimiento dedicado; el checkout no se vuelve a abrir encima.
+- Pago PayPal confirmado sigue activándose automáticamente; transferencia sigue requiriendo aprobación manual en Admin.
+- No se modificaron manifest, service worker, reglas de Firebase, reglas de Storage ni configuración de Vercel.

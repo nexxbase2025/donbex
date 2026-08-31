@@ -1,0 +1,13 @@
+DONBEX RADIO APP V26.23 — PREMIUM PLAYER REBUILD
+
+Scope intentionally limited to player/public-PWA experience.
+
+- Public radio is now full-bleed: no phone mockup inside the user's phone.
+- DONBEX RADIO PLAYER moved inside the player footer; DONBEX opens donbex.com externally.
+- No legacy "Instala esta radio" copy in templates.
+- Orbit, Glass, Stage and Pulse now use deliberately different layout/visual languages.
+- Added richer template-specific motion/ornaments and responsive behavior.
+- Mobile playback uses a single live audio element; the secondary analyser stream is disabled on phones to avoid audio-session conflicts.
+- Reconnect logic no longer reacts aggressively to normal suspend events. A real stall is allowed time to recover and then performs one throttled hard reconnect.
+- Public weather uses device geolocation only; no IP-city guess. If permission is unavailable/denied, the badge asks for location instead of showing a wrong city.
+- No checkout, PayPal, Firebase, pricing, receipt or approval files changed.

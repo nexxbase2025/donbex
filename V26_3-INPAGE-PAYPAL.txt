@@ -1,0 +1,8 @@
+DONBEX Radio App V26.3 — Pago en línea dentro del checkout
+
+- Pago en línea ya no redirige al checkout alojado de PayPal.
+- Después de completar los datos y pulsar Continuar al pago, se muestran los botones seguros de PayPal dentro del checkout DONBEX.
+- La orden se crea/captura con las APIs existentes del servidor.
+- Al aprobarse el pago: mensaje Pago exitoso, activación automática y navegación al panel privado de seguimiento en la misma pestaña.
+- Se añadió información visible sobre entrega por correo de QR, enlace público y enlace privado de seguimiento.
+- Transferencia bancaria conserva el flujo manual con comprobante y aprobación.

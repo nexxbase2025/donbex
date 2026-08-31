@@ -1,0 +1,10 @@
+DONBEX Radio App V26.15 — Checkout visual hierarchy + method-specific guidance
+
+- Keeps V26.14 PayPal totals and payment logic intact.
+- Transfer flow no longer shows PayPal/card guidance below its submit button.
+- Online payment shows PayPal/card-specific guidance; transfer shows approval/receipt-specific guidance.
+- One-time product card receives a restrained blue identity on landing and checkout.
+- Optional editing receives a distinct purple/cyan visual zone.
+- PayPal card uses subtle native yellow/blue cues; Banco Guayaquil transfer card uses a subtle magenta cue.
+- Step 4 customer/transfer data receives a separate teal visual zone.
+- No changes to Firebase rules, Vercel, service worker, manifest, PayPal capture API or Admin flow.

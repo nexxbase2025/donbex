@@ -1,0 +1,8 @@
+DONBEX Radio App V26.4 — PayPal clean flow
+
+- PayPal attempts are NO LONGER written to radioRequests before payment.
+- Therefore unpaid/cancelled PayPal attempts do not appear in DONBEX Admin as manual approvals.
+- The client only uploads the logo needed for the pending checkout.
+- The protected server creates a paypalSessions document, creates/captures the PayPal order, verifies amount/status, and only then writes the final radioRequests document as APPROVED and activates the radio.
+- Bank transfer flow is unchanged: it still creates pending_approval and requires Admin review.
+- PayPal remains embedded via PayPal JS SDK and opens the private tracking panel only after confirmed capture.

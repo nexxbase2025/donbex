@@ -1,0 +1,32 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /radioRequests/{token} {
+      allow create: if
+        request.resource.data.status == "pending_approval"
+        && request.resource.data.payment.status == "pending"
+        && request.resource.data.trackingToken == token
+        && request.resource.data.stationName is string
+        && request.resource.data.slug is string;
+
+      // The tracking URL itself is the secret needed to read this one request.
+      allow get: if true;
+      allow list: if false;
+      allow update, delete: if false;
+    }
+
+    match /radios/{slug} {
+      allow get: if resource.data.status == "active";
+      allow list: if false;
+      allow create, update, delete: if false;
+    }
+
+    match /radioEdits/{token} {
+      // Private edit link may check its own state by secret token.
+      allow get: if true;
+      allow list: if false;
+      allow create, update, delete: if false;
+    }
+  }
+}

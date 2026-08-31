@@ -1,0 +1,12 @@
+DONBEX Radio App V26.16
+- Fixed duplicate PayPal hint below checkout button.
+- Bank transfer now shows only the bank-specific approval hint.
+- Configured Banco Guayaquil details in one compact card:
+  Holder: Luis Alexander Beltran Calle
+  Account type: Cuenta de ahorros
+  Account: 0060949250
+- Added support email radio@donbex.com.
+- “Solicitar datos para transferencia” opens a dedicated modal with full name, email, phone and additional-information request.
+- The modal prepares an email addressed strictly to radio@donbex.com via the device mail client.
+- No WhatsApp support path was added.
+- Critical PayPal/Firebase/PWA files otherwise preserved.

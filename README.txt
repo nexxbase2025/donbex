@@ -1,14 +1,31 @@
-DONBEX STATIC V16 — LINKS + I18N
+DONBEX RADIO APP STUDIO — V13 ACTIVATION FLOW
 
-ÚNICOS CAMBIOS SOBRE V15:
-- Iconos de Instagram, Facebook y TikTok ahora son enlaces clickeables.
-- Abren en una pestaña nueva.
-- De momento apuntan a las páginas generales de cada red; reemplaza esas URLs por las cuentas oficiales DONBEX cuando las tengas.
-- El bloque DONBEX Core/System del inicio ahora aparece en español cuando el dispositivo está en español:
-  DONBEX / SISTEMA CENTRAL
-  EN LÍNEA
-  DISEÑO
-  CONSTRUIR / CÓDIGO
-  AUTOMATIZAR / IA / FLUJO
-- En dispositivos en inglés, esos mismos textos cambian automáticamente a inglés.
-- No se modificó el resto del diseño ni funcionamiento.
+Base: V12 TRACKING FLOW.
+
+CAMBIOS DE CLARIDAD:
+- “Generar reproductor” pasa a “Publicar mi Radio App”.
+- El cliente configura y prueba primero.
+- Luego continúa a activación y pago.
+- Al subir comprobante:
+  “Pago pendiente de verificación”.
+  No necesita mantener la página abierta.
+  Guarda su enlace de seguimiento.
+  La verificación puede tardar hasta 2 horas.
+- Cuando el admin apruebe en Firestore:
+  la Radio App se activa automáticamente.
+  El cliente NO tiene que pulsar “Generar” otra vez.
+- En seguimiento aprobado aparecen:
+  Abrir mi radio
+  Copiar enlace público
+  Descargar QR con logo
+  Guardar acceso privado
+
+No se tocaron diseños, animaciones ni motor del reproductor.
+
+
+V13.1 — SINGLE PUBLISH CTA
+- Eliminado el botón redundante “Continuar a activación y pago”.
+- Eliminado el texto auxiliar debajo de ese botón.
+- Queda un único CTA: “Publicar mi Radio App”.
+- Ese botón abre directamente el checkout de activación/pago.
+- No se modificaron reproductor, plantillas, tracking ni flujo de aprobación.

@@ -1,0 +1,7 @@
+DONBEX Radio App V26.2 — Checkout Fix
+
+- El comprobante de transferencia queda oculto cuando Pago en línea está seleccionado.
+- “Continuar al pago” ahora redirige directamente al checkout seguro de PayPal; no crea una pantalla de pendiente manual.
+- PayPal regresa al sitio, el servidor captura/verifica el pago y luego abre el panel privado de seguimiento ya aprobado.
+- Transferencia conserva comprobante + aprobación manual.
+- No se modificaron manifest, service worker, vercel.json, reglas Firebase, templates ni reproductor/PWA.

@@ -1,0 +1,12 @@
+DONBEX Radio App V25
+- Checkout reorganizado visualmente por secciones.
+- Edición opcional diferenciada y explicada.
+- RAHWAY ENTERTAINMENT LLC corregido.
+- Correo enfatizado como dato crítico para entrega futura.
+- WhatsApp cambiado a Número de teléfono.
+- Eliminado bloque redundante 'Tu enlace público' del checkout.
+- Resumen de compra con icono de carrito.
+- Mensaje pendiente más visible.
+- Estado aprobado mantiene cambio automático a SOLICITUD APROBADA.
+- QR visual grande oculto; descarga se mantiene.
+- No se implementa todavía el envío real de correo: queda como siguiente etapa para no afirmar un envío que aún no existe.

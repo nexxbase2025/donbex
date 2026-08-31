@@ -1,0 +1,9 @@
+DONBEX Radio App V26.28
+
+Cambio único solicitado:
+- Eliminada completamente la burbuja/modal intermedio al pulsar DONBEX.
+- DONBEX es ahora un enlace nativo directo a https://donbex.com/ con target=_blank.
+- No se intercepta el clic con JavaScript.
+- No se modificó audio, plantillas, Firebase, pagos, checkout ni ninguna otra lógica.
+
+Nota: iOS y Android deciden cómo presentan enlaces externos desde una PWA (Safari, pestaña, browser sheet/custom tab). Una web/PWA no puede forzar la X nativa de iOS/Android; esta versión usa el mecanismo estándar más compatible.

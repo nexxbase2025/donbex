@@ -1,0 +1,43 @@
+DONBEX RADIO APP — V14 FIREBASE
+
+Esta versión YA está conectada al proyecto Firebase:
+projectId: donbex-radio-app
+
+ANTES DE SUBIR A VERCEL debes pegar/publicar las reglas:
+
+1) Firebase Console → Firestore Database → Rules
+   Copia TODO el contenido de firestore.rules
+   y pulsa Publish.
+
+2) Firebase Console → Storage → Rules
+   Copia TODO el contenido de storage.rules
+   y pulsa Publish.
+
+QUÉ HACE V14:
+- Sube comprobante a Firebase Storage.
+- Sube logo de la radio a Firebase Storage.
+- Guarda solicitud en colección radioRequests.
+- Estado inicial: pending_approval.
+- Guarda plan de edición elegido.
+- Genera trackingToken y editToken.
+- Crea tracking URL real:
+  https://radio.donbex.com/order/<token>
+- Vercel rewrite hace que /order/<token> abra index.html.
+- Al abrir el tracking, Firestore escucha el documento en tiempo real.
+- Cuando el futuro panel admin cambie status a approved,
+  el cliente verá automáticamente el estado aprobado.
+
+IMPORTANTE:
+Las reglas actuales son de MVP para permitir solicitudes SIN LOGIN.
+No permiten que el cliente apruebe ni modifique una solicitud.
+El panel admin necesitará reglas administrativas adicionales y autenticación.
+
+SIGUIENTE FASE:
+admin.donbex.com:
+- login admin
+- lista de solicitudes
+- ver comprobante
+- Aprobar / Rechazar
+- calcular editExpiresAt
+- crear radio publicada
+- generar QR final con logo

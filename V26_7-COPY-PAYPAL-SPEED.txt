@@ -1,0 +1,7 @@
+DONBEX Radio App V26.7
+
+- Hero copy now tells the customer to name the radio, verify HTTPS streaming, add logo and social links before publishing.
+- Bank-transfer microtext/readability strengthened without introducing horizontal scroll.
+- PayPal SDK is preloaded when the online-payment method is opened.
+- On submit, DONBEX PayPal preparation and PayPal SDK loading run in parallel, reducing the “Preparando pago” wait.
+- PayPal capture/activation backend, Firebase rules, Vercel config, templates and PWA logic unchanged.

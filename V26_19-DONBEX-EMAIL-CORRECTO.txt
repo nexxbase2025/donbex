@@ -1,0 +1,5 @@
+V26.19 — Corrección exclusiva de correo DONBEX
+- Correo del flujo bancario: radio@donbex.com.
+- Remitente Resend: DONBEX Radio App <radio@donbex.com>.
+- Destino: radio@donbex.com.
+- No se modificó PayPal, Firebase, checkout, precios, PWA, templates ni demás lógica.

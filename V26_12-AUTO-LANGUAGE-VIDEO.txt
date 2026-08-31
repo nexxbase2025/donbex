@@ -1,0 +1,6 @@
+DONBEX Radio App V26.12
+- Automatic browser/device language detection; no visible language selector.
+- Spanish is the default/fallback. English devices receive English UI text.
+- How-it-works video automatically selects /assets/como-funciona-es.mp4 or /assets/how-it-works-en.mp4.
+- If the corresponding video file is not present yet, the localized placeholder remains.
+- PayPal/Firebase/backend files are not modified.

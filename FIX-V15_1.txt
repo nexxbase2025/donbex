@@ -1,0 +1,16 @@
+DONBEX RADIO PLAYER V15.1 — HOME FIX
+
+Problema corregido:
+- El bloque público "Cargando radio..." se estaba mostrando también en la página principal del Studio.
+- Eso creaba un espacio enorme arriba del contenido.
+- Ahora el shell público queda totalmente oculto en radio.donbex.com.
+- Solo aparece cuando la URL es una radio pública, por ejemplo:
+  radio.donbex.com/radio-bonita
+
+No se modificaron:
+- reproductores
+- animaciones
+- Firebase
+- pagos
+- tracking
+- panel admin

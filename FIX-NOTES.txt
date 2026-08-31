@@ -1,0 +1,7 @@
+Base exacta: radioapp-main (2)JUEVES AGOSTO27.zip
+
+Solo dos cambios funcionales:
+1. QR: descarga como archivo adjunto; no usa Share Sheet. En iPhone Safari, iOS controla la confirmación y la ubicación (Archivos > Descargas).
+2. Pantalla original tras pago: escucha su propia solicitud y, cuando Admin la aprueba, cambia automáticamente al mismo estado SOLICITUD APROBADA / Radio App activada.
+
+No se tocaron templates, reproductor, rutas, editor, guardado de edición, checkout visual ni Admin.
