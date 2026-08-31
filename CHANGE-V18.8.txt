@@ -1,0 +1,11 @@
+DONBEX Web V18.8
+- Reworked assistant behavior and proportions based on Radio App support UI.
+- Friendly greetings/thanks and 2.25s typing indicator.
+- Support form opens after typing animation and stays inline in chat.
+- Quick questions return after every response; long history is pruned.
+- Support and project forms share the same robust email endpoint.
+- Resend sender fallback uses the proven radio@donbex.com sender while delivery goes to soporte@donbex.com.
+- Added detailed per-solution views with back-to-solutions navigation.
+- Removed redundant specialist box.
+- Stronger multi-accent technology styling for home, solutions, products and project flow.
+- iPhone inputs use 16px to prevent Safari focus zoom.
